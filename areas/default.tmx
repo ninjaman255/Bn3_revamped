@@ -7,7 +7,7 @@
   <property name="Background Vel X" type="float" value="0.1"/>
   <property name="Background Vel Y" type="float" value="0.1"/>
   <property name="Name" value="ACDC_1"/>
-  <property name="Song" value="/server/assets/music/Mega Man Battle Network 3 OST - T21 Network Is Spreading (Internet Theme).ogg"/>
+  <property name="Song" value="/server/assets/music/network is spreading.ogg"/>
  </properties>
  <tileset firstgid="1" source="../assets/tiles/warp.tsx"/>
  <tileset firstgid="7" source="../assets/tiles/home_warp.tsx"/>

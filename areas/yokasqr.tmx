@@ -149,7 +149,13 @@
 </data>
  </layer>
  <objectgroup id="30" name="Object Layer 5" offsetx="0" offsety="-48">
-  <object id="62" gid="247" x="192" y="416" width="64" height="40"/>
+  <object id="62" type="Custom Warp" gid="247" x="192" y="416" width="64" height="40">
+   <properties>
+    <property name="Direction" value="Down Right"/>
+    <property name="Target Area" value="yoka2"/>
+    <property name="Target Object" value="62"/>
+   </properties>
+  </object>
   <object id="63" gid="256" x="498" y="194" width="48" height="69"/>
  </objectgroup>
  <layer id="22" name="Tile Layer 3" width="40" height="28" offsetx="0" offsety="-64">

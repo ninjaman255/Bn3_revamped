@@ -35,7 +35,13 @@
 </data>
  </layer>
  <objectgroup id="5" name="Object Layer">
-  <object id="62" gid="247" x="96" y="256" width="64" height="40"/>
+  <object id="62" type="Custom Warp" gid="247" x="96" y="256" width="64" height="40">
+   <properties>
+    <property name="Direction" value="Up Right"/>
+    <property name="Target Area" value="acdc3"/>
+    <property name="Target Object" value="64"/>
+   </properties>
+  </object>
   <object id="63" type="Board" gid="256" x="20" y="-30" width="48" height="69">
    <properties>
     <property name="BBS" type="bool" value="true"/>

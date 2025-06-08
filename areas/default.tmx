@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="isometric" renderorder="right-down" compressionlevel="0" width="33" height="28" tilewidth="64" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="68">
+<map version="1.4" tiledversion="1.4.3" orientation="isometric" renderorder="right-down" compressionlevel="0" width="33" height="28" tilewidth="64" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="86">
  <properties>
   <property name="Background" value="custom"/>
   <property name="Background Animation" value="/server/assets/backgrounds/ACDC.animation"/>
@@ -16,6 +16,9 @@
  <tileset firstgid="21" source="../assets/tiles/BN3-revamped.tsx"/>
  <tileset firstgid="1541" source="../assets/tiles/BN3ACDC1Warp.tsx"/>
  <tileset firstgid="1550" source="../assets/tiles/BBSOldFlipped.tsx"/>
+ <tileset firstgid="1553" source="../assets/tiles/RushTile.tsx"/>
+ <tileset firstgid="1554" source="../assets/tiles/rush_floor.tsx"/>
+ <tileset firstgid="1558" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
  <layer id="1" name="Floor" width="33" height="28">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -163,7 +166,7 @@
 0,0,0,0,0,0,144,144,144,0,0,24,2147483869,2147483869,2147483869,2147483869,104,0,0,0,24,223,223,223,223,223,104,0,0,0,0,0,0,
 0,0,0,0,0,0,144,144,144,24,2147483869,24,0,0,0,0,0,0,0,0,181,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,144,144,144,0,0,61,0,1143,1143,1143,0,0,0,0,221,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,24,0,0,0,61,0,1143,1143,1143,24,22,24,0,24,223,223,223,223,223,223,223,223,223,24,0,0,
+0,0,0,0,0,0,0,24,0,0,0,61,0,1143,1143,1143,24,22,24,1554,24,223,223,223,223,223,223,223,223,223,24,0,0,
 0,0,0,0,0,0,0,221,0,0,0,61,0,1143,1143,1143,0,0,21,0,0,0,0,0,0,0,0,0,0,0,181,0,0,
 0,0,0,0,0,0,0,221,0,0,0,61,0,0,0,0,0,0,101,0,0,144,144,144,0,1343,1343,1343,0,0,221,0,0,
 0,0,0,0,0,0,0,221,0,0,0,61,0,0,0,0,0,0,24,223,24,144,144,144,0,1343,1343,1343,24,182,24,0,0,
@@ -195,7 +198,7 @@
     <property name="Direction" value="Down Right"/>
    </properties>
   </object>
-  <object id="64" gid="1542" x="480" y="544" width="64" height="40"/>
+  <object id="64" gid="1558" x="480" y="544" width="64" height="40"/>
   <object id="67" type="Board" gid="1551" x="502" y="290" width="48" height="69">
    <properties>
     <property name="BBS" type="bool" value="true"/>
@@ -205,5 +208,32 @@
     <property name="Postable" type="bool" value="false"/>
    </properties>
   </object>
+  <object id="68" type="Radius Warp" x="368" y="144">
+   <properties>
+    <property name="Activation Radius" type="float" value="0.6"/>
+    <property name="Arrival Animation" value="arrow_up_right_in"/>
+    <property name="Leave Animation" value="arrow_up_right_out"/>
+    <property name="Target Area" value="acdc2"/>
+    <property name="Target Object" value="62"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="70" type="RushRoad" gid="1553" x="640" y="384" width="64" height="32">
+   <properties>
+    <property name="RushObjId" type="int" value="75"/>
+   </properties>
+  </object>
+  <object id="83" gid="1557" x="608" y="352" width="64" height="32"/>
+  <object id="84" type="Radius Warp" x="656" y="176">
+   <properties>
+    <property name="Activation Radius" type="float" value="0.6"/>
+    <property name="Arrival Animation" value="arrow_up_right_in"/>
+    <property name="Leave Animation" value="arrow_up_right_out"/>
+    <property name="Target Area" value="acdc3"/>
+    <property name="Target Object" value="62"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="85" gid="1558" x="832" y="448" width="64" height="40"/>
  </objectgroup>
 </map>

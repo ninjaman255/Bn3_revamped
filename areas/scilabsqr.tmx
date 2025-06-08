@@ -46,7 +46,13 @@
 </data>
  </layer>
  <objectgroup id="5" name="Object Layer">
-  <object id="62" gid="1787" x="224" y="192" width="64" height="40"/>
+  <object id="62" type="Custom Warp" gid="1787" x="224" y="192" width="64" height="40">
+   <properties>
+    <property name="Direction" value="Down Left"/>
+    <property name="Target Area" value="scilab2"/>
+    <property name="Target Object" value="64"/>
+   </properties>
+  </object>
   <object id="63" type="Board" gid="1796" x="176" y="384" width="48" height="69">
    <properties>
     <property name="BBS" type="bool" value="true"/>

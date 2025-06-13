@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.8" tiledversion="1.8.4" name="CompressionRoadsYoka" tilewidth="64" tileheight="32" tilecount="44" columns="11">
+<tileset version="1.4" tiledversion="1.4.3" name="CompressionRoadsYoka" tilewidth="64" tileheight="32" tilecount="44" columns="11">
  <image source="CompressionRoadsYoka.png" width="704" height="128"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">
@@ -400,10 +400,10 @@
  <tile id="34">
   <objectgroup draworder="index" id="2">
    <object id="10" x="40" y="-4">
-    <polygon points="-8,-4 40,20 24,30 -8,14"/>
+    <polygon points="-8,4 31,22 24,30 -8,14"/>
    </object>
    <object id="11" x="11" y="12">
-    <polygon points="8,4 40,20 24,28 -24,4"/>
+    <polygon points="8,4 40,20 24,28 -11,4"/>
    </object>
   </objectgroup>
  </tile>

@@ -508,6 +508,28 @@
    <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="505" duration="200"/>
+   <frame tileid="545" duration="200"/>
+   <frame tileid="585" duration="200"/>
+   <frame tileid="625" duration="200"/>
+   <frame tileid="665" duration="200"/>
+   <frame tileid="705" duration="200"/>
+   <frame tileid="745" duration="200"/>
+   <frame tileid="785" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="347">
+  <animation>
+   <frame tileid="507" duration="200"/>
+   <frame tileid="547" duration="200"/>
+   <frame tileid="587" duration="200"/>
+   <frame tileid="627" duration="200"/>
+   <frame tileid="667" duration="200"/>
+   <frame tileid="707" duration="200"/>
+   <frame tileid="747" duration="200"/>
+   <frame tileid="787" duration="200"/>
+  </animation>
  </tile>
  <tile id="348" type="Conveyor">
   <properties>
@@ -515,6 +537,16 @@
    <property name="Sound Effect" value="/server/assets/sfx/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="508" duration="200"/>
+   <frame tileid="548" duration="200"/>
+   <frame tileid="588" duration="200"/>
+   <frame tileid="628" duration="200"/>
+   <frame tileid="668" duration="200"/>
+   <frame tileid="708" duration="200"/>
+   <frame tileid="748" duration="200"/>
+   <frame tileid="788" duration="200"/>
+  </animation>
  </tile>
  <tile id="349" type="Conveyor">
   <properties>
@@ -522,6 +554,28 @@
    <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="509" duration="200"/>
+   <frame tileid="549" duration="200"/>
+   <frame tileid="589" duration="200"/>
+   <frame tileid="629" duration="200"/>
+   <frame tileid="669" duration="200"/>
+   <frame tileid="709" duration="200"/>
+   <frame tileid="749" duration="200"/>
+   <frame tileid="789" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="351">
+  <animation>
+   <frame tileid="511" duration="200"/>
+   <frame tileid="551" duration="200"/>
+   <frame tileid="591" duration="200"/>
+   <frame tileid="631" duration="200"/>
+   <frame tileid="671" duration="200"/>
+   <frame tileid="711" duration="200"/>
+   <frame tileid="751" duration="200"/>
+   <frame tileid="791" duration="200"/>
+  </animation>
  </tile>
  <tile id="352" type="Conveyor">
   <properties>
@@ -807,6 +861,16 @@
    <property name="Sound Effect" value="/server/assets/sfx/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="824" duration="200"/>
+   <frame tileid="864" duration="200"/>
+   <frame tileid="904" duration="200"/>
+   <frame tileid="944" duration="200"/>
+   <frame tileid="984" duration="200"/>
+   <frame tileid="1024" duration="200"/>
+   <frame tileid="1064" duration="200"/>
+   <frame tileid="1104" duration="200"/>
+  </animation>
  </tile>
  <tile id="385" type="Conveyor">
   <properties>
@@ -814,6 +878,28 @@
    <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="825" duration="200"/>
+   <frame tileid="865" duration="200"/>
+   <frame tileid="905" duration="200"/>
+   <frame tileid="945" duration="200"/>
+   <frame tileid="985" duration="200"/>
+   <frame tileid="1025" duration="200"/>
+   <frame tileid="1065" duration="200"/>
+   <frame tileid="1105" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="386">
+  <animation>
+   <frame tileid="826" duration="200"/>
+   <frame tileid="866" duration="200"/>
+   <frame tileid="906" duration="200"/>
+   <frame tileid="946" duration="200"/>
+   <frame tileid="986" duration="200"/>
+   <frame tileid="1026" duration="200"/>
+   <frame tileid="1066" duration="200"/>
+   <frame tileid="1106" duration="200"/>
+  </animation>
  </tile>
  <tile id="388" type="Conveyor">
   <properties>
@@ -821,6 +907,16 @@
    <property name="Sound Effect" value="/server/assets/sfx/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="828" duration="200"/>
+   <frame tileid="868" duration="200"/>
+   <frame tileid="908" duration="200"/>
+   <frame tileid="948" duration="200"/>
+   <frame tileid="988" duration="200"/>
+   <frame tileid="1028" duration="200"/>
+   <frame tileid="1068" duration="200"/>
+   <frame tileid="1108" duration="200"/>
+  </animation>
  </tile>
  <tile id="389" type="Conveyor">
   <properties>
@@ -828,6 +924,28 @@
    <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="829" duration="200"/>
+   <frame tileid="869" duration="200"/>
+   <frame tileid="909" duration="200"/>
+   <frame tileid="949" duration="200"/>
+   <frame tileid="989" duration="200"/>
+   <frame tileid="1029" duration="200"/>
+   <frame tileid="1069" duration="200"/>
+   <frame tileid="1109" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="390">
+  <animation>
+   <frame tileid="830" duration="200"/>
+   <frame tileid="870" duration="200"/>
+   <frame tileid="910" duration="200"/>
+   <frame tileid="950" duration="200"/>
+   <frame tileid="990" duration="200"/>
+   <frame tileid="1030" duration="200"/>
+   <frame tileid="1070" duration="200"/>
+   <frame tileid="1110" duration="200"/>
+  </animation>
  </tile>
  <tile id="392" type="Conveyor">
   <properties>

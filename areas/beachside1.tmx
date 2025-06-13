@@ -116,7 +116,13 @@
     <property name="Target Object" value="87"/>
    </properties>
   </object>
-  <object id="85" gid="1590" x="1120" y="480" width="64" height="40"/>
+  <object id="85" type="Custom Warp" gid="1590" x="1120" y="480" width="64" height="40">
+   <properties>
+    <property name="Direction" value="Down Left"/>
+    <property name="Target Area" value="hades"/>
+    <property name="Target Object" value="77"/>
+   </properties>
+  </object>
   <object id="88" name="PressEntrance" x="936" y="384" width="25" height="32">
    <properties>
     <property name="Compress" type="bool" value="true"/>

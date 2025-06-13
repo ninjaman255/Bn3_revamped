@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.3" name="BN3 remake full" tilewidth="64" tileheight="96" tilecount="1520" columns="40">
  <tileoffset x="0" y="48"/>
- <image source="BN3_revamped.png" width="2560" height="3648"/>
+ <image source="BN3_remake_full.png" width="2560" height="3648"/>
  <tile id="43">
   <animation>
    <frame tileid="1120" duration="200"/>
@@ -491,6 +491,16 @@
    <property name="Sound Effect" value="/server/assets/sfx/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="504" duration="200"/>
+   <frame tileid="544" duration="200"/>
+   <frame tileid="584" duration="200"/>
+   <frame tileid="624" duration="200"/>
+   <frame tileid="664" duration="200"/>
+   <frame tileid="704" duration="200"/>
+   <frame tileid="744" duration="200"/>
+   <frame tileid="784" duration="200"/>
+  </animation>
  </tile>
  <tile id="345" type="Conveyor">
   <properties>

@@ -583,6 +583,16 @@
    <property name="Sound Effect" value="/server/assets/sfx/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="512" duration="200"/>
+   <frame tileid="552" duration="200"/>
+   <frame tileid="592" duration="200"/>
+   <frame tileid="632" duration="200"/>
+   <frame tileid="672" duration="200"/>
+   <frame tileid="712" duration="200"/>
+   <frame tileid="752" duration="200"/>
+   <frame tileid="792" duration="200"/>
+  </animation>
  </tile>
  <tile id="353" type="Conveyor">
   <properties>
@@ -590,6 +600,18 @@
    <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+ </tile>
+ <tile id="355">
+  <animation>
+   <frame tileid="515" duration="200"/>
+   <frame tileid="555" duration="200"/>
+   <frame tileid="595" duration="200"/>
+   <frame tileid="635" duration="200"/>
+   <frame tileid="675" duration="200"/>
+   <frame tileid="715" duration="200"/>
+   <frame tileid="755" duration="200"/>
+   <frame tileid="795" duration="200"/>
+  </animation>
  </tile>
  <tile id="356" type="Conveyor">
   <properties>
@@ -960,6 +982,16 @@
    <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="833" duration="200"/>
+   <frame tileid="873" duration="200"/>
+   <frame tileid="913" duration="200"/>
+   <frame tileid="953" duration="200"/>
+   <frame tileid="993" duration="200"/>
+   <frame tileid="1033" duration="200"/>
+   <frame tileid="1073" duration="200"/>
+   <frame tileid="1113" duration="200"/>
+  </animation>
  </tile>
  <tile id="396" type="Conveyor">
   <properties>
@@ -967,6 +999,16 @@
    <property name="Sound Effect" value="/server/assets/sfx/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
   </properties>
+  <animation>
+   <frame tileid="836" duration="200"/>
+   <frame tileid="876" duration="200"/>
+   <frame tileid="916" duration="200"/>
+   <frame tileid="956" duration="200"/>
+   <frame tileid="996" duration="200"/>
+   <frame tileid="1036" duration="200"/>
+   <frame tileid="1076" duration="200"/>
+   <frame tileid="1116" duration="200"/>
+  </animation>
  </tile>
  <tile id="397" type="Conveyor">
   <properties>

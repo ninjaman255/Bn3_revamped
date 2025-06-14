@@ -57,7 +57,7 @@
     <property name="Color" value="Green"/>
     <property name="Direction" value="Up Left"/>
     <property name="End" value="1,20,0"/>
-    <property name="Speed" value="1"/>
+    <property name="Speed" value="2"/>
     <property name="Start" value="31,20,0"/>
     <property name="Stop" value="15,20,0"/>
    </properties>

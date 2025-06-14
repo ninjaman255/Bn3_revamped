@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/beachside1.tmx",
+    "activeFile": "areas/beachside2.tmx",
     "expandedProjectPaths": [
-        "assets",
-        ".",
         "assets/tiles",
-        "areas"
+        "areas",
+        "assets",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -111,19 +111,23 @@
                 5,
                 32
             ],
-            "scale": 3,
-            "selectedLayer": 7,
+            "scale": 8,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 1216.1666666666665,
-                "y": 265.16666666666663
+                "x": 1273.1875,
+                "y": 737.4375
             }
         },
         "areas/beachside2.tmx": {
-            "scale": 0.9556547619047618,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                30,
+                25
+            ],
+            "scale": 1,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1008.2092805979445,
-                "y": 463.5565244472126
+                "x": 1768.5,
+                "y": 318.5
             }
         },
         "areas/beachsqr.tmx": {
@@ -140,10 +144,10 @@
                 18
             ],
             "scale": 3,
-            "selectedLayer": 7,
+            "selectedLayer": 15,
             "viewCenter": {
-                "x": 976.1666666666666,
-                "y": 432.16666666666663
+                "x": 1273.5,
+                "y": 307.16666666666663
             }
         },
         "areas/hades.tmx": {
@@ -153,8 +157,8 @@
             "scale": 2,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 877.25,
-                "y": 304.25
+                "x": 1041.25,
+                "y": 815
             }
         },
         "areas/scilab1.tmx": {
@@ -168,22 +172,22 @@
         "areas/scilab2.tmx": {
             "expandedObjectLayers": [
                 30,
-                28,
-                5
+                5,
+                28
             ],
-            "scale": 1,
-            "selectedLayer": 7,
+            "scale": 5.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 933.5,
-                "y": 316.5
+                "x": 992.0909090909091,
+                "y": 440
             }
         },
         "areas/scilabsqr.tmx": {
             "scale": 1.8814453125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 512.1063012560988,
-                "y": 255.9202740579259
+                "x": 512.1063012560987,
+                "y": 256.18602719817295
             }
         },
         "areas/secretArea1.tmx": {
@@ -231,15 +235,15 @@
         },
         "areas/yokasqr.tmx": {
             "expandedObjectLayers": [
-                30,
                 31,
+                30,
                 5
             ],
-            "scale": 1.5,
-            "selectedLayer": 13,
+            "scale": 3,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 1335,
-                "y": 67
+                "x": 1088.1666666666665,
+                "y": 496
             }
         },
         "assets/tiles/BBSOldFixed.tsx": {
@@ -327,27 +331,23 @@
         }
     },
     "openFiles": [
-        "areas/hades.tmx",
-        "areas/acdcsqr.tmx",
-        "areas/yokasqr.tmx",
-        "areas/scilab2.tmx",
-        "areas/default.tmx",
+        "areas/beachside2.tmx",
         "areas/beachside1.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "areas/hades.tmx",
-        "areas/acdcsqr.tmx",
-        "areas/yokasqr.tmx",
-        "areas/scilab2.tmx",
-        "areas/default.tmx",
         "areas/beachside1.tmx",
+        "areas/beachside2.tmx",
+        "areas/scilabsqr.tmx",
+        "areas/default.tmx",
+        "areas/scilab2.tmx",
+        "areas/yokasqr.tmx",
+        "areas/acdcsqr.tmx",
+        "areas/hades.tmx",
         "areas/secretArea1.tmx",
         "areas/secretArea2.tmx",
         "areas/secretArea3.tmx",
-        "areas/scilabsqr.tmx",
-        "areas/scilab1.tmx",
-        "assets/tiles/BN3ACDC1Warp.tsx"
+        "areas/scilab1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx"
 }

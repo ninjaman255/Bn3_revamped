@@ -169,7 +169,7 @@
     <property name="Color" value="Orange"/>
     <property name="Direction" value="Up Left"/>
     <property name="End" value="1,4,3"/>
-    <property name="Speed" value="1"/>
+    <property name="Speed" value="2"/>
     <property name="Start" value="36,4,3"/>
     <property name="Stop" value="11,4,3"/>
    </properties>

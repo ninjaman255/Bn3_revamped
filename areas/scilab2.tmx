@@ -53,7 +53,7 @@
     <property name="Color" value="Cyan"/>
     <property name="Direction" value="Up Left"/>
     <property name="End" value="2,19,0"/>
-    <property name="Speed" value="1"/>
+    <property name="Speed" value="2"/>
     <property name="Start" value="31,19,0"/>
     <property name="Stop" value="18,19,0"/>
    </properties>

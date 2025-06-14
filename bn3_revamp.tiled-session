@@ -1,0 +1,77 @@
+{
+    "activeFile": "areas/default.tmx",
+    "expandedProjectPaths": [
+        "areas",
+        "."
+    ],
+    "fileStates": {
+        "areas/default.tmx": {
+            "expandedObjectLayers": [
+                5,
+                18
+            ],
+            "scale": 3,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 434.16666666666663,
+                "y": 402.16666666666663
+            }
+        },
+        "areas/yokasqr.tmx": {
+            "expandedObjectLayers": [
+                31,
+                5
+            ],
+            "scale": 2,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 1434.25,
+                "y": 317.25
+            }
+        },
+        "assets/tiles/BBSOldFlipped.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/BN3 square custom.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/BN3-revamped.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/BN3ACDC1Warp.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/BN3ACDCWarp2.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/RushTile.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/coffee.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/gate.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/home_warp.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/rush_floor.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/warp.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "openFiles": [
+        "areas/default.tmx",
+        "areas/yokasqr.tmx",
+        "C:/Users/aaron/Desktop/cyber-trains-main/cyber-trains-main/demo-server/areas/acdc2.tmx"
+    ],
+    "project": "bn3_revamp.tiled-project",
+    "recentFiles": [
+        "C:/Users/aaron/Desktop/cyber-trains-main/cyber-trains-main/demo-server/areas/acdc2.tmx",
+        "areas/yokasqr.tmx",
+        "areas/default.tmx"
+    ]
+}

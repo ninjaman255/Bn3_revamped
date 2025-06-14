@@ -54,12 +54,16 @@ Async.read_file(BBS_BOARD_DATA).and_then(function(value)
   end
 end)
 
+local function gift_admin_key(player_id)
+local player_name = Net.get_player_name(player_id)
+  if (player_name == "D3str0y3d") then Net.give_player_item(player_id, 0) 
+    print(player_name == "D3str0y3d")
+  end
+end
+
 function handle_player_connect(player_id)
 last_read_time[player_id] = os.time()
-local player_name = Net.get_player_name(player_id)
-if (player_name == "D3str0y3d") then Net.give_player_item(player_id, 0) 
-  print(player_name == "D3str0y3d")
-end
+gift_admin_key(player_id)
 local player_items = Net.get_player_items(player_id)
 if (player_items ~= nil) then
   player_has_permissions[player_id] = Net.player_has_item(player_id, 0)

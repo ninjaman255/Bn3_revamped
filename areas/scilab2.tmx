@@ -181,13 +181,13 @@
   <object id="65" name="Scilab_Prog" type="Conductor" x="632" y="680">
    <properties>
     <property name="1 Area" value="default"/>
-    <property name="1 Label" value="ACDC"/>
+    <property name="1 Name" value="ACDC"/>
     <property name="1 Type" value="Area"/>
     <property name="2 Area" value="yokasqr"/>
-    <property name="2 Label" value="Yoka"/>
+    <property name="2 Name" value="Yoka"/>
     <property name="2 Type" value="Area"/>
     <property name="3 Area" value="beachside1"/>
-    <property name="3 Label" value="Beach"/>
+    <property name="3 Name" value="Beach"/>
     <property name="3 Type" value="Area"/>
     <property name="Train" value="MainTrain"/>
    </properties>

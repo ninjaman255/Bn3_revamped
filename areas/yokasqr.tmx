@@ -300,10 +300,10 @@
     <property name="1 Name" value="ACDC"/>
     <property name="1 Type" value="Area"/>
     <property name="2 Area" value="beachside1"/>
-    <property name="2 Label" value="Beach"/>
+    <property name="2 Name" value="Beach"/>
     <property name="2 Type" value="Area"/>
     <property name="3 Area" value="scilab2"/>
-    <property name="3 Label" value="Sci-Lab"/>
+    <property name="3 Name" value="Sci-Lab"/>
     <property name="3 Type" value="Area"/>
     <property name="Train" value="MainTrain"/>
    </properties>

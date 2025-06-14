@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="isometric" renderorder="right-down" compressionlevel="0" width="27" height="31" tilewidth="64" tileheight="32" infinite="0" nextlayerid="27" nextobjectid="64">
+<map version="1.8" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="27" height="31" tilewidth="64" tileheight="32" infinite="0" nextlayerid="27" nextobjectid="64">
  <properties>
   <property name="Background" value="custom"/>
-  <property name="Background Animation" value="/server/assets/backgrounds/ACDC.animation"/>
-  <property name="Background Texture" value="/server/assets/backgrounds/ACDC.png"/>
+  <property name="Background Animation" value="/server/assets/backgrounds/scilab.animation"/>
+  <property name="Background Texture" value="/server/assets/backgrounds/scilab.png"/>
   <property name="Background Vel X" type="float" value="0.1"/>
   <property name="Background Vel Y" type="float" value="0.1"/>
-  <property name="Name" value="Sci-Lab_1"/>
+  <property name="Name" value="SciLab_1"/>
   <property name="Song" value="/server/assets/music/network is spreading.ogg"/>
  </properties>
  <tileset firstgid="1" source="../assets/tiles/warp.tsx"/>

@@ -287,6 +287,16 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="147" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="148" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
  <tile id="156">
   <objectgroup draworder="index" id="2">
    <object id="1" x="64" y="0">
@@ -359,6 +369,26 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="189" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="190" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="191" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="192" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
  <tile id="198">
   <objectgroup draworder="index" id="2">
    <object id="1" x="64" y="0">
@@ -406,6 +436,26 @@
     <polygon points="0,0 0,80 -4,80 -4,0"/>
    </object>
   </objectgroup>
+ </tile>
+ <tile id="217" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="218" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="219" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="220" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
  </tile>
  <tile id="226">
   <objectgroup draworder="index" id="2">

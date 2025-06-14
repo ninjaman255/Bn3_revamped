@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="BN3 remake full" tilewidth="64" tileheight="96" tilecount="1520" columns="40">
+<tileset version="1.8" tiledversion="1.11.2" name="BN3 remake full" tilewidth="64" tileheight="96" tilecount="1520" columns="40">
  <tileoffset x="0" y="48"/>
  <image source="BN3_remake_full.png" width="2560" height="3648"/>
  <tile id="43">
@@ -1015,6 +1015,56 @@
    <property name="Direction" value="Down Right"/>
    <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
    <property name="Speed" value="6"/>
+  </properties>
+ </tile>
+ <tile id="440" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="441" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="448" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="449" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="456" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="457" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="464" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="465" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="472" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+  </properties>
+ </tile>
+ <tile id="473" type="Stairs">
+  <properties>
+   <property name="Direction" value="Down Left"/>
   </properties>
  </tile>
 </tileset>

@@ -1,4 +1,4 @@
-imagePath="D:/EverythingOpenBN/ClientServer_4_14_2021/server_4_14_2021Yoka/assets/custom/backgrounds/Beachside BN3/BG.png"
+imagePath="D:/EverythingOpenBN/ClientServer_4_14_2021/server_4_14_2021Yoka/assets/custom/backgrounds/beachside.png"
 
 animation state="BG"
 frame duration="0.25" x="256" y="0" w="256" h="256" originx="0" originy="0"

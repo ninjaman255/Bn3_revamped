@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="BN3 square custom" tilewidth="64" tileheight="80" tilecount="245" columns="7">
+<tileset version="1.8" tiledversion="1.11.2" name="BN3 square custom" tilewidth="64" tileheight="80" tilecount="245" columns="7">
  <tileoffset x="0" y="32"/>
  <grid orientation="orthogonal" width="64" height="64"/>
  <image source="BN3_square_custom.png" width="448" height="2800"/>
@@ -147,6 +147,16 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="70" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="71" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
  <tile id="79">
   <objectgroup draworder="index" id="2">
    <object id="1" x="64" y="0">
@@ -194,6 +204,16 @@
     <polygon points="0,0 0,80 -4,80 -4,0"/>
    </object>
   </objectgroup>
+ </tile>
+ <tile id="98" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="99" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
  </tile>
  <tile id="107">
   <objectgroup draworder="index" id="2">

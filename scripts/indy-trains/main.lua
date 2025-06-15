@@ -186,8 +186,8 @@ function summon_arriving_passenger_train(player_id)
                 train_offset_y = -1.25
                 driver_offset_x = -.5
                 driver_offset_y = -.4
-                light_offset_x = 0
-                light_offset_y = 0
+                light_offset_x = .65
+                light_offset_y = .3
             elseif direction == "UR" then --WORKING ON
                 Net.animate_player(player_id, "IDLE_UL", true)  
                 --some jitter
@@ -383,7 +383,6 @@ function summon_departing_passenger_train(player_id,post_id)
             local pedestal_offset_y = 0
             local light_offset_x = 0
             local light_offset_y = 0
-
             if direction == "DL" then
                 Net.animate_player(player_id, "IDLE_UL", true)  
                 --less jitter
@@ -419,8 +418,8 @@ function summon_departing_passenger_train(player_id,post_id)
                 train_offset_y = -1.25
                 driver_offset_x = -.5
                 driver_offset_y = -.4
-                light_offset_x = 0
-                light_offset_y = 0
+                light_offset_x = .65
+                light_offset_y = .3
             elseif direction == "UR" then --WORKING ON
                 Net.animate_player(player_id, "IDLE_UL", true)  
                 --some jitter

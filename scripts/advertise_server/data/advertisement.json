@@ -1,0 +1,19 @@
+{
+    "listservers": {
+        "main": "https://www.keristero.xyz/server_list/"
+    },
+    "advertisements": [
+        {
+            "unique_server_id": "BN3Revamped",
+            "name": "BN3 Revamped",
+            "description": "A revamped version of BN3s internet, Now with trains, Extra bbs boards, and more plans for the future. A group effort thanks to all who helped!",
+            "tags": [],
+            "address": "159.223.165.219:3000",
+            "data": "",
+            "icon": "advertisement.png",
+            "color": "rgb(255,255,255)",
+            "advertise_map": true,
+            "default_area_id": "default"
+        }
+    ]
+}

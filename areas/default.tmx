@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="isometric" renderorder="right-down" compressionlevel="0" width="33" height="28" tilewidth="64" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="94">
+<map version="1.10" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="33" height="28" tilewidth="64" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="96">
  <properties>
   <property name="Background" value="custom"/>
   <property name="Background Animation" value="/server/assets/backgrounds/ACDC.animation"/>
@@ -19,7 +19,7 @@
  <tileset firstgid="1553" source="../assets/tiles/RushTile.tsx"/>
  <tileset firstgid="1554" source="../assets/tiles/rush_floor.tsx"/>
  <tileset firstgid="1558" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
- <layer id="16" name="Tile Layer 6" width="33" height="28">
+ <layer id="16" name="Tile Layer 0" width="33" height="28">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -51,20 +51,22 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="18" name="Object Layer 6">
+ <objectgroup id="18" name="Object Layer 0">
   <object id="88" name="MainTrain" type="Passenger Train" x="610" y="654">
    <properties>
     <property name="Color" value="Green"/>
     <property name="Direction" value="Up Left"/>
-    <property name="End" value="1,20,0"/>
+    <property name="End" value="1,20"/>
+    <property name="Platform Z" value="3"/>
     <property name="Speed" value="2"/>
-    <property name="Start" value="31,20,0"/>
-    <property name="Stop" value="15,20,0"/>
+    <property name="Start" value="31,20"/>
+    <property name="Stop" value="15,20"/>
+    <property name="Train Z" value="0"/>
    </properties>
    <point/>
   </object>
  </objectgroup>
- <layer id="20" name="Tile Layer 8" width="33" height="28" offsetx="0" offsety="-16">
+ <layer id="20" name="Tile Layer 1" width="33" height="28" offsetx="0" offsety="-16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -96,8 +98,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="21" name="Object Layer 8" offsetx="0" offsety="-16"/>
- <layer id="17" name="Tile Layer 7" width="33" height="28" offsetx="0" offsety="-32">
+ <objectgroup id="21" name="Object Layer 1" offsetx="0" offsety="-16"/>
+ <layer id="17" name="Tile Layer 2" width="33" height="28" offsetx="0" offsety="-32">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -129,8 +131,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="19" name="Object Layer 7" offsetx="0" offsety="-32"/>
- <layer id="1" name="Floor" width="33" height="28" offsetx="0" offsety="-48">
+ <objectgroup id="19" name="Object Layer 2" offsetx="0" offsety="-32"/>
+ <layer id="1" name="Tile Layer 3" width="33" height="28" offsetx="0" offsety="-48">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -162,7 +164,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="Object Layer" offsetx="0" offsety="-48">
+ <objectgroup id="5" name="Object Layer 3" offsetx="0" offsety="-48">
   <object id="86" name="ACDC_Prog" type="Conductor" x="536" y="712">
    <properties>
     <property name="1 Area" value="yokasqr"/>
@@ -178,8 +180,13 @@
    </properties>
    <point/>
   </object>
+  <object id="95" type="Home Warp" gid="1542" x="512" y="750" width="64" height="40">
+   <properties>
+    <property name="Direction" value="Down Right"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer id="7" name="Tile Layer 2" width="33" height="28" offsetx="0" offsety="-64">
+ <layer id="7" name="Tile Layer 4" width="33" height="28" offsetx="0" offsety="-64">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -211,8 +218,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="15" name="Object Layer 5" offsetx="0" offsety="-64"/>
- <layer id="8" name="Tile Layer 3" width="33" height="28" offsetx="0" offsety="-80">
+ <objectgroup id="15" name="Object Layer 4" offsetx="0" offsety="-64"/>
+ <layer id="8" name="Tile Layer 5" width="33" height="28" offsetx="0" offsety="-80">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -244,8 +251,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="14" name="Object Layer 4" offsetx="0" offsety="-80"/>
- <layer id="9" name="Tile Layer 4" width="33" height="28" offsetx="0" offsety="-96">
+ <objectgroup id="14" name="Object Layer 5" offsetx="0" offsety="-80"/>
+ <layer id="9" name="Tile Layer 6" width="33" height="28" offsetx="0" offsety="-96">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -277,10 +284,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="13" name="Object Layer 3" offsetx="0" offsety="-96">
+ <objectgroup id="13" name="Object Layer 6" offsetx="0" offsety="-96">
   <object id="57" gid="264" x="856" y="240" width="64" height="96"/>
  </objectgroup>
- <layer id="11" name="Tile Layer 5" width="33" height="28" offsetx="0" offsety="-112">
+ <layer id="11" name="Tile Layer 7" width="33" height="28" offsetx="0" offsety="-112">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -312,7 +319,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="12" name="Object Layer 2" offsetx="0" offsety="-112">
+ <objectgroup id="12" name="Object Layer 7" offsetx="0" offsety="-112">
   <object id="50" gid="264" x="656" y="688" width="64" height="96"/>
   <object id="51" gid="224" x="872" y="680" width="64" height="96"/>
   <object id="52" gid="264" x="928" y="608" width="64" height="96"/>
@@ -357,7 +364,7 @@
    <point/>
   </object>
   <object id="85" gid="1558" x="832" y="448" width="64" height="40"/>
-  <object id="91" type="Home Warp" gid="1542" x="446.5" y="350.5" width="64" height="40">
+  <object id="91" type="Home Warp2" gid="1542" x="446.5" y="350.5" width="64" height="40">
    <properties>
     <property name="Direction" value="Down Right"/>
    </properties>

@@ -3,4 +3,4 @@ git pull
 cargo build --release
 cp ./target/release/net_battle_server ../
 cd ../
-./net_battle_server -p3001
+./net_battle_server -p3000

@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/beachside2.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
-        "assets/tiles",
-        "areas",
         "assets",
-        "."
+        ".",
+        "assets/tiles",
+        "areas"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -105,29 +105,19 @@
             }
         },
         "areas/beachside1.tmx": {
-            "expandedObjectLayers": [
-                30,
-                25,
-                5,
-                32
-            ],
-            "scale": 8,
+            "scale": 0.75,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 1273.1875,
-                "y": 737.4375
+                "x": 1841.9999999999998,
+                "y": -30.666666666666742
             }
         },
         "areas/beachside2.tmx": {
-            "expandedObjectLayers": [
-                30,
-                25
-            ],
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
                 "x": 1768.5,
-                "y": 318.5
+                "y": 319
             }
         },
         "areas/beachsqr.tmx": {
@@ -139,15 +129,11 @@
             }
         },
         "areas/default.tmx": {
-            "expandedObjectLayers": [
-                5,
-                18
-            ],
             "scale": 3,
             "selectedLayer": 15,
             "viewCenter": {
-                "x": 1273.5,
-                "y": 307.16666666666663
+                "x": 976.8333333333333,
+                "y": 650.1666666666667
             }
         },
         "areas/hades.tmx": {
@@ -184,9 +170,9 @@
         },
         "areas/scilabsqr.tmx": {
             "scale": 1.8814453125,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 512.1063012560987,
+                "x": 512.1063012560988,
                 "y": 256.18602719817295
             }
         },
@@ -207,11 +193,19 @@
             }
         },
         "areas/secretArea3.tmx": {
-            "scale": 0.6020625000000001,
+            "scale": 0.125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1600.3321914253086,
-                "y": 728.3296999896189
+                "x": 6708,
+                "y": -2140
+            }
+        },
+        "areas/tag.tmx": {
+            "scale": 4,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1216.125,
+                "y": 544.125
             }
         },
         "areas/yoka1.tmx": {
@@ -245,6 +239,9 @@
                 "x": 1088.1666666666665,
                 "y": 496
             }
+        },
+        "assets/tiles/AlphaAreaTileset.tsx": {
+            "scaleInDock": 1
         },
         "assets/tiles/BBSOldFixed.tsx": {
             "scaleInDock": 1
@@ -314,6 +311,10 @@
         "assets/tiles/WaterTilesV2.tsx": {
             "scaleInDock": 1
         },
+        "assets/tiles/alpha_sludge_tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "assets/tiles/coffee.tsx": {
             "scaleInDock": 1
         },
@@ -330,24 +331,27 @@
             "scaleInDock": 1
         }
     },
+    "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/beachside2.tmx",
-        "areas/beachside1.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
+        "areas/default.tmx",
+        "areas/tag.tmx",
+        "assets/tiles/alpha_sludge_tiles.tsx",
+        "areas/scilabsqr.tmx",
         "areas/beachside1.tmx",
         "areas/beachside2.tmx",
-        "areas/scilabsqr.tmx",
-        "areas/default.tmx",
+        "areas/secretArea3.tmx",
         "areas/scilab2.tmx",
         "areas/yokasqr.tmx",
         "areas/acdcsqr.tmx",
         "areas/hades.tmx",
-        "areas/secretArea1.tmx",
-        "areas/secretArea2.tmx",
-        "areas/secretArea3.tmx",
-        "areas/scilab1.tmx"
+        "areas/secretArea1.tmx"
     ],
-    "tileset.lastUsedFormat": "tsx"
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 64
+    }
 }

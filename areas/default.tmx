@@ -213,11 +213,6 @@
    </properties>
    <point/>
   </object>
-  <object id="95" type="Home Warp" gid="1542" x="512" y="750" width="64" height="40">
-   <properties>
-    <property name="Direction" value="Down Right"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer id="7" name="Tile Layer 4" width="33" height="28" offsetx="0" offsety="-80">
   <data encoding="csv">
@@ -397,7 +392,7 @@
    <point/>
   </object>
   <object id="85" gid="1558" x="832" y="448" width="64" height="40"/>
-  <object id="91" type="Home Warp2" gid="1542" x="446.5" y="350.5" width="64" height="40">
+  <object id="91" type="Home Warp" gid="1542" x="446.5" y="350.5" width="64" height="40">
    <properties>
     <property name="Direction" value="Down Right"/>
    </properties>

@@ -40,7 +40,7 @@ function addConductor() {
     dialog.addNewRow();
     destination_label[area_count] = dialog.addTextInput("Destination #"+area_count.toString()+" Label", "");
     dialog.addNewRow();
-    destination_type[area_count] = dialog.addComboBox("Destination #"+area_count.toString()+" Type", ["Area-to-Area","Server-to-Server"]);
+    destination_type[area_count] = dialog.addComboBox("Destination #"+area_count.toString()+" Type", ["Area-to-Area","Server-to-Server","Message","Label"]);
     dialog.addNewRow();
     var newButton = dialog.addButton("Add Another Destination");
     //When clicked new elements are added
@@ -98,7 +98,7 @@ function addConductor() {
                 }else{
                     obj.setProperty(i.toString()+" Area", destinations[i].text);
                     obj.setProperty(i.toString()+" Type", "Area");
-                    obj.setProperty(i.toString()+" Label", destination_label[i].text);
+                    obj.setProperty(i.toString()+" Name", destination_label[i].text);
                 }
             }else if (destination_type[i].currentText == "Server-to-Server"){
                 if (checkServer(destinations[i].text) == false){
@@ -107,8 +107,16 @@ function addConductor() {
                 }else{
                     obj.setProperty(i.toString()+" Area", destinations[i].text);
                     obj.setProperty(i.toString()+" Type", "Server");
-                    obj.setProperty(i.toString()+" Label", destination_label[i].text);
+                    obj.setProperty(i.toString()+" Name", destination_label[i].text);
                 }
+            }else if (destination_type[i].currentText == "Message"){
+                    obj.setProperty(i.toString()+" Area", destinations[i].text);
+                    obj.setProperty(i.toString()+" Type", "Message");
+                    obj.setProperty(i.toString()+" Name", destination_label[i].text);
+            }else if (destination_type[i].currentText == "Label"){
+                obj.setProperty(i.toString()+" Area", destinations[i].text);
+                obj.setProperty(i.toString()+" Type", "Label");
+                obj.setProperty(i.toString()+" Name", destination_label[i].text);
             }
             
         });
@@ -155,10 +163,12 @@ function addCargoTrain() {
     var speedField = dialog.addTextInput("Speed", "1");
     // Direction dropdown
     var directionBox = dialog.addComboBox("Direction", ["Down Right", "Down Left", "Up Right", "Up Left"]);
-    // Start, End Points
-    var startField = dialog.addTextInput("Start Point (X,Y,Z)", "");
+    var zField = dialog.addTextInput("Train Position (Z)", "");
     dialog.addNewRow()
-    var endField = dialog.addTextInput("End Point (X,Y,Z)", "");
+    // Start, End Points
+    var startField = dialog.addTextInput("Start Point (X,Y)", "");
+    dialog.addNewRow()
+    var endField = dialog.addTextInput("End Point (X,Y)", "");
     dialog.addNewRow()
     // Driver texture & animation
     var driverTextureField = dialog.addTextInput("Driver Texture (optional)", "");
@@ -222,6 +232,7 @@ function addCargoTrain() {
         // Set custom properties
         obj.setProperty("Color", colorBox.currentText);
         obj.setProperty("Speed", speedField.text);
+        obj.setProperty("Train Z", zField.currentText);
         obj.setProperty("Direction", directionBox.currentText);
         obj.setProperty("Start", startField.text);
         obj.setProperty("End", endField.text);
@@ -265,18 +276,32 @@ function addPassengerTrain() {
     var dialog = new Dialog("Configure Passenger Train");
     // Train ID
     var idField = dialog.addTextInput("Train Name", "");
+    dialog.addNewRow()
+    dialog.addLabel("Use the same name for trains connected between different areas.");
+    dialog.addNewRow()
+
     // Color dropdown
     var colorBox = dialog.addComboBox("Color", ["Orange", "Red", "Green", "Blue", "Cyan", "Gray"]);
     // Speed
     var speedField = dialog.addTextInput("Speed", "1");
     // Direction dropdown
     var directionBox = dialog.addComboBox("Direction", ["Down Right", "Down Left", "Up Right", "Up Left"]);
+    dialog.addNewRow()
+    var platZField = dialog.addTextInput("Platform Z", "");
+    dialog.addNewRow()
+    dialog.addLabel("   The Z of the layer where conductor is standing");
+    dialog.addNewRow()
+    var trainZField = dialog.addTextInput("Train Z", "");
+    dialog.addNewRow()
+    dialog.addLabel("   The Z of the layer where train spawns (must be at least -2 of platform)");
+    dialog.addNewRow()
+
     // Start, Stop, End points
-    var startField = dialog.addTextInput("Start Point (X,Y,Z)", "");
+    var startField = dialog.addTextInput("Start Point (X,Y)", "");
     dialog.addNewRow()
-    var stopField = dialog.addTextInput("Station Stop (X,Y,Z)", "");
+    var stopField = dialog.addTextInput("Station Stop (X,Y)", "");
     dialog.addNewRow()
-    var endField = dialog.addTextInput("End Point (X,Y,Z)", "");
+    var endField = dialog.addTextInput("End Point (X,Y)", "");
     dialog.addNewRow()
     // Driver texture & animation
     var driverTextureField = dialog.addTextInput("Driver Texture (optional)", "");
@@ -339,6 +364,8 @@ function addPassengerTrain() {
         obj.setProperty("Color", colorBox.currentText);
         obj.setProperty("Speed", speedField.text);
         obj.setProperty("Direction", directionBox.currentText);
+        obj.setProperty("Train Z", trainZField.currentText);
+        obj.setProperty("Platform Z", platZField.currentText);
         obj.setProperty("Start", startField.text);
         obj.setProperty("Stop", stopField.text);
         obj.setProperty("End", endField.text);
@@ -368,7 +395,7 @@ function checkXYZ(textValue) {
         }
     }
 
-    return commaCount === 2 && dotCount <= 3;
+    return commaCount === 1 && dotCount <= 2;
 }
 function checkSpeed(textValue) {
   return /^[0-9]*\.?[0-9]*$/.test(textValue) && 

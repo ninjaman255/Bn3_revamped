@@ -63,7 +63,12 @@
    <frame tileid="83" duration="200"/>
   </animation>
  </tile>
- <tile id="120">
+ <tile id="120" type="Conveyor">
+  <properties>
+   <property name="Direction" value="Up Left"/>
+   <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
+   <property name="Speed" value="6"/>
+  </properties>
   <animation>
    <frame tileid="120" duration="200"/>
    <frame tileid="132" duration="200"/>
@@ -71,7 +76,12 @@
    <frame tileid="156" duration="200"/>
   </animation>
  </tile>
- <tile id="121">
+ <tile id="121" type="Conveyor">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+   <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
+   <property name="Speed" value="6"/>
+  </properties>
   <animation>
    <frame tileid="121" duration="200"/>
    <frame tileid="133" duration="200"/>
@@ -79,7 +89,12 @@
    <frame tileid="157" duration="200"/>
   </animation>
  </tile>
- <tile id="122">
+ <tile id="122" type="Conveyor">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+   <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
+   <property name="Speed" value="6"/>
+  </properties>
   <animation>
    <frame tileid="122" duration="200"/>
    <frame tileid="134" duration="200"/>
@@ -87,7 +102,12 @@
    <frame tileid="158" duration="200"/>
   </animation>
  </tile>
- <tile id="123">
+ <tile id="123" type="Conveyor">
+  <properties>
+   <property name="Direction" value="Down Right"/>
+   <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
+   <property name="Speed" value="6"/>
+  </properties>
   <animation>
    <frame tileid="123" duration="200"/>
    <frame tileid="135" duration="200"/>
@@ -95,7 +115,12 @@
    <frame tileid="159" duration="200"/>
   </animation>
  </tile>
- <tile id="124">
+ <tile id="124" type="Conveyor">
+  <properties>
+   <property name="Direction" value="Up Left"/>
+   <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
+   <property name="Speed" value="6"/>
+  </properties>
   <animation>
    <frame tileid="124" duration="200"/>
    <frame tileid="136" duration="200"/>
@@ -103,7 +128,12 @@
    <frame tileid="160" duration="200"/>
   </animation>
  </tile>
- <tile id="125">
+ <tile id="125" type="Conveyor">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+   <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
+   <property name="Speed" value="6"/>
+  </properties>
   <animation>
    <frame tileid="125" duration="200"/>
    <frame tileid="137" duration="200"/>
@@ -111,7 +141,12 @@
    <frame tileid="161" duration="200"/>
   </animation>
  </tile>
- <tile id="126">
+ <tile id="126" type="Conveyor">
+  <properties>
+   <property name="Direction" value="Down Left"/>
+   <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
+   <property name="Speed" value="6"/>
+  </properties>
   <animation>
    <frame tileid="126" duration="200"/>
    <frame tileid="138" duration="200"/>
@@ -119,7 +154,12 @@
    <frame tileid="162" duration="200"/>
   </animation>
  </tile>
- <tile id="127">
+ <tile id="127" type="Conveyor">
+  <properties>
+   <property name="Direction" value="Down Right"/>
+   <property name="Sound Effect" value="/server/assets/dir_tile.ogg"/>
+   <property name="Speed" value="6"/>
+  </properties>
   <animation>
    <frame tileid="127" duration="200"/>
    <frame tileid="139" duration="200"/>

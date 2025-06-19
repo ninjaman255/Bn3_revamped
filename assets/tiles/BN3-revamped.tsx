@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.8" tiledversion="1.11.2" name="BN3 remake full" tilewidth="64" tileheight="96" tilecount="1520" columns="40">
+<tileset version="1.10" tiledversion="1.11.2" name="BN3 remake full" tilewidth="64" tileheight="96" tilecount="1520" columns="40">
  <tileoffset x="0" y="48"/>
  <image source="BN3_remake_full.png" width="2560" height="3648"/>
  <tile id="43">

@@ -209,9 +209,12 @@
     <property name="3 Area" value="beachside1"/>
     <property name="3 Name" value="Beachside"/>
     <property name="3 Type" value="Area"/>
-    <property name="4 Area" value="70.124.9.221:3000,default,ShaDisHP"/>
-    <property name="4 Name" value="ShaDisNX255's HP"/>
-    <property name="4 Type" value="Server"/>
+    <property name="4 Area" value="default"/>
+    <property name="4 Name" value="Server Warps"/>
+    <property name="4 Type" value="label"/>
+    <property name="5 Area" value="70.124.9.221:3000,default,ShaDisHP"/>
+    <property name="5 Name" value="ShaDisNX255's HP"/>
+    <property name="5 Type" value="Server"/>
     <property name="Train" value="MainTrain"/>
    </properties>
    <point/>

@@ -2,11 +2,6 @@ print("[trains] Starting Indy's Trains")
 -- CODER'S NOTE: When using keyframes, your await() must be 1/2 second longer than your duration or the player/bot won't arrive before the next animation starts.
 
 
--- v1 remaining
-   -- Fix Github documentation (?)
-   -- Fix splitter to not ignore double string as delimiter (as opposed to single character)
-   -- Make z-index off new variable "Platform Z" so we can make the z difference dynamic. 
-
 -- v1.1 features
 -- Cargo Train Enhancements
     -- Add pedestal
@@ -119,11 +114,15 @@ end
 --usage: called when a player selects an option from a train menu
 --purpose: to spawn a train, pickup player, and depart (if track is not already occupied)
 function summon_arriving_passenger_train(player_id)
-    return async(function ()
+    
+        --Clear player specific cache
+
         Net.fade_player_camera(player_id, {r=0, g=0, b=0, a=255}, 0)
         Net.play_sound_for_player(player_id, "/server/assets/indy-trains/train_arrive_short.ogg")
         --prepare variables
         local train_name = passenger_cache[player_id]['train']
+        passenger_cache[player_id]['train'] = ""
+        passenger_cache[player_id]['intransit'] = false
         local area_id = Net.get_player_area(player_id)
         local train = train_cache[area_id][train_name]
         local trainProps = train.custom_properties
@@ -209,7 +208,8 @@ function summon_arriving_passenger_train(player_id)
 
         start_to_stop = trainProps["Duration Start to Stop"]
         stop_to_end = trainProps["Duration Stop to End"]
-
+    return async(function ()
+        await(Async.sleep(.1))
         --Move player with Train to Station
         if direction == "DR" then
             local keyframes = {{properties={{property="Animation",value="IDLE_"..direction},{property="X",ease="Out",value=(trainProps["startX"]+1.5-.5+trainProps["offset"])},{property="Y",ease="Out",value=(trainProps["startY"]+1.35+trainProps["offset"])}},duration=0}}
@@ -322,9 +322,6 @@ function summon_arriving_passenger_train(player_id)
         Net.remove_bot(driver_id,false)
         Net.remove_bot(car_id,false)
         await(Async.sleep(.5))
-        --Clear player specific cache
-        passenger_cache[player_id]['intransit'] = false
-        passenger_cache[player_id]['train'] = ""
         --Unoccupy track
         track_cache[area_id][train_name]['occupied'] = false
     end)    
@@ -1072,6 +1069,7 @@ Net:on("player_area_transfer", function(event)
     -- checks if a player is currently ridding a train
     if passenger_cache[event.player_id]['intransit'] == true then
         --calls function to grab transferred player, place them on the train, and drop off at platform 
+        passenger_cache[event.player_id]['intransit'] = false
         summon_arriving_passenger_train(event.player_id)
     end
 end)

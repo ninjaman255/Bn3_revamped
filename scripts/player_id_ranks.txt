@@ -1,0 +1,2 @@
+Name,Rank,ELO,Total Games,Wins,Losses
+D3str0y3d,?,25000,0,0,0

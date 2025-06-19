@@ -1,0 +1,63 @@
+local location_data = {}
+local afk_update = 0
+local emote_timer = 0
+
+-- Stagger times so that we can update where needed.
+-- UPDATE_CYCLE: The period to refresh emote for players. User with afk_update,
+-- PAST_PERIOD: The period to refresh players past location (clone of current location),
+-- CURRENT_PERIOD: The period to refresh players current location. 
+local UPDATE_PERIOD = 5
+local PAST_PERIOD = 5
+local CURRENT_PERIOD = 2
+
+local EMOTE_CYCLE = 1
+
+Net:on("player_connect", function(event) 
+    
+    location_data[event.player_id] = {afk = false, current_location = {x = 0,y = 0,z = 0}, past_location = {x =0, y=0, z=0}}
+    
+    print(
+    location_data[event.player_id])
+end)
+
+Net:on("player_disconnect", function(event)
+    if location_data[event.player_id] ~= nil then
+        location_data[event.player_id] = nil
+        print("Player left the server, No longer tracking" ..event.player_id.. "...")
+    end
+end)
+
+
+Net:on("player_move", function(event)
+    local currentLocation = {x = location_data[event.player_id].current_location.x,y = location_data[event.player_id].current_location.y,z = location_data[event.player_id].current_location.z,}
+  if afk_update > UPDATE_CYCLE then
+    print("player DID moved...")
+    location_data[event.player_id].current_location = {x =event.x, y = event.y, z= event.z}   
+    location_data[event.player_id].afk = false
+    afk_update = 0
+  end
+  if currentLocation == location_data[event.player_id].past_location then
+    location_data[event.player_id].past_location = currentLocation 
+  end
+end)
+
+
+Net:on("tick", function(event)
+    emote_timer = emote_timer + event.delta_time
+    afk_update = afk_update + event.delta_time
+
+    if afk_update > UPDATE_CYCLE then  
+  end
+
+  if emote_timer > EMOTE_CYCLE then
+    print("checking all players...")
+      for k,v in pairs(location_data) do
+        print(v)
+        if v.afk == true then
+        print("attempting to set emote")
+          Net.set_player_emote(k, 8, false)
+          end
+      end
+      emote_timer = 0
+  end
+end)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.8" tiledversion="1.8.5" name="BN3 remake undernet1" tilewidth="64" tileheight="40" tilecount="168" columns="12">
+<tileset version="1.10" tiledversion="1.11.2" name="BN3 remake undernet1" tilewidth="64" tileheight="40" tilecount="168" columns="12">
  <tileoffset x="0" y="8"/>
  <grid orientation="orthogonal" width="64" height="32"/>
- <image source="BN3 remake undernet1.png" width="768" height="560"/>
+ <image source="BN3_remake_undernet1.png" width="768" height="560"/>
  <tile id="15">
   <animation>
    <frame tileid="15" duration="200"/>

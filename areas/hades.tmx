@@ -367,7 +367,7 @@
     <property name="Post Limit" type="int" value="30"/>
    </properties>
   </object>
-  <object id="93" type="Radius Warp" x="48" y="208">
+  <object id="93" type="Radius Warp" x="48" y="176">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>
     <property name="Arrival Animation" value="arrow_up_right_in"/>

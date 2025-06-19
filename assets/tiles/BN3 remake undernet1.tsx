@@ -4,6 +4,11 @@
  <grid orientation="orthogonal" width="64" height="32"/>
  <image source="BN3_remake_undernet1.png" width="768" height="560"/>
  <tile id="15">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="16" y="7" width="32" height="20.2503">
+    <ellipse/>
+   </object>
+  </objectgroup>
   <animation>
    <frame tileid="15" duration="200"/>
    <frame tileid="27" duration="200"/>
@@ -14,6 +19,11 @@
   </animation>
  </tile>
  <tile id="19">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="16" y="7" width="32" height="20.2503">
+    <ellipse/>
+   </object>
+  </objectgroup>
   <animation>
    <frame tileid="19" duration="200"/>
    <frame tileid="31" duration="200"/>
@@ -24,6 +34,11 @@
   </animation>
  </tile>
  <tile id="23">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="16" y="7" width="32" height="20.2503">
+    <ellipse/>
+   </object>
+  </objectgroup>
   <animation>
    <frame tileid="23" duration="200"/>
    <frame tileid="35" duration="200"/>

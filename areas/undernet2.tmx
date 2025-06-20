@@ -56,9 +56,9 @@
 </data>
  </layer>
  <objectgroup id="5" name="Object Layer">
-  <object id="66" gid="22" x="320" y="320" width="64" height="40"/>
-  <object id="67" gid="22" x="128" y="320" width="64" height="40"/>
-  <object id="68" gid="22" x="448" y="640" width="64" height="40"/>
+  <object id="66" gid="22" x="280" y="280" width="64" height="40"/>
+  <object id="67" gid="22" x="88" y="280" width="64" height="40"/>
+  <object id="68" gid="22" x="408" y="600" width="64" height="40"/>
   <object id="74" type="Radius Warp" x="656" y="880">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>
@@ -234,9 +234,9 @@
 </data>
  </layer>
  <objectgroup id="24" name="Object Layer 5" offsetx="0" offsety="-64">
-  <object id="70" gid="26" x="704" y="288" width="64" height="40"/>
-  <object id="71" gid="26" x="832" y="384" width="64" height="40"/>
-  <object id="72" gid="26" x="416" y="576" width="64" height="40"/>
-  <object id="73" gid="26" x="224" y="576" width="64" height="40"/>
+  <object id="70" gid="26" x="664" y="248" width="64" height="40"/>
+  <object id="71" gid="26" x="792" y="344" width="64" height="40"/>
+  <object id="72" gid="26" x="376" y="536" width="64" height="40"/>
+  <object id="73" gid="26" x="184" y="536" width="64" height="40"/>
  </objectgroup>
 </map>

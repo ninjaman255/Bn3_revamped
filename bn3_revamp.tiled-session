@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/undernet3.tmx",
+    "activeFile": "areas/undernet2.tmx",
     "expandedProjectPaths": [
         "areas",
-        "assets",
+        "assets/tiles",
         ".",
-        "assets/tiles"
+        "assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -20,8 +20,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1119.25,
-                "y": 655.75
+                "x": 1196.25,
+                "y": 454
             }
         },
         "C:/Users/aaron/Documents/Code/Bn3/assets/Shading.tsx": {
@@ -109,6 +109,17 @@
         },
         "C:/Users/aaron/Documents/Code/Bn3/assets/tiles/warp.tsx": {
             "scaleInDock": 1
+        },
+        "areas/acdc3.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 11,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1025.1363636363637,
+                "y": 706
+            }
         },
         "areas/acdcsqr.tmx": {
             "expandedObjectLayers": [
@@ -225,12 +236,27 @@
                 "y": 544.125
             }
         },
-        "areas/undernet3.tmx": {
-            "scale": 0.33,
+        "areas/undernet2.tmx": {
+            "expandedObjectLayers": [
+                5,
+                24
+            ],
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1381.818181818182,
-                "y": -506.060606060606
+                "x": 1098,
+                "y": 553.3333333333333
+            }
+        },
+        "areas/undernet3.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1166.3333333333333,
+                "y": 615.3333333333333
             }
         },
         "areas/yoka1.tmx": {
@@ -364,11 +390,15 @@
     },
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/undernet3.tmx"
+        "areas/undernet3.tmx",
+        "areas/undernet2.tmx",
+        "areas/acdc3.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
         "areas/undernet3.tmx",
+        "areas/acdc3.tmx",
+        "areas/undernet2.tmx",
         "C:/Users/aaron/Documents/Code/Bn3/areas/Undernet3.tmx",
         "areas/default.tmx",
         "areas/tag.tmx",
@@ -377,9 +407,7 @@
         "areas/beachside1.tmx",
         "areas/beachside2.tmx",
         "areas/secretArea3.tmx",
-        "areas/scilab2.tmx",
-        "areas/yokasqr.tmx",
-        "areas/acdcsqr.tmx"
+        "areas/scilab2.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

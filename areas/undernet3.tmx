@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="29" height="32" tilewidth="64" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="76">
+<map version="1.8" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="29" height="32" tilewidth="64" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="77">
  <properties>
   <property name="Background" value="custom"/>
   <property name="Background Animation" value="/server/assets/backgrounds/undernet.animation"/>
@@ -59,5 +59,15 @@
  </layer>
  <objectgroup id="5" name="Object Layer">
   <object id="75" gid="176" x="96" y="384" width="64" height="40"/>
+  <object id="76" type="Radius Warp" x="848" y="720">
+   <properties>
+    <property name="Activation Radius" type="float" value="0.6"/>
+    <property name="Arrival Animation" value="arrow_down_right_in"/>
+    <property name="Leave Animation" value="arrow_down_right_out"/>
+    <property name="Target Area" value="undernet2"/>
+    <property name="Target Object" value="77"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
 </map>

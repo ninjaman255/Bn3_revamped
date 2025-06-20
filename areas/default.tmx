@@ -219,7 +219,7 @@
     <property name="6 Name" value="ShaDisNX255's HP"/>
     <property name="6 Type" value="Server"/>
     <property name="7 Area" value="96.60.137.203:8768,default,blue line"/>
-    <property name="7 Name" value="Undernet Server"/>
+    <property name="7 Name" value="Central Station Hub"/>
     <property name="7 Type" value="Server"/>
     <property name="Train" value="MainTrain"/>
    </properties>

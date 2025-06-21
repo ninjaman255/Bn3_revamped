@@ -16,9 +16,9 @@
  <tileset firstgid="26" source="../assets/tiles/BN3-revamped.tsx"/>
  <tileset firstgid="1546" source="../assets/tiles/BN3ACDC1Warp.tsx"/>
  <tileset firstgid="1555" source="../assets/tiles/BBSOldFlipped.tsx"/>
- <tileset firstgid="1558" source="../assets/tiles/RushTile.tsx"/>
- <tileset firstgid="1559" source="../assets/tiles/rush_floor.tsx"/>
- <tileset firstgid="1563" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
+ <tileset firstgid="1557" source="../assets/tiles/RushTile.tsx"/>
+ <tileset firstgid="1558" source="../assets/tiles/rush_floor.tsx"/>
+ <tileset firstgid="1562" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
  <layer id="16" name="Tile Layer 0" width="33" height="28">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -42,8 +42,8 @@
 227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,227,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,153,153,153,153,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,153,153,153,153,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -343,7 +343,7 @@
 0,0,0,0,0,0,149,149,149,0,0,29,188,228,228,228,109,0,0,0,29,188,228,228,228,268,109,0,0,0,0,0,0,
 0,0,0,0,0,0,149,149,149,29,187,29,0,0,0,0,0,0,0,0,186,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,149,149,149,0,0,26,0,1148,1148,1148,0,0,0,0,226,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,29,0,0,0,66,0,1148,1148,1148,29,27,29,1559,29,188,228,228,228,228,228,228,228,228,29,0,0,
+0,0,0,0,0,0,0,29,0,0,0,66,0,1148,1148,1148,29,27,29,1558,29,188,228,228,228,228,228,228,228,228,29,0,0,
 0,0,0,0,0,0,0,186,0,0,0,66,0,1148,1148,1148,0,0,26,0,0,0,0,0,0,0,0,0,0,0,186,0,0,
 0,0,0,0,0,0,0,226,0,0,0,66,0,0,0,0,0,0,106,0,0,149,149,149,0,1348,1348,1348,0,0,226,0,0,
 0,0,0,0,0,0,0,266,0,0,0,66,0,0,0,0,0,0,29,187,29,149,149,149,0,1348,1348,1348,29,187,29,0,0,
@@ -370,7 +370,7 @@
   <object id="58" gid="269" x="480" y="128" width="64" height="96"/>
   <object id="60" gid="269" x="416" y="176" width="64" height="96"/>
   <object id="61" gid="229" x="512" y="192" width="64" height="96"/>
-  <object id="64" gid="1563" x="480" y="544" width="64" height="40"/>
+  <object id="64" gid="1562" x="480" y="544" width="64" height="40"/>
   <object id="67" type="Board" gid="1556" x="502" y="290" width="48" height="69">
    <properties>
     <property name="BBS" type="bool" value="true"/>
@@ -390,12 +390,12 @@
    </properties>
    <point/>
   </object>
-  <object id="70" type="RushRoad" gid="1558" x="640" y="352" width="64" height="32" visible="0">
+  <object id="70" type="RushRoad" gid="1557" x="640" y="352" width="64" height="32" visible="0">
    <properties>
     <property name="RushObjId" type="int" value="75"/>
    </properties>
   </object>
-  <object id="83" gid="1562" x="608" y="352" width="64" height="32"/>
+  <object id="83" gid="1561" x="608" y="352" width="64" height="32"/>
   <object id="84" type="Radius Warp" x="656" y="176">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>
@@ -406,13 +406,13 @@
    </properties>
    <point/>
   </object>
-  <object id="85" gid="1563" x="832" y="448" width="64" height="40"/>
+  <object id="85" gid="1562" x="832" y="448" width="64" height="40"/>
   <object id="91" type="Home Warp" gid="1547" x="446.5" y="350.5" width="64" height="40">
    <properties>
     <property name="Direction" value="Down Right"/>
    </properties>
   </object>
-  <object id="92" type="Custom Warp" gid="1564" x="704" y="448" width="64" height="40">
+  <object id="92" type="Custom Warp" gid="1563" x="704" y="448" width="64" height="40">
    <properties>
     <property name="Direction" value="Up Left"/>
     <property name="Target Area" value="tag"/>

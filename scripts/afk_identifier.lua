@@ -27,7 +27,9 @@
 --    end
 --end)
 --
---
+-- math.abs (x)
+
+
 --Net:on("player_move", function(event)
 --    local currentLocation = {x = location_data[event.player_id].current_location.x,y = location_data[event.player_id].current_location.y,z = location_data[event.player_id].current_location.z,}
 --  if afk_update > UPDATE_CYCLE then

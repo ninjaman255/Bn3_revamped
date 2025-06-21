@@ -36,28 +36,28 @@ function addConductor() {
     var destinations = [];
     var destination_label = [];
     var destination_type = [];
-    destinations[area_count] = dialog.addTextInput("Destination #"+area_count.toString()+" (Area or IP)", "");
+    destinations[area_count] = dialog.addTextInput("Destination #" + area_count.toString() + " (Area or IP)", "");
     dialog.addNewRow();
-    destination_label[area_count] = dialog.addTextInput("Destination #"+area_count.toString()+" Label", "");
+    destination_label[area_count] = dialog.addTextInput("Destination #" + area_count.toString() + " Label", "");
     dialog.addNewRow();
-    destination_type[area_count] = dialog.addComboBox("Destination #"+area_count.toString()+" Type", ["Area-to-Area","Server-to-Server","Message","Label"]);
+    destination_type[area_count] = dialog.addComboBox("Destination #" + area_count.toString() + " Type", ["Area-to-Area", "Server-to-Server", "Message", "Label"]);
     dialog.addNewRow();
     var newButton = dialog.addButton("Add Another Destination");
     //When clicked new elements are added
-    newButton.clicked.connect(function(){
-        area_count = area_count + 1; 
-        destinations[area_count] = dialog.addTextInput("Destination #"+area_count.toString()+" (Area or IP)", "");
+    newButton.clicked.connect(function () {
+        area_count = area_count + 1;
+        destinations[area_count] = dialog.addTextInput("Destination #" + area_count.toString() + " (Area or IP)", "");
         dialog.addNewRow();
-        destination_label[area_count] = dialog.addTextInput("Destination #"+area_count.toString()+" Label", "");
+        destination_label[area_count] = dialog.addTextInput("Destination #" + area_count.toString() + " Label", "");
         dialog.addNewRow();
-        destination_type[area_count] = dialog.addComboBox("Destination #"+area_count.toString()+" Type", ["Area-to-Area","Server-to-Server"]);
+        destination_type[area_count] = dialog.addComboBox("Destination #" + area_count.toString() + " Type", ["Area-to-Area", "Server-to-Server"]);
         dialog.addNewRow();
     });
     dialog.addLabel("Don't need the extra destinations you added? Leave them blank.");
     dialog.addNewRow();
 
     // Main Buttons
-    okButton.clicked.connect(function(){
+    okButton.clicked.connect(function () {
         //A variety of validation checks to ensure the train is likely configured properly 
         if (!nameField.text) {
             tiled.alert("Conductor Name must be set.");
@@ -67,11 +67,11 @@ function addConductor() {
             tiled.alert("Associated Train must be set.");
             return;
         }
-        if (!destinations[1].text ) {
+        if (!destinations[1].text) {
             tiled.alert("Destination #1 Area/IP must be set.");
             return;
         }
-        if (!destination_label[1].text ) {
+        if (!destination_label[1].text) {
             tiled.alert("Destination #1 Label must be set.");
             return;
         }
@@ -82,45 +82,45 @@ function addConductor() {
         obj.x = center.x;
         obj.y = center.y;
         obj.name = nameField.text;
-        obj.type = "Conductor"; 
-        
+        obj.type = "Conductor";
+
         var error = 0;
         //Loop checking all added destinations for valuation then setting property value
-        destinations.forEach(function(destination,i) {
+        destinations.forEach(function (destination, i) {
             obj.setProperty("1 Area", destinations[i].text);
-            if (i != 1 && destinations[i].text == ""){
+            if (i != 1 && destinations[i].text == "") {
                 return true;
             }
-            if (destination_type[i].currentText == "Area-to-Area"){
-                if (checkArea(destinations[i].text) == false){
-                    tiled.alert("Destination #"+i.toString()+" is malformed (no periods or .tmx).");
+            if (destination_type[i].currentText == "Area-to-Area") {
+                if (checkArea(destinations[i].text) == false) {
+                    tiled.alert("Destination #" + i.toString() + " is malformed (no periods or .tmx).");
                     error = 1;
-                }else{
-                    obj.setProperty(i.toString()+" Area", destinations[i].text);
-                    obj.setProperty(i.toString()+" Type", "Area");
-                    obj.setProperty(i.toString()+" Name", destination_label[i].text);
+                } else {
+                    obj.setProperty(i.toString() + " Area", destinations[i].text);
+                    obj.setProperty(i.toString() + " Type", "Area");
+                    obj.setProperty(i.toString() + " Name", destination_label[i].text);
                 }
-            }else if (destination_type[i].currentText == "Server-to-Server"){
-                if (checkServer(destinations[i].text) == false){
-                    tiled.alert("Destination #"+i.toString()+" is malformed (IP:port,area,trainid).");
+            } else if (destination_type[i].currentText == "Server-to-Server") {
+                if (checkServer(destinations[i].text) == false) {
+                    tiled.alert("Destination #" + i.toString() + " is malformed (IP:port,area,trainid).");
                     error = 1;
-                }else{
-                    obj.setProperty(i.toString()+" Area", destinations[i].text);
-                    obj.setProperty(i.toString()+" Type", "Server");
-                    obj.setProperty(i.toString()+" Name", destination_label[i].text);
+                } else {
+                    obj.setProperty(i.toString() + " Area", destinations[i].text);
+                    obj.setProperty(i.toString() + " Type", "Server");
+                    obj.setProperty(i.toString() + " Name", destination_label[i].text);
                 }
-            }else if (destination_type[i].currentText == "Message"){
-                    obj.setProperty(i.toString()+" Area", destinations[i].text);
-                    obj.setProperty(i.toString()+" Type", "Message");
-                    obj.setProperty(i.toString()+" Name", destination_label[i].text);
-            }else if (destination_type[i].currentText == "Label"){
-                obj.setProperty(i.toString()+" Area", destinations[i].text);
-                obj.setProperty(i.toString()+" Type", "Label");
-                obj.setProperty(i.toString()+" Name", destination_label[i].text);
+            } else if (destination_type[i].currentText == "Message") {
+                obj.setProperty(i.toString() + " Area", destinations[i].text);
+                obj.setProperty(i.toString() + " Type", "Message");
+                obj.setProperty(i.toString() + " Name", destination_label[i].text);
+            } else if (destination_type[i].currentText == "Label") {
+                obj.setProperty(i.toString() + " Area", destinations[i].text);
+                obj.setProperty(i.toString() + " Type", "Label");
+                obj.setProperty(i.toString() + " Name", destination_label[i].text);
             }
-            
+
         });
-        if (error == 1){
+        if (error == 1) {
             return false;
         }
         obj.setProperty("Train", trainField.text);
@@ -135,8 +135,8 @@ function addConductor() {
         map.currentLayer.addObject(obj);
         dialog.close();
     });
-    
-   dialog.show();
+
+    dialog.show();
 
 }
 
@@ -184,14 +184,14 @@ function addCargoTrain() {
     var cancelButton = dialog.addButton("Cancel");
     cancelButton.clicked.connect(dialog.reject);
     var okButton = dialog.addButton("Add Train");
-    okButton.clicked.connect(function(){
+    okButton.clicked.connect(function () {
         //A variety of validation checks to ensure the train is likely configured properly 
-        
+
         if (!speedField.text) {
             tiled.alert("Speed must have a value.");
             return;
         }
-        if (!idField.text ) {
+        if (!idField.text) {
             tiled.alert("Train Name must have a value.");
             return;
         }
@@ -203,24 +203,24 @@ function addCargoTrain() {
             tiled.alert("End Point must have a value.");
             return;
         }
-        
+
         //Check if start, end, and stop are formatted correctly
-        
-        if (checkXYZ(startField.text) == false){
+
+        if (checkXYZ(startField.text) == false) {
             tiled.alert("Start Point is malformed. Include three numbers seperated by commas (\"1.2,0,0\").")
             return;
         }
-        
-        if (checkXYZ(endField.text) == false){
+
+        if (checkXYZ(endField.text) == false) {
             tiled.alert("End Point is malformed. Include three numbers seperated by commas (\"1.2,0,0\").")
             return;
         }
-        
-        if (checkSpeed(speedField.text) == false){
+
+        if (checkSpeed(speedField.text) == false) {
             tiled.alert("Speed is malformed. Only use a number (\"0.1\" or \"2\"). ")
             return;
         }
-        
+
         var view = tiled.mapEditor.currentMapView;
         var center = view.center;
         var obj = new MapObject();
@@ -228,7 +228,7 @@ function addCargoTrain() {
         obj.x = center.x;
         obj.y = center.y;
         obj.name = idField.text;
-        obj.type = "Cargo Train"; 
+        obj.type = "Cargo Train";
         // Set custom properties
         obj.setProperty("Color", colorBox.currentText);
         obj.setProperty("Speed", speedField.text);
@@ -236,26 +236,26 @@ function addCargoTrain() {
         obj.setProperty("Direction", directionBox.currentText);
         obj.setProperty("Start", startField.text);
         obj.setProperty("End", endField.text);
-        if (driverTextureField.text){
+        if (driverTextureField.text) {
             obj.setProperty("Driver Texture", driverTextureField.text);
-            }
-        if (driverAnimationField.text){
+        }
+        if (driverAnimationField.text) {
             obj.setProperty("Driver Animation", driverAnimationField.text);
-            }
-        if (cargoTextureField.text){
+        }
+        if (cargoTextureField.text) {
             obj.setProperty("Cargo Texture", cargoTextureField.text);
-            }
-        if (cargoAnimationField.text){
+        }
+        if (cargoAnimationField.text) {
             obj.setProperty("Cargo Animation", cargoAnimationField.text);
-            }
+        }
         // Add to the object layer
-        
+
         map.currentLayer.addObject(obj);
         dialog.close();
-        
+
     });
-    
-   dialog.show();
+
+    dialog.show();
 
 }
 
@@ -312,13 +312,13 @@ function addPassengerTrain() {
     var cancelButton = dialog.addButton("Cancel");
     cancelButton.clicked.connect(dialog.reject);
     var okButton = dialog.addButton("Add Train");
-    okButton.clicked.connect(function(){
+    okButton.clicked.connect(function () {
         //A variety of validation checks to ensure the train is likely configured properly 
         if (!speedField.text) {
             tiled.alert("Speed must have a value.");
             return;
         }
-        if (!idField.text ) {
+        if (!idField.text) {
             tiled.alert("Train Name must have a value.");
             return;
         }
@@ -335,23 +335,23 @@ function addPassengerTrain() {
             return;
         }
         //Check if start, end, and stop are formatted correctly
-        if (checkXYZ(startField.text) == false){
+        if (checkXYZ(startField.text) == false) {
             tiled.alert("Start Point is malformed. Include three numbers seperated by commas (\"1.2,0,0\").")
             return;
         }
-        if (checkXYZ(stopField.text) == false){
+        if (checkXYZ(stopField.text) == false) {
             tiled.alert("Stop Point is malformed. Include three numbers seperated by commas (\"1.2,0,0\").")
             return;
         }
-        if (checkXYZ(endField.text) == false){
+        if (checkXYZ(endField.text) == false) {
             tiled.alert("End Point is malformed. Include three numbers seperated by commas (\"1.2,0,0\").")
             return;
         }
-        if (checkSpeed(speedField.text) == false){
+        if (checkSpeed(speedField.text) == false) {
             tiled.alert("Speed is malformed. Only use a number (\"0.1\" or \"2\"). ")
             return;
         }
-        tiled.log("speed = "+idField.text)
+        tiled.log("speed = " + idField.text)
         var view = tiled.mapEditor.currentMapView;
         var center = view.center;
         var obj = new MapObject();
@@ -359,13 +359,13 @@ function addPassengerTrain() {
         obj.x = center.x;
         obj.y = center.y;
         obj.name = idField.text;
-        obj.type = "Passenger Train"; 
+        obj.type = "Passenger Train";
         // Set custom properties
         obj.setProperty("Color", colorBox.currentText);
         obj.setProperty("Speed", speedField.text);
         obj.setProperty("Direction", directionBox.currentText);
-        obj.setProperty("Train Z", trainZField.currentText);
-        obj.setProperty("Platform Z", platZField.currentText);
+        obj.setProperty("Train Z", trainZField.text);
+        obj.setProperty("Platform Z", platZField.text);
         obj.setProperty("Start", startField.text);
         obj.setProperty("Stop", stopField.text);
         obj.setProperty("End", endField.text);
@@ -377,8 +377,8 @@ function addPassengerTrain() {
         map.currentLayer.addObject(obj);
         dialog.close();
     });
-    
-   dialog.show();
+
+    dialog.show();
 
 }
 
@@ -398,40 +398,40 @@ function checkXYZ(textValue) {
     return commaCount === 1 && dotCount <= 2;
 }
 function checkSpeed(textValue) {
-  return /^[0-9]*\.?[0-9]*$/.test(textValue) && 
-    (textValue.match(/\./g) || []).length <= 1;
+    return /^[0-9]*\.?[0-9]*$/.test(textValue) &&
+        (textValue.match(/\./g) || []).length <= 1;
 }
 function checkArea(textValue) {
-  return !textValue.includes(".tmx") && !textValue.includes(".");
+    return !textValue.includes(".tmx") && !textValue.includes(".");
 }
 
 function checkServer(textValue) {
-  // Split by comma and trim whitespace from each part
-  const parts = textValue.split(',').map(part => part.trim());
-  
-  // Must have exactly 3 parts
-  if (parts.length !== 3) return false;
-  
-  const firstPart = parts[0];
-  
-  if (!firstPart.includes(':')) return false;
-  
-  const subParts = firstPart.split(':');
-  const beforeColon = subParts[0];
-  const afterColon = subParts[1];
-  
-  // Check there's exactly one colon (split returns array of length 2)
-  if (subParts.length !== 2) return false;
-  
-  // Check there's at least one period before colon, not adjacent to colon
-  if (!beforeColon.includes('.') || 
-      beforeColon.endsWith('.')) return false;
-  
-  // Check only numbers after colon (and not empty)
-  if (!/^\d+$/.test(afterColon)) return false;
-  
-  // If we got here, first part is valid and we have exactly 3 parts
-  return true;
+    // Split by comma and trim whitespace from each part
+    const parts = textValue.split(',').map(part => part.trim());
+
+    // Must have exactly 3 parts
+    if (parts.length !== 3) return false;
+
+    const firstPart = parts[0];
+
+    if (!firstPart.includes(':')) return false;
+
+    const subParts = firstPart.split(':');
+    const beforeColon = subParts[0];
+    const afterColon = subParts[1];
+
+    // Check there's exactly one colon (split returns array of length 2)
+    if (subParts.length !== 2) return false;
+
+    // Check there's at least one period before colon, not adjacent to colon
+    if (!beforeColon.includes('.') ||
+        beforeColon.endsWith('.')) return false;
+
+    // Check only numbers after colon (and not empty)
+    if (!/^\d+$/.test(afterColon)) return false;
+
+    // If we got here, first part is valid and we have exactly 3 parts
+    return true;
 }
 
 // Register the action and add it to the "New" menu

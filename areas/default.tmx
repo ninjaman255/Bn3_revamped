@@ -378,12 +378,16 @@
    </properties>
    <point/>
   </object>
-  <object id="70" type="RushRoad" gid="1540" x="640" y="352" width="64" height="32" visible="0">
+  <object id="70" type="Rush Road" gid="1540" x="640" y="352" width="64" height="32" visible="0">
    <properties>
-    <property name="RushObjId" type="int" value="75"/>
+    <property name="Next1" type="int" value="83"/>
    </properties>
   </object>
-  <object id="83" gid="1544" x="608" y="352" width="64" height="32"/>
+  <object id="83" name="Name" gid="1544" x="608" y="352" width="64" height="32">
+   <properties>
+    <property name="Name" value="name"/>
+   </properties>
+  </object>
   <object id="84" type="Radius Warp" x="656" y="176">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>

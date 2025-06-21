@@ -1,4 +1,5 @@
 local food_details = {name = "Rush Food", description = "Mysterious food", type = "keyitem"}
+local rush_roads = {}
 
 local function handle_item_gen()
   local food = Net.create_item("rush_food", food_details)
@@ -15,15 +16,46 @@ if (player_name == "D3str0y3d") then
     end
 end
 
+function find_rush_roads()
+ local areas = Net.list_areas()
+    --Check every area
+    for i, area_id in next, areas do
+        area_id = tostring(area_id)
+         if not rush_roads[area_id] then
+            rush_roads[area_id] = {}
+        --Loop over all objects in area, spawning trains for each train object.
+        local objects = Net.list_objects(area_id)
+            for i, object_id in next, objects do    
+                local object = Net.get_object_by_id(area_id, object_id)
+                object_id = tostring(object_id)
+            if object.type == "Rush Road" then 
+                print("rush road in " .. area_id)
+            end
+            if object.custom_properties.Next1 ~= nil then
+            local next1 = object.custom_properties.Next1
+            local nextobject = Net.get_object_by_id(area_id, next1)
+            print(object.custom_properties.Next1)
+            print(nextobject.custom_properties.Name)
+        end
+        end
+    end
+end
+end
+
+find_rush_roads()
+
+function summon_rush_roads()
+end
+
 function handle_object_interaction(player_id, object_id)
   local area = Net.get_player_area(player_id)
   local object = Net.get_object_by_id(area, object_id)
   local floorCords = {object.x, object.y, object.z}
 
-    if not object or not object.type == "RushRoad" then
+    if not object or not object.type == "Rush Road" then
         print("Not a rush road")
     end
-        if object and object.type == "RushRoad" then
+        if object and object.type == "Rush Road" then
         print("This is a rush road")
         local player_items = Net.get_player_items(player_id)
         print(player_items)
@@ -38,7 +70,7 @@ function handle_object_interaction(player_id, object_id)
         if (player_items[index] ~= nil) then
         print("player has food")
            Net.question_player(player_id, "Would you like to use rush food?")
-        
+        -- Net.animate_bot_properties
            Net.exclude_object_for_player(player_id, object_id)
         end
         -- ending clause if we get beyond here we don't care.

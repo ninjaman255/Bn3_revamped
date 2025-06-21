@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="29" height="24" tilewidth="64" tileheight="32" infinite="0" nextlayerid="29" nextobjectid="100">
+<map version="1.8" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="29" height="24" tilewidth="64" tileheight="32" infinite="0" nextlayerid="29" nextobjectid="101">
  <properties>
   <property name="Background" value="custom"/>
   <property name="Background Animation" value="/server/assets/backgrounds/undernet.animation"/>
@@ -61,7 +61,13 @@
     <property name="Target Object" value="77"/>
    </properties>
   </object>
-  <object id="82" gid="246" x="576" y="64" width="64" height="40"/>
+  <object id="82" gid="247" x="576" y="64" width="64" height="40">
+   <properties>
+    <property name="Direction" value="Down Right"/>
+    <property name="Target Area" value="undernetsqr"/>
+    <property name="Target Object" value="87"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="17" name="Tile Layer 2" width="29" height="24" offsetx="0" offsety="-16">
   <data encoding="csv">
@@ -121,7 +127,13 @@
 </data>
  </layer>
  <objectgroup id="22" name="Object Layer 3" offsetx="0" offsety="-32">
-  <object id="85" gid="255" x="398" y="384" width="90" height="108"/>
+  <object id="85" type="Interact Warp" gid="255" x="398" y="384" width="90" height="108">
+   <properties>
+    <property name="Direction" value="Down Right"/>
+    <property name="Target Area" value="undernetsqr"/>
+    <property name="Target Object" value="87"/>
+   </properties>
+  </object>
   <object id="86" type="Board" gid="269" x="287" y="479" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
@@ -130,7 +142,13 @@
     <property name="Post Limit" type="int" value="30"/>
    </properties>
   </object>
-  <object id="87" gid="247" x="256" y="384" width="64" height="40"/>
+  <object id="87" type="Custom Warp" gid="247" x="256" y="384" width="64" height="40">
+   <properties>
+    <property name="Direction" value="Up Left"/>
+    <property name="Target Area" value="undernetsqr"/>
+    <property name="Target Object" value="85"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="19" name="Tile Layer 4" width="29" height="24" offsetx="0" offsety="-48">
   <data encoding="csv">
@@ -161,7 +179,13 @@
 </data>
  </layer>
  <objectgroup id="23" name="Object Layer 4" offsetx="0" offsety="-48">
-  <object id="90" gid="256" x="96" y="368" width="88" height="52"/>
+  <object id="90" type="Interact Warp" gid="256" x="96" y="368" width="88" height="52">
+   <properties>
+    <property name="Direction" value="Down Right"/>
+    <property name="Target Area" value="secretArea1"/>
+    <property name="Target Object" value="2"/>
+   </properties>
+  </object>
   <object id="91" gid="258" x="176" y="464" width="48" height="64"/>
   <object id="92" gid="258" x="80" y="464" width="48" height="64"/>
   <object id="93" gid="258" x="80" y="336" width="48" height="64"/>

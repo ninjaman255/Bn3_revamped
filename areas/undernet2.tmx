@@ -63,14 +63,14 @@
     <property name="Target Object" value="71"/>
    </properties>
   </object>
-  <object id="67" gid="22" x="88" y="280" width="64" height="40">
+  <object id="67" type="Custom Warp" gid="22" x="88" y="280" width="64" height="40">
    <properties>
     <property name="Direction" value="Down Right"/>
     <property name="Target Area" value="undernet2"/>
     <property name="Target Object" value="68"/>
    </properties>
   </object>
-  <object id="68" gid="22" x="408" y="600" width="64" height="40">
+  <object id="68" type="Custom Warp" gid="22" x="408" y="600" width="64" height="40">
    <properties>
     <property name="Direction" value="Up Right"/>
     <property name="Target Area" value="undernet2"/>
@@ -269,7 +269,7 @@
 </data>
  </layer>
  <objectgroup id="24" name="Object Layer 5" offsetx="0" offsety="-64">
-  <object id="70" gid="26" x="664" y="248" width="64" height="40">
+  <object id="70" type="Custom Warp" gid="26" x="664" y="248" width="64" height="40">
    <properties>
     <property name="Direction" value="Down Right"/>
     <property name="Target Area" value="undernet2"/>

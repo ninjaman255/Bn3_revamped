@@ -2,9 +2,9 @@
     "activeFile": "areas/undernet2.tmx",
     "expandedProjectPaths": [
         "areas",
+        "assets",
         "assets/tiles",
-        ".",
-        "assets"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -117,8 +117,8 @@
             "scale": 11,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1025.1363636363637,
-                "y": 706
+                "x": 944.0454545454545,
+                "y": 440
             }
         },
         "areas/acdcsqr.tmx": {
@@ -141,11 +141,14 @@
             }
         },
         "areas/beachside2.tmx": {
-            "scale": 1,
+            "expandedObjectLayers": [
+                25
+            ],
+            "scale": 0.75,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1768.5,
-                "y": 319
+                "x": 1228.6666666666665,
+                "y": 36
             }
         },
         "areas/beachsqr.tmx": {
@@ -241,11 +244,11 @@
                 5,
                 24
             ],
-            "scale": 0.75,
-            "selectedLayer": 1,
+            "scale": 1,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 1098,
-                "y": 553.3333333333333
+                "x": 945.5,
+                "y": 661
             }
         },
         "areas/undernet3.tmx": {
@@ -255,8 +258,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1166.3333333333333,
-                "y": 615.3333333333333
+                "x": 976.3333333333333,
+                "y": 487.33333333333326
             }
         },
         "areas/yoka1.tmx": {
@@ -327,7 +330,8 @@
             "scaleInEditor": 1
         },
         "assets/tiles/CusBeachWarp.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "assets/tiles/RushTile.tsx": {
             "scaleInDock": 1
@@ -392,11 +396,15 @@
     "openFiles": [
         "areas/undernet3.tmx",
         "areas/undernet2.tmx",
-        "areas/acdc3.tmx"
+        "areas/acdc3.tmx",
+        "areas/beachside2.tmx",
+        "assets/tiles/CusBeachWarp.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
         "areas/undernet3.tmx",
+        "assets/tiles/CusBeachWarp.tsx",
+        "areas/beachside2.tmx",
         "areas/acdc3.tmx",
         "areas/undernet2.tmx",
         "C:/Users/aaron/Documents/Code/Bn3/areas/Undernet3.tmx",
@@ -405,9 +413,7 @@
         "assets/tiles/alpha_sludge_tiles.tsx",
         "areas/scilabsqr.tmx",
         "areas/beachside1.tmx",
-        "areas/beachside2.tmx",
-        "areas/secretArea3.tmx",
-        "areas/scilab2.tmx"
+        "areas/secretArea3.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

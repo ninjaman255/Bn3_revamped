@@ -163,15 +163,23 @@
         "C:/Users/aaron/Documents/Code/Bn3/assets/tiles/warp.tsx": {
             "scaleInDock": 1
         },
+        "areas/acdc2.tmx": {
+            "scale": 0.40593112244897955,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 784.6158680282797,
+                "y": 391.69206598586015
+            }
+        },
         "areas/acdc3.tmx": {
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 11,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 944.0454545454545,
-                "y": 440
+                "x": 1010,
+                "y": 665.3333333333333
             }
         },
         "areas/acdcsqr.tmx": {
@@ -181,8 +189,8 @@
             "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 681,
-                "y": 93.75
+                "x": 681.25,
+                "y": 93.5
             }
         },
         "areas/beachside1.tmx": {
@@ -190,57 +198,57 @@
                 5,
                 32
             ],
-            "scale": 3,
-            "selectedLayer": 1,
+            "scale": 0.75,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 1480,
-                "y": 149.16666666666666
+                "x": 1430,
+                "y": 418.66666666666663
             }
         },
         "areas/beachside2.tmx": {
             "expandedObjectLayers": [
                 25
             ],
-            "scale": 0.75,
+            "scale": 0.125,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 2292,
-                "y": 472.66666666666663
+                "x": 1756,
+                "y": 256
             }
         },
         "areas/beachsqr.tmx": {
             "expandedObjectLayers": [
                 31
             ],
-            "scale": 4,
+            "scale": 1,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 393.75,
-                "y": 90.375
+                "x": 428.5,
+                "y": -152
             }
         },
         "areas/default.tmx": {
             "expandedObjectLayers": [
-                5,
-                18
+                18,
+                5
             ],
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 724.5,
-                "y": 603.5
+                "x": 976.25,
+                "y": 342
             }
         },
         "areas/hades.tmx": {
             "expandedObjectLayers": [
-                5,
-                28
+                28,
+                5
             ],
-            "scale": 4,
+            "scale": 1,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 1216.625,
-                "y": 806.75
+                "x": 1316.5,
+                "y": 632
             }
         },
         "areas/scilab1.tmx": {
@@ -339,7 +347,7 @@
             "selectedLayer": 5,
             "viewCenter": {
                 "x": 848.1666666666666,
-                "y": 391.99999999999994
+                "y": 392
             }
         },
         "areas/yoka1.tmx": {
@@ -354,24 +362,24 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 2,
+            "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1770.25,
-                "y": 841.25
+                "x": 1059.6666666666665,
+                "y": 568
             }
         },
         "areas/yokasqr.tmx": {
             "expandedObjectLayers": [
-                5,
                 30,
-                31
+                31,
+                5
             ],
             "scale": 1.5,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 1384.6666666666665,
-                "y": 253.66666666666663
+                "x": 1088.3333333333333,
+                "y": 496
             }
         },
         "assets/tiles/AlphaAreaTileset.tsx": {
@@ -523,18 +531,18 @@
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "areas/hades.tmx",
-        "areas/scilabsqr.tmx",
-        "areas/undernetsqr.tmx",
-        "areas/yokasqr.tmx",
-        "areas/default.tmx",
-        "assets/tiles/BN3-revamped.tsx",
         "areas/beachsqr.tmx",
-        "areas/acdcsqr.tmx",
-        "assets/tiles/bn3-bbs.tsx",
-        "areas/undernet2.tmx",
+        "areas/beachside2.tmx",
         "areas/beachside1.tmx",
-        "areas/scilab2.tmx"
+        "areas/acdcsqr.tmx",
+        "areas/acdc3.tmx",
+        "areas/acdc2.tmx",
+        "areas/yoka2.tmx",
+        "assets/tiles/BN3-revamped.tsx",
+        "areas/default.tmx",
+        "areas/yokasqr.tmx",
+        "areas/undernetsqr.tmx",
+        "areas/scilabsqr.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

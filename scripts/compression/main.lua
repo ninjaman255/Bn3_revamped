@@ -1,7 +1,7 @@
 
 local colliders = {}
 local compressed_players = {}
-local compressSfx = "/server/assets/compression/sfx.ogg"
+local compressSfx = "/server/assets/sfx/compress.ogg"
 
 function handle_player_move(player_id, x, y, z)
   local area_id = Net.get_player_area(player_id)
@@ -39,7 +39,7 @@ function compress(player_id)
         { property = "ScaleX", value = 3/8, ease = "Linear" },
         { property = "ScaleY", value = 3/8, ease = "Linear" }
       },
-      duration = .25
+      duration = .15
     }
   })
 
@@ -60,7 +60,7 @@ function decompress(player_id)
         { property = "ScaleX", value = 1, ease = "Linear" },
         { property = "ScaleY", value = 1, ease = "Linear" }
       },
-      duration = .25
+      duration = .15
     }
   })
 

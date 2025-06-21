@@ -1,9 +1,9 @@
 {
-    "activeFile": "areas/undernetsqr.tmx",
+    "activeFile": "areas/yokasqr.tmx",
     "expandedProjectPaths": [
         "assets/tiles",
-        ".",
         "assets",
+        ".",
         "areas"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -166,10 +166,11 @@
         },
         "areas/beachside1.tmx": {
             "expandedObjectLayers": [
-                5
+                5,
+                32
             ],
             "scale": 3,
-            "selectedLayer": 9,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 1480,
                 "y": 149.16666666666666
@@ -196,10 +197,11 @@
         },
         "areas/default.tmx": {
             "expandedObjectLayers": [
-                5
+                5,
+                18
             ],
             "scale": 8,
-            "selectedLayer": 9,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 795.25,
                 "y": 556.3125
@@ -207,8 +209,8 @@
         },
         "areas/hades.tmx": {
             "expandedObjectLayers": [
-                28,
-                5
+                5,
+                28
             ],
             "scale": 1.5,
             "selectedLayer": 1,
@@ -227,15 +229,15 @@
         },
         "areas/scilab2.tmx": {
             "expandedObjectLayers": [
+                5,
                 30,
-                28,
-                5
+                28
             ],
-            "scale": 1,
-            "selectedLayer": 9,
+            "scale": 8,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 2007,
-                "y": 573.5
+                "x": 1015.75,
+                "y": 588.5625
             }
         },
         "areas/scilabsqr.tmx": {
@@ -303,8 +305,8 @@
         },
         "areas/undernetsqr.tmx": {
             "expandedObjectLayers": [
-                22,
-                5
+                5,
+                22
             ],
             "scale": 1,
             "selectedLayer": 5,
@@ -334,8 +336,8 @@
         },
         "areas/yokasqr.tmx": {
             "expandedObjectLayers": [
-                30,
                 5,
+                30,
                 31
             ],
             "scale": 3,
@@ -482,13 +484,13 @@
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "areas/yokasqr.tmx",
-        "areas/beachside1.tmx",
-        "areas/scilab2.tmx",
-        "areas/default.tmx",
-        "areas/hades.tmx",
-        "assets/tiles/UndernetStatue.tsx",
         "areas/undernetsqr.tmx",
+        "assets/tiles/UndernetStatue.tsx",
+        "areas/hades.tmx",
+        "areas/default.tmx",
+        "areas/scilab2.tmx",
+        "areas/beachside1.tmx",
+        "areas/yokasqr.tmx",
         "areas/beachside2.tmx",
         "assets/tiles/WaterTilesV2.tsx",
         "assets/tiles/fire-pedestal.tsx",

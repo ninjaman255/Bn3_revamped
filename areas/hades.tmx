@@ -145,7 +145,7 @@
     <property name="Platform Z" value="4"/>
     <property name="Speed" value="3"/>
     <property name="Start" value="40,1"/>
-    <property name="Stop" value="20,1"/>
+    <property name="Stop" value="20.5,1"/>
     <property name="Train Z" value="0"/>
    </properties>
    <point/>

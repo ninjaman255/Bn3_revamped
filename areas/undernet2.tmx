@@ -98,7 +98,7 @@
    </properties>
    <point/>
   </object>
-  <object id="76" type="Radius Warp" x="400" y="848">
+  <object id="76" type="Radius Warp" x="400" y="880">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>
     <property name="Arrival Animation" value="arrow_down_left_in"/>

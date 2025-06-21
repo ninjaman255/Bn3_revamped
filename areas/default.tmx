@@ -408,7 +408,7 @@
    </properties>
   </object>
   <object id="96" gid="6" x="658" y="447" width="34" height="52"/>
-  <object id="97" type="Board" gid="2147485202" x="447" y="255" width="80" height="96">
+  <object id="97" type="Board" gid="2147485202" x="479" y="255" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
     <property name="Color" type="color" value="#ff55ffff"/>

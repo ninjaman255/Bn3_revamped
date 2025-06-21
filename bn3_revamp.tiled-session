@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/secretarea2.tmx",
+    "activeFile": "areas/acdc3.tmx",
     "expandedProjectPaths": [
-        "assets",
         ".",
-        "areas",
-        "assets/tiles"
+        "assets/tiles",
+        "assets",
+        "areas"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -201,11 +201,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 0.75,
-            "selectedLayer": 8,
+            "scale": 1,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 1011.3333333333333,
-                "y": 499.9999999999999
+                "x": 609.5,
+                "y": 147.5
             }
         },
         "areas/acdcsqr.tmx": {
@@ -347,8 +347,8 @@
             "scale": 5.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1169.3636363636365,
-                "y": 370.9090909090909
+                "x": 1408.090909090909,
+                "y": 696
             }
         },
         "areas/secretarea2.tmx": {
@@ -356,11 +356,11 @@
                 4,
                 2
             ],
-            "scale": 4,
+            "scale": 0.33,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1447.375,
-                "y": 784
+                "x": 1234.8484848484848,
+                "y": -315.151515151515
             }
         },
         "areas/tag.tmx": {
@@ -501,6 +501,12 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "assets/tiles/Cyber Elephant Slide.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/Cyber Play Dome.tsx": {
+            "scaleInDock": 1
+        },
         "assets/tiles/RushTile.tsx": {
             "scaleInDock": 1
         },
@@ -597,25 +603,22 @@
     "frame.defaultDuration": 300,
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/secretarea1.tmx",
-        "assets/tiles/WaterTilesV2.tsx",
-        "assets/tiles/BN3 remake Secret.tsx",
-        "areas/secretarea2.tmx"
+        "areas/acdc3.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "areas/secretarea1.tmx",
-        "assets/tiles/WaterTilesV2.tsx",
-        "assets/tiles/BN3 remake Secret.tsx",
+        "areas/acdc3.tmx",
         "areas/secretarea2.tmx",
+        "assets/tiles/BN3 remake Secret.tsx",
+        "assets/tiles/WaterTilesV2.tsx",
+        "areas/secretarea1.tmx",
         "areas/undernetsqr.tmx",
         "assets/tiles/water-fix-arrows.tsx",
         "assets/tiles/warp.tsx",
         "assets/tiles/Secret_Area_Warp.tsx",
         "areas/secretArea1.tmx",
         "areas/yokasqr.tmx",
-        "C:/Users/aaron/Documents/Code/Bn3/areas/Undernet4.tmx",
-        "areas/default.tmx"
+        "C:/Users/aaron/Documents/Code/Bn3/areas/Undernet4.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

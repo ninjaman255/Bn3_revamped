@@ -16,8 +16,7 @@
  <tileset firstgid="26" source="../assets/tiles/BN3-revamped.tsx"/>
  <tileset firstgid="1546" source="../assets/tiles/BN3 square custom.tsx"/>
  <tileset firstgid="1791" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
- <tileset firstgid="1800" source="../assets/tiles/BBSOldFixed.tsx"/>
- <tileset firstgid="1803" source="../assets/tiles/bn3-bbs.tsx"/>
+ <tileset firstgid="1800" source="../assets/tiles/bn3-bbs.tsx"/>
  <layer id="1" name="Floor" width="17" height="15">
   <properties>
    <property name="Background" value="custom"/>
@@ -54,7 +53,7 @@
     <property name="Target Object" value="64"/>
    </properties>
   </object>
-  <object id="63" type="Board" gid="1803" x="95" y="319" width="80" height="96">
+  <object id="63" type="Board" gid="1800" x="95" y="319" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
     <property name="Color" type="color" value="#fff0e0a0"/>

@@ -2,9 +2,9 @@
     "activeFile": "areas/yokasqr.tmx",
     "expandedProjectPaths": [
         "assets/tiles",
+        "assets",
         "areas",
-        ".",
-        "assets"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -182,7 +182,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 681,
-                "y": 11.75
+                "y": 93.75
             }
         },
         "areas/beachside1.tmx": {
@@ -240,7 +240,7 @@
             "selectedLayer": 9,
             "viewCenter": {
                 "x": 1509,
-                "y": 221.125
+                "y": 262.125
             }
         },
         "areas/scilab1.tmx": {
@@ -272,7 +272,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 498.5,
-                "y": 194.75
+                "y": 276.75
             }
         },
         "areas/secretArea1.tmx": {
@@ -339,7 +339,7 @@
             "selectedLayer": 5,
             "viewCenter": {
                 "x": 841.6666666666665,
-                "y": 346.16666666666663
+                "y": 400.8333333333333
             }
         },
         "areas/yoka1.tmx": {
@@ -363,15 +363,15 @@
         },
         "areas/yokasqr.tmx": {
             "expandedObjectLayers": [
-                30,
+                31,
                 5,
-                31
+                30
             ],
             "scale": 3,
             "selectedLayer": 7,
             "viewCenter": {
                 "x": 1256.3333333333333,
-                "y": 315.5
+                "y": 370.16666666666663
             }
         },
         "assets/tiles/AlphaAreaTileset.tsx": {
@@ -382,6 +382,7 @@
             "scaleInEditor": 1
         },
         "assets/tiles/BBSOldFlipped.tsx": {
+            "dynamicWrapping": true,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -397,6 +398,7 @@
             "scaleInEditor": 1
         },
         "assets/tiles/BN3-revamped.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -459,6 +461,7 @@
             "scaleInDock": 1
         },
         "assets/tiles/UndernetInteractWarp.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "assets/tiles/UndernetStatue.tsx": {
@@ -511,8 +514,6 @@
     "frame.defaultDuration": 330,
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/acdcsqr.tmx",
-        "areas/beachsqr.tmx",
         "areas/hades.tmx",
         "areas/scilabsqr.tmx",
         "areas/undernetsqr.tmx",
@@ -520,12 +521,12 @@
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "areas/acdcsqr.tmx",
-        "areas/beachsqr.tmx",
         "areas/hades.tmx",
         "areas/scilabsqr.tmx",
         "areas/undernetsqr.tmx",
         "areas/yokasqr.tmx",
+        "areas/beachsqr.tmx",
+        "areas/acdcsqr.tmx",
         "assets/tiles/bn3-bbs.tsx",
         "areas/undernet2.tmx",
         "areas/beachside1.tmx",

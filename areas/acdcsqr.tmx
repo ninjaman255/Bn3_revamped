@@ -11,8 +11,7 @@
  </properties>
  <tileset firstgid="1" source="../assets/tiles/BN3 square custom.tsx"/>
  <tileset firstgid="246" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
- <tileset firstgid="255" source="../assets/tiles/BBSOldFlipped.tsx"/>
- <tileset firstgid="258" source="../assets/tiles/bn3-bbs.tsx"/>
+ <tileset firstgid="255" source="../assets/tiles/bn3-bbs.tsx"/>
  <layer id="1" name="Floor" width="8" height="18">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
@@ -43,7 +42,7 @@
     <property name="Target Object" value="64"/>
    </properties>
   </object>
-  <object id="63" type="Board" gid="2147483906" x="-1" y="-65" width="80" height="96">
+  <object id="63" type="Board" gid="2147483903" x="-1" y="-65" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
     <property name="Color" type="color" value="#ff55ffff"/>
@@ -51,7 +50,7 @@
     <property name="Post Limit" type="int" value="30"/>
    </properties>
   </object>
-  <object id="64" type="Board" gid="2147483906" x="63" y="-65" width="80" height="96">
+  <object id="64" type="Board" gid="2147483903" x="63" y="-65" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
     <property name="Color" type="color" value="#ff55ffff"/>

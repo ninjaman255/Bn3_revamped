@@ -17,8 +17,7 @@
  <tileset firstgid="1546" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
  <tileset firstgid="1555" source="../assets/tiles/CompressionRoadsYoka.tsx"/>
  <tileset firstgid="1599" source="../assets/tiles/BN3ACDC1Warp.tsx"/>
- <tileset firstgid="1608" source="../assets/tiles/BBSOldFlipped.tsx"/>
- <tileset firstgid="1611" source="../assets/tiles/bn3-bbs.tsx"/>
+ <tileset firstgid="1608" source="../assets/tiles/bn3-bbs.tsx"/>
  <layer id="1" name="Floor" width="41" height="35">
   <properties>
    <property name="Background" value="custom"/>
@@ -388,7 +387,7 @@
     <property name="Target Object" value="85"/>
    </properties>
   </object>
-  <object id="78" type="Board" gid="2147485261" x="415" y="95" width="80" height="96">
+  <object id="78" type="Board" gid="2147485258" x="415" y="95" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
     <property name="Color" type="color" value="#ffff0000"/>

@@ -2,8 +2,8 @@
     "activeFile": "areas/undernetsqr.tmx",
     "expandedProjectPaths": [
         ".",
-        "assets",
         "assets/tiles",
+        "assets",
         "areas"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -160,8 +160,8 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 416.16666666666663,
-                "y": 207.99999999999997
+                "x": 525.5,
+                "y": 156.66666666666663
             }
         },
         "areas/beachside1.tmx": {
@@ -290,20 +290,20 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 976.3333333333333,
-                "y": 487.33333333333326
+                "x": 896.9999999999999,
+                "y": 269.33333333333326
             }
         },
         "areas/undernetsqr.tmx": {
             "expandedObjectLayers": [
-                22,
-                5
+                5,
+                22
             ],
-            "scale": 5.5,
-            "selectedLayer": 5,
+            "scale": 1,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 848.090909090909,
-                "y": 400
+                "x": 628.5,
+                "y": 409
             }
         },
         "areas/yoka1.tmx": {
@@ -420,11 +420,15 @@
         "assets/tiles/Secret_Area_White_Walkways.tsx": {
             "scaleInDock": 1
         },
+        "assets/tiles/UndernetInteractWarp.tsx": {
+            "scaleInDock": 1
+        },
         "assets/tiles/UndernetStatue.tsx": {
             "scaleInDock": 1
         },
         "assets/tiles/WaterTilesV2.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "assets/tiles/alpha_sludge_tiles.tsx": {
             "scaleInDock": 1,
@@ -433,10 +437,17 @@
         "assets/tiles/coffee.tsx": {
             "scaleInDock": 1
         },
+        "assets/tiles/fire-pedestal.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "assets/tiles/gate.tsx": {
             "scaleInDock": 1
         },
         "assets/tiles/home_warp.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tiles/obstacle_fire_1.tsx": {
             "scaleInDock": 1
         },
         "assets/tiles/rush_floor.tsx": {
@@ -453,28 +464,28 @@
     "frame.defaultDuration": 330,
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/undernet3.tmx",
         "areas/undernetsqr.tmx",
-        "areas/acdcsqr.tmx"
+        "assets/tiles/WaterTilesV2.tsx",
+        "assets/tiles/fire-pedestal.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
+        "assets/tiles/fire-pedestal.tsx",
+        "assets/tiles/WaterTilesV2.tsx",
+        "areas/undernetsqr.tmx",
         "areas/undernet3.tmx",
         "areas/acdcsqr.tmx",
-        "areas/undernetsqr.tmx",
         "assets/tiles/BBSOldFlipped.tsx",
         "assets/tiles/undernet-bbs.tsx",
         "areas/undernet2.tmx",
         "areas/acdc3.tmx",
         "areas/beachside2.tmx",
         "assets/tiles/CusBeachWarp.tsx",
-        "C:/Users/aaron/Documents/Code/Bn3/areas/UndernetSqr.tmx",
-        "C:/Users/aaron/Documents/Code/Bn3/areas/Undernet3.tmx",
-        "areas/default.tmx"
+        "C:/Users/aaron/Documents/Code/Bn3/areas/UndernetSqr.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 69,
+        "height": 64,
         "width": 48
     }
 }

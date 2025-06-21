@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/undernet3.tmx",
+    "activeFile": "areas/yokasqr.tmx",
     "expandedProjectPaths": [
-        "assets/tiles",
-        "assets",
         ".",
-        "areas"
+        "areas",
+        "assets",
+        "assets/tiles"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -164,11 +164,11 @@
             "scaleInDock": 1
         },
         "areas/acdc2.tmx": {
-            "scale": 0.40593112244897955,
+            "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 784.6158680282797,
-                "y": 391.69206598586015
+                "x": 1012.6666666666666,
+                "y": 409.3333333333333
             }
         },
         "areas/acdc3.tmx": {
@@ -176,68 +176,68 @@
                 5
             ],
             "scale": 0.75,
-            "selectedLayer": 1,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 1010,
-                "y": 665.3333333333333
+                "x": 1011.3333333333333,
+                "y": 499.9999999999999
             }
         },
         "areas/acdcsqr.tmx": {
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 2,
-            "selectedLayer": 1,
+            "scale": 0.75,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 681.25,
-                "y": 93.5
+                "x": 419.3333333333333,
+                "y": -6.6666666666667425
             }
         },
         "areas/beachside1.tmx": {
             "expandedObjectLayers": [
-                5,
-                32
+                32,
+                5
             ],
-            "scale": 0.75,
-            "selectedLayer": 11,
+            "scale": 1.5,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 1430,
-                "y": 418.66666666666663
+                "x": 1084,
+                "y": 465.33333333333326
             }
         },
         "areas/beachside2.tmx": {
             "expandedObjectLayers": [
                 25
             ],
-            "scale": 0.125,
-            "selectedLayer": 3,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1756,
-                "y": 256
+                "x": 1039.75,
+                "y": 408.5
             }
         },
         "areas/beachsqr.tmx": {
             "expandedObjectLayers": [
                 31
             ],
-            "scale": 1,
-            "selectedLayer": 5,
+            "scale": 1.5,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 428.5,
-                "y": -152
+                "x": 494.3333333333333,
+                "y": 225.33333333333326
             }
         },
         "areas/default.tmx": {
             "expandedObjectLayers": [
                 18,
-                12,
-                5
+                5,
+                12
             ],
-            "scale": 5.5,
-            "selectedLayer": 17,
+            "scale": 0.5,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 1172.909090909091,
-                "y": 285.3636363636364
+                "x": 857,
+                "y": 172
             }
         },
         "areas/hades.tmx": {
@@ -280,11 +280,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 2,
-            "selectedLayer": 1,
+            "scale": 1.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 512,
-                "y": 255.75
+                "x": 495,
+                "y": 361.33333333333326
             }
         },
         "areas/secretArea1.tmx": {
@@ -320,78 +320,78 @@
             }
         },
         "areas/undernet1.tmx": {
-            "scale": 1.1691927083333333,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 959.6365013252556,
-                "y": 447.7448381851794
+                "x": 1089.6666666666665,
+                "y": 24
             }
         },
         "areas/undernet2.tmx": {
             "expandedObjectLayers": [
-                24,
-                5
+                5,
+                24
             ],
-            "scale": 4,
-            "selectedLayer": 1,
+            "scale": 1.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 705.25,
-                "y": 561.125
+                "x": 1167,
+                "y": 342.66666666666663
             }
         },
         "areas/undernet3.tmx": {
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 1.5,
-            "selectedLayer": 1,
+            "scale": 0.33,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 896.6666666666665,
-                "y": 269
+                "x": 1104.5454545454547,
+                "y": 72.72727272727252
             }
         },
         "areas/undernetsqr.tmx": {
             "expandedObjectLayers": [
-                5,
-                22
+                22,
+                5
             ],
             "scale": 3,
             "selectedLayer": 5,
             "viewCenter": {
                 "x": 848.1666666666666,
-                "y": 392
+                "y": 391.99999999999994
             }
         },
         "areas/yoka1.tmx": {
-            "scale": 0.7342225609756097,
-            "selectedLayer": 0,
+            "scale": 2,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 1312.2723969687534,
-                "y": 624.470050866812
+                "x": 1599.25,
+                "y": 505.5
             }
         },
         "areas/yoka2.tmx": {
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 1.5,
-            "selectedLayer": 1,
+            "scale": 0.5,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 1059.6666666666665,
-                "y": 568
+                "x": 1071,
+                "y": 244
             }
         },
         "areas/yokasqr.tmx": {
             "expandedObjectLayers": [
                 30,
-                31,
-                5
+                5,
+                31
             ],
             "scale": 1.5,
-            "selectedLayer": 7,
+            "selectedLayer": 12,
             "viewCenter": {
                 "x": 1088.3333333333333,
-                "y": 496
+                "y": 163.99999999999994
             }
         },
         "assets/tiles/AlphaAreaTileset.tsx": {
@@ -534,23 +534,22 @@
     "frame.defaultDuration": 330,
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/undernet3.tmx",
-        "areas/undernet2.tmx"
+        "areas/yokasqr.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
+        "areas/yokasqr.tmx",
+        "areas/yoka2.tmx",
         "areas/undernet2.tmx",
         "areas/undernet3.tmx",
+        "areas/undernetsqr.tmx",
+        "areas/yoka1.tmx",
         "areas/undernet1.tmx",
-        "areas/tag.tmx",
         "areas/scilabsqr.tmx",
-        "areas/secretArea3.tmx",
-        "areas/secretArea2.tmx",
-        "areas/secretArea1.tmx",
-        "areas/default.tmx",
-        "areas/scilab2.tmx",
-        "areas/scilab1.tmx",
-        "areas/hades.tmx"
+        "areas/beachsqr.tmx",
+        "areas/beachside2.tmx",
+        "areas/acdcsqr.tmx",
+        "areas/beachside1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

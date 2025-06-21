@@ -160,8 +160,8 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 525.5,
-                "y": 156.66666666666663
+                "x": 416.16666666666663,
+                "y": 207.99999999999997
             }
         },
         "areas/beachside1.tmx": {
@@ -290,20 +290,20 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 897,
-                "y": 269.33333333333326
+                "x": 976.3333333333333,
+                "y": 487.33333333333326
             }
         },
         "areas/undernetsqr.tmx": {
             "expandedObjectLayers": [
-                5,
-                22
+                22,
+                5
             ],
             "scale": 5.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 763.7272727272727,
-                "y": 373.27272727272725
+                "x": 848.090909090909,
+                "y": 400
             }
         },
         "areas/yoka1.tmx": {

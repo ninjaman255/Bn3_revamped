@@ -12,6 +12,7 @@
  <tileset firstgid="1" source="../assets/tiles/BN3 square custom.tsx"/>
  <tileset firstgid="246" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
  <tileset firstgid="255" source="../assets/tiles/BBSOldFlipped.tsx"/>
+ <tileset firstgid="258" source="../assets/tiles/bn3-bbs.tsx"/>
  <layer id="25" name="Tile Layer 0" width="40" height="28">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -156,7 +157,7 @@
     <property name="Target Object" value="62"/>
    </properties>
   </object>
-  <object id="63" type="Board" gid="256" x="498" y="194" width="48" height="69">
+  <object id="63" type="Board" gid="2147483906" x="479" y="159" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
     <property name="Color" type="color" value="#ffffff00"/>

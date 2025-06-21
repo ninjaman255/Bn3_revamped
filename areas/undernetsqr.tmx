@@ -16,6 +16,7 @@
  <tileset firstgid="259" source="../assets/tiles/UndernetInteractWarp.tsx"/>
  <tileset firstgid="260" source="../assets/tiles/fire-pedestal.tsx"/>
  <tileset firstgid="262" source="../assets/tiles/obstacle_fire_1.tsx"/>
+ <tileset firstgid="270" source="../assets/tiles/bn3-bbs.tsx"/>
  <layer id="1" name="Floor" width="29" height="24">
   <properties>
    <property name="Background" value="custom"/>
@@ -122,7 +123,7 @@
  </layer>
  <objectgroup id="22" name="Object Layer 3" offsetx="0" offsety="-32">
   <object id="85" gid="255" x="398" y="384" width="90" height="108"/>
-  <object id="86" type="Board" gid="257" x="322" y="498" width="48" height="69">
+  <object id="86" type="Board" gid="272" x="287" y="479" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
     <property name="Color" type="color" value="#ff000000"/>

@@ -13,10 +13,11 @@
  <tileset firstgid="7" source="../assets/tiles/home_warp.tsx"/>
  <tileset firstgid="12" source="../assets/tiles/coffee.tsx"/>
  <tileset firstgid="16" source="../assets/tiles/gate.tsx"/>
- <tileset firstgid="21" source="../assets/tiles/BN3-revamped.tsx"/>
- <tileset firstgid="1541" source="../assets/tiles/BN3 square custom.tsx"/>
- <tileset firstgid="1786" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
- <tileset firstgid="1795" source="../assets/tiles/BBSOldFixed.tsx"/>
+ <tileset firstgid="26" source="../assets/tiles/BN3-revamped.tsx"/>
+ <tileset firstgid="1546" source="../assets/tiles/BN3 square custom.tsx"/>
+ <tileset firstgid="1791" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
+ <tileset firstgid="1800" source="../assets/tiles/BBSOldFixed.tsx"/>
+ <tileset firstgid="1803" source="../assets/tiles/bn3-bbs.tsx"/>
  <layer id="1" name="Floor" width="17" height="15">
   <properties>
    <property name="Background" value="custom"/>
@@ -28,32 +29,32 @@
    <property name="Song" value="/server/assets/music/Mega Man Battle Network 3 OST - T21 Network Is Spreading (Internet Theme).ogg"/>
   </properties>
   <data encoding="csv">
-0,0,0,0,0,0,1583,1584,1583,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,1584,1583,1584,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,1583,1584,1583,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,1594,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,1569,1570,1569,1570,1569,0,0,1569,1570,1569,1570,0,
-1583,1584,1583,0,0,1570,1569,1570,1569,1570,0,0,1570,1569,1570,1569,0,
-1584,1583,1584,1595,1592,1569,1570,1569,1570,1569,1595,1592,1569,1570,1569,1570,0,
-1583,1584,1583,0,0,1570,1569,1570,1569,1570,0,0,1570,1569,1570,1569,0,
-0,0,0,0,0,1569,1570,1569,1570,1569,0,0,1569,1570,1569,1570,0,
-0,0,0,0,0,0,0,1594,0,0,0,0,1570,1569,1570,1569,0,
-0,0,0,0,0,0,0,1590,0,0,0,0,1569,1570,1569,1570,0,
-0,0,0,0,0,0,1583,1584,1583,0,0,0,1570,1569,1570,1569,0,
-0,0,0,0,0,0,1584,1583,1584,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,1583,1584,1583,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1588,1589,1588,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1589,1588,1589,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1588,1589,1588,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1599,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1574,1575,1574,1575,1574,0,0,1574,1575,1574,1575,0,
+1588,1589,1588,0,0,1575,1574,1575,1574,1575,0,0,1575,1574,1575,1574,0,
+1589,1588,1589,1600,1597,1574,1575,1574,1575,1574,1600,1597,1574,1575,1574,1575,0,
+1588,1589,1588,0,0,1575,1574,1575,1574,1575,0,0,1575,1574,1575,1574,0,
+0,0,0,0,0,1574,1575,1574,1575,1574,0,0,1574,1575,1574,1575,0,
+0,0,0,0,0,0,0,1599,0,0,0,0,1575,1574,1575,1574,0,
+0,0,0,0,0,0,0,1595,0,0,0,0,1574,1575,1574,1575,0,
+0,0,0,0,0,0,1588,1589,1588,0,0,0,1575,1574,1575,1574,0,
+0,0,0,0,0,0,1589,1588,1589,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1588,1589,1588,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup id="5" name="Object Layer">
-  <object id="62" type="Custom Warp" gid="1787" x="224" y="192" width="64" height="40">
+  <object id="62" type="Custom Warp" gid="1792" x="224" y="192" width="64" height="40">
    <properties>
     <property name="Direction" value="Down Left"/>
     <property name="Target Area" value="scilab2"/>
     <property name="Target Object" value="64"/>
    </properties>
   </object>
-  <object id="63" type="Board" gid="1796" x="176" y="384" width="48" height="69">
+  <object id="63" type="Board" gid="1803" x="95" y="319" width="80" height="96">
    <properties>
     <property name="BBS" type="bool" value="true"/>
     <property name="Color" type="color" value="#fff0e0a0"/>

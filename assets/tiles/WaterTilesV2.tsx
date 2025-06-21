@@ -3,7 +3,7 @@
  <image source="WaterTilesV2.png" width="576" height="176"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">
-   <object id="4" x="0" y="18">
+   <object id="4" x="0" y="19">
     <polygon points="-1,-2 32,-19 65,-2 32,15"/>
    </object>
   </objectgroup>
@@ -20,7 +20,7 @@
  </tile>
  <tile id="1">
   <objectgroup draworder="index" id="2">
-   <object id="3" x="0" y="18">
+   <object id="3" x="0" y="19">
     <polygon points="-1,-2 32,-19 65,-2 32,15"/>
    </object>
   </objectgroup>
@@ -37,7 +37,7 @@
  </tile>
  <tile id="9">
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="18">
+   <object id="2" x="0" y="19">
     <polygon points="-1,-2 32,-19 65,-2 32,15"/>
    </object>
   </objectgroup>
@@ -54,7 +54,7 @@
  </tile>
  <tile id="10">
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="18">
+   <object id="2" x="0" y="19">
     <polygon points="-1,-2 32,-19 65,-2 32,15"/>
    </object>
   </objectgroup>
@@ -71,7 +71,7 @@
  </tile>
  <tile id="18">
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="18">
+   <object id="2" x="0" y="19">
     <polygon points="-1,-2 32,-19 65,-2 32,15"/>
    </object>
   </objectgroup>
@@ -88,7 +88,7 @@
  </tile>
  <tile id="19">
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="18">
+   <object id="2" x="0" y="19">
     <polygon points="-1,-2 32,-19 65,-2 32,15"/>
    </object>
   </objectgroup>
@@ -105,7 +105,7 @@
  </tile>
  <tile id="27">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="18">
+   <object id="1" x="0" y="19">
     <polygon points="-1,-2 32,-19 65,-2 32,15"/>
    </object>
   </objectgroup>
@@ -122,7 +122,7 @@
  </tile>
  <tile id="28">
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="18">
+   <object id="2" x="0" y="19">
     <polygon points="-1,-2 32,-19 65,-2 32,15"/>
    </object>
   </objectgroup>

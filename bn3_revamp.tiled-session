@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/undernetsqr.tmx",
+    "activeFile": "areas/secretarea2.tmx",
     "expandedProjectPaths": [
-        "areas",
         "assets",
-        ".",
-        "assets/tiles"
+        "assets/tiles",
+        "areas",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -317,11 +317,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 11,
-            "selectedLayer": 0,
+            "scale": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1413.0454545454545,
-                "y": -24.136363636363626
+                "x": 1409.25,
+                "y": 1157.5
             }
         },
         "areas/secretArea2.tmx": {
@@ -338,6 +338,26 @@
             "viewCenter": {
                 "x": 6704,
                 "y": -2140
+            }
+        },
+        "areas/secretarea1.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1445.25,
+                "y": 878.75
+            }
+        },
+        "areas/secretarea2.tmx": {
+            "expandedObjectLayers": [
+                4,
+                2
+            ],
+            "scale": 0.25,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1442,
+                "y": -108
             }
         },
         "areas/tag.tmx": {
@@ -388,8 +408,8 @@
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 996.1666666666665,
-                "y": 470.1666666666667
+                "x": 848.1666666666666,
+                "y": 391.99999999999994
             }
         },
         "areas/yoka1.tmx": {
@@ -525,7 +545,7 @@
         },
         "assets/tiles/WaterTilesV2.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 2
+            "scaleInEditor": 0.75
         },
         "assets/tiles/alpha_sludge_tiles.tsx": {
             "scaleInDock": 1,
@@ -574,28 +594,24 @@
     "frame.defaultDuration": 300,
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/secretArea1.tmx",
-        "assets/tiles/BN3 remake Secret.tsx",
-        "assets/tiles/WaterTilesV2.tsx",
-        "assets/tiles/water-fix-arrows.tsx",
-        "areas/undernetsqr.tmx",
-        "assets/tiles/warp.tsx",
-        "assets/tiles/Secret_Area_Warp.tsx"
+        "areas/secretarea2.tmx",
+        "areas/secretarea1.tmx",
+        "assets/tiles/WaterTilesV2.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "areas/secretArea1.tmx",
-        "assets/tiles/BN3 remake Secret.tsx",
         "assets/tiles/WaterTilesV2.tsx",
-        "assets/tiles/water-fix-arrows.tsx",
-        "assets/tiles/Secret_Area_Warp.tsx",
-        "assets/tiles/warp.tsx",
+        "areas/secretarea1.tmx",
+        "areas/secretarea2.tmx",
         "areas/undernetsqr.tmx",
+        "assets/tiles/water-fix-arrows.tsx",
+        "assets/tiles/BN3 remake Secret.tsx",
+        "assets/tiles/warp.tsx",
+        "assets/tiles/Secret_Area_Warp.tsx",
+        "areas/secretArea1.tmx",
         "areas/yokasqr.tmx",
         "C:/Users/aaron/Documents/Code/Bn3/areas/Undernet4.tmx",
-        "areas/default.tmx",
-        "areas/acdc2.tmx",
-        "areas/undernet2.tmx"
+        "areas/default.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.11.2" name="WaterTilesV2" tilewidth="64" tileheight="44" tilecount="36" columns="9">
+<tileset version="1.8" tiledversion="1.11.2" name="WaterTilesV2" tilewidth="64" tileheight="44" tilecount="36" columns="9">
  <tileoffset x="0" y="12"/>
  <image source="WaterTilesV2.png" width="576" height="176"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="18">
+   <object id="3" x="0" y="18">
     <polygon points="0,-2 32,-18 64,-2 32,14"/>
    </object>
   </objectgroup>

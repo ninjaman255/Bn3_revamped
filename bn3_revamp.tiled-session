@@ -1,9 +1,9 @@
 {
-    "activeFile": "areas/yokasqr.tmx",
+    "activeFile": "assets/tiles/WaterTilesV2.tsx",
     "expandedProjectPaths": [
-        ".",
         "areas",
         "assets",
+        ".",
         "assets/tiles"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -288,11 +288,11 @@
             }
         },
         "areas/secretArea1.tmx": {
-            "scale": 0.6841619318181819,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1407.5615073185922,
-                "y": 703.780753659296
+                "x": 1558.5,
+                "y": 581.5
             }
         },
         "areas/secretArea2.tmx": {
@@ -329,14 +329,14 @@
         },
         "areas/undernet2.tmx": {
             "expandedObjectLayers": [
-                5,
-                24
+                24,
+                5
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 0.5,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 1167,
-                "y": 342.66666666666663
+                "x": 1085,
+                "y": -102
             }
         },
         "areas/undernet3.tmx": {
@@ -384,14 +384,14 @@
         "areas/yokasqr.tmx": {
             "expandedObjectLayers": [
                 30,
-                5,
-                31
+                31,
+                5
             ],
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 12,
             "viewCenter": {
-                "x": 1088.3333333333333,
-                "y": 163.99999999999994
+                "x": 1458.5,
+                "y": 123.5
             }
         },
         "assets/tiles/AlphaAreaTileset.tsx": {
@@ -490,7 +490,7 @@
         },
         "assets/tiles/WaterTilesV2.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInEditor": 5.5
         },
         "assets/tiles/alpha_sludge_tiles.tsx": {
             "scaleInDock": 1,
@@ -534,22 +534,24 @@
     "frame.defaultDuration": 330,
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/yokasqr.tmx"
+        "areas/yokasqr.tmx",
+        "areas/secretArea1.tmx",
+        "assets/tiles/WaterTilesV2.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
         "areas/yokasqr.tmx",
-        "areas/yoka2.tmx",
+        "areas/secretArea1.tmx",
+        "assets/tiles/WaterTilesV2.tsx",
         "areas/undernet2.tmx",
+        "areas/yoka2.tmx",
         "areas/undernet3.tmx",
         "areas/undernetsqr.tmx",
         "areas/yoka1.tmx",
         "areas/undernet1.tmx",
         "areas/scilabsqr.tmx",
         "areas/beachsqr.tmx",
-        "areas/beachside2.tmx",
-        "areas/acdcsqr.tmx",
-        "areas/beachside1.tmx"
+        "areas/beachside2.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

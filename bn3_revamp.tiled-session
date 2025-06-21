@@ -2,9 +2,9 @@
     "activeFile": "areas/secretarea2.tmx",
     "expandedProjectPaths": [
         "assets",
-        "assets/tiles",
+        ".",
         "areas",
-        "."
+        "assets/tiles"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -341,11 +341,14 @@
             }
         },
         "areas/secretarea1.tmx": {
-            "scale": 2,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                6
+            ],
+            "scale": 5.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1445.25,
-                "y": 878.75
+                "x": 1169.3636363636365,
+                "y": 370.9090909090909
             }
         },
         "areas/secretarea2.tmx": {
@@ -353,11 +356,11 @@
                 4,
                 2
             ],
-            "scale": 0.25,
-            "selectedLayer": 2,
+            "scale": 4,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1442,
-                "y": -108
+                "x": 1447.375,
+                "y": 784
             }
         },
         "areas/tag.tmx": {
@@ -594,18 +597,19 @@
     "frame.defaultDuration": 300,
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "openFiles": [
-        "areas/secretarea2.tmx",
         "areas/secretarea1.tmx",
-        "assets/tiles/WaterTilesV2.tsx"
+        "assets/tiles/WaterTilesV2.tsx",
+        "assets/tiles/BN3 remake Secret.tsx",
+        "areas/secretarea2.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "assets/tiles/WaterTilesV2.tsx",
         "areas/secretarea1.tmx",
+        "assets/tiles/WaterTilesV2.tsx",
+        "assets/tiles/BN3 remake Secret.tsx",
         "areas/secretarea2.tmx",
         "areas/undernetsqr.tmx",
         "assets/tiles/water-fix-arrows.tsx",
-        "assets/tiles/BN3 remake Secret.tsx",
         "assets/tiles/warp.tsx",
         "assets/tiles/Secret_Area_Warp.tsx",
         "areas/secretArea1.tmx",

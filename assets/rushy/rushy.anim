@@ -7,6 +7,27 @@ frame duration="0.0833333" x="316" y="32" w="64" h="32" originx="32" originy="31
 animation state="IDLE_D"
 frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
 
+animation state="IDLE_U"
+frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
+
+animation state="IDLE_L"
+frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
+
+animation state="IDLE_R"
+frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
+
+animation state="IDLE_UR"
+frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
+
+animation state="IDLE_UL"
+frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
+
+animation state="IDLE_DL"
+frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
+
+animation state="IDLE_R"
+frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
+
 animation state="LAUNCH"
 frame duration="0.0666667" x="145" y="18" w="27" h="32" originx="14" originy="30"
 

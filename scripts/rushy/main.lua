@@ -1,7 +1,17 @@
+-- Variable setup
+local cleared_paths = {}
 local food_details = {name = "Rush Food", description = "Mysterious food", type = "keyitem"}
 local rush_roads = {}
 local rush_texture = "/server/assets/rushy/rushy.png"
 local rush_animation = "/server/assets/rushy/rushy.anim"
+
+function async(p)
+    local co = coroutine.create(p)
+    return Async.promisify(co)
+end
+
+--Shorthand for await
+function await(v) return Async.await(v) end
 
 local function handle_item_gen()
   local food = Net.create_item("rush_food", food_details)
@@ -9,14 +19,6 @@ local function handle_item_gen()
   end
 
 handle_item_gen()
-
-function handle_player_connect(player_id)
-local player_name = Net.get_player_name(player_id)
-if (player_name == "D3str0y3d") then 
-    Net.give_player_item(player_id, "rush_food") 
-    print(player_name == "D3str0y3d")
-    end
-end
 
 function find_rush_roads()
  local areas = Net.list_areas()
@@ -32,6 +34,8 @@ function find_rush_roads()
                 object_id = tostring(object_id)
             if object.type == "Rush Road" then 
                 print("rush road in " .. area_id)
+                rush_roads[area_id] = object
+                print("Rush road added to table!")
             end
             if object.custom_properties.Next1 ~= nil then
             local next1 = object.custom_properties.Next1
@@ -46,7 +50,46 @@ end
 
 find_rush_roads()
 
-function summon_rush_roads()
+function handle_player_connect(player_id)
+    local player_name = Net.get_player_name(player_id)
+    if (player_name == "D3str0y3d") then 
+        Net.give_player_item(player_id, "rush_food") 
+        print(player_name == "D3str0y3d")
+    end
+    if cleared_paths[player_id] ~= true then 
+        return 
+    else if cleared_paths[player_id] == true then
+    Net.include_actor_for_player(player_id, "rush")
+    Net.create_bot("rush", { name = "Rush", area_id = "default", warp_in = true, texture_path = rush_texture,animation_path = rush_animation,animation = "FED_DR",x = rush_roads["default"].x + .5,y = rush_roads["default"].y + .5 ,z = rush_roads["default"].z - 1,solid = false })
+     --Net.animate_bot("rush", "FED_DR", true)
+    Net.exclude_object_for_player(player_id, rush_roads["default"].id)
+    end
+    end
+end
+
+
+local function summon_rush(player_id)
+    Net.create_bot("rush", { name = "Rush", area_id = "default", warp_in = true, texture_path = rush_texture,animation_path = rush_animation,animation = "IDLE_D",x = rush_roads["default"].x + .2,y = rush_roads["default"].y + .2 ,z = rush_roads["default"].z - 1,solid = false })
+            Net.include_actor_for_player(player_id, "rush")
+            Net.animate_bot("rush", "IDLE_D", true)
+            local keyframes = {{properties={{property="Animation",value="IDLE_D"},{property="X",ease="In",value=(rush_roads["default"].x + .2)},{property="Y",ease="In",value=(rush_roads["default"].y + .2)}},duration=1.0}}
+            keyframes[#keyframes+1] = {properties={{property="Animation",value="WIND_UP"},{property="X",ease="In",value=(rush_roads["default"].x - .2)},{property="Y",ease="In",value=(rush_roads["default"].y - .2)}},duration=0.2}
+            keyframes[#keyframes+1] = {properties={{property="Animation",value="LAUNCH"},{property="X",ease="In",value=(rush_roads["default"].x - .4)},{property="Y",ease="In",value=(rush_roads["default"].y - .4)}},duration=0.2}
+            keyframes[#keyframes+1] = {properties={{property="Animation",value="SPIN"},{property="X",ease="In",value=(rush_roads["default"].x - .6)},{property="Y",ease="In",value=(rush_roads["default"].y - .6)}},duration=0.2}
+            keyframes[#keyframes+1] = {properties={{property="Animation",value="SPIN"},{property="X",ease="Out",value=(rush_roads["default"].x - .2)},{property="Y",ease="Out",value=(rush_roads["default"].y - .2)}},duration=0.2}
+            keyframes[#keyframes+1] = {properties={{property="Animation",value="SPIN"},{property="X",ease="Out",value=(rush_roads["default"].x + .2)},{property="Y",ease="Out",value=(rush_roads["default"].y + .2)}},duration=0.2}
+            keyframes[#keyframes+1] = {properties={{property="Animation",value="FED_DR"},{property="X",ease="Out",value=(rush_roads["default"].x + .5)},{property="Y",ease="Out",value=(rush_roads["default"].y + .5)}},duration=0.2}
+            Net.animate_bot_properties("rush", keyframes)
+            Net.exclude_object_for_player(player_id, rush_roads["default"].id)
+            cleared_paths[player_id] = true
+        end
+
+function handle_textbox_response(player_id, response)
+    if response == 0 then
+    return
+    else 
+        summon_rush(player_id)
+    end
 end
 
 function handle_object_interaction(player_id, object_id)
@@ -70,17 +113,9 @@ function handle_object_interaction(player_id, object_id)
         end
         end
         if (player_items[index] ~= nil) then
-            local y_adjust = object.y + 0.3
-            local x_adjust = object.x + .15
-            local windup_keyframes = {properties = { {property = "Animation", value = "WIND_UP"},}, duration = 5 }
-        print("player has food")
-
-           --Net.question_player(player_id, "Would you like to use rush food?")
-           
-           Net.create_bot("rush", { "Rush", area, true, rush_texture, rush_animation, "IDLE_D", object.x, object.y, object.z, "Down", false })
-           Net.move_bot("rush", object.x, y_adjust, object.z)
-           Net.animate_bot_properties("rush", windup_keyframes)
-           --Net.exclude_object_for_player(player_id, object_id)
+            print("player has food")
+            Net.question_player(player_id, "Would you like to use rush food?")
+            
         end
         -- ending clause if we get beyond here we don't care.
     else

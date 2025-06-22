@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="RushTile" tilewidth="64" tileheight="32" tilecount="1" columns="1">
+<tileset version="1.8" tiledversion="1.11.2" name="RushTile" tilewidth="64" tileheight="32" tilecount="1" columns="1" objectalignment="top">
  <image source="RushTile.png" width="64" height="32"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">

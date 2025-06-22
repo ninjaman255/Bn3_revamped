@@ -344,18 +344,18 @@
             "expandedObjectLayers": [
                 6
             ],
-            "scale": 2,
-            "selectedLayer": 3,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 1545.25,
-                "y": 622.25
+                "x": 1286.5,
+                "y": 743.5
             }
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                4,
+                2,
                 8,
-                2
+                4
             ],
             "scale": 0.75,
             "selectedLayer": 6,
@@ -368,11 +368,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
-            "selectedLayer": 1,
+            "scale": 5.5,
+            "selectedLayer": 21,
             "viewCenter": {
-                "x": 1601,
-                "y": 728
+                "x": 1745,
+                "y": 187.72727272727275
             }
         },
         "areas/tag.tmx": {
@@ -448,15 +448,15 @@
         },
         "areas/yokasqr.tmx": {
             "expandedObjectLayers": [
+                31,
                 5,
-                30,
-                31
+                30
             ],
-            "scale": 1,
-            "selectedLayer": 12,
+            "scale": 5.5,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 1088.5,
-                "y": 495
+                "x": 1173.5454545454545,
+                "y": 331.54545454545456
             }
         },
         "assets/tiles/AlphaAreaTileset.tsx": {
@@ -619,7 +619,7 @@
             "scaleInEditor": 1
         }
     },
-    "frame.defaultDuration": 300,
+    "frame.defaultDuration": 330,
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [

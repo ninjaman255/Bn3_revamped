@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/default.tmx",
+    "activeFile": "areas/secretarea2.tmx",
     "expandedProjectPaths": [
         "assets",
+        "assets/tiles",
         "areas",
-        ".",
-        "assets/tiles"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -348,20 +348,20 @@
             "selectedLayer": 3,
             "viewCenter": {
                 "x": 1545.25,
-                "y": 622
+                "y": 622.25
             }
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                2,
+                4,
                 8,
-                4
+                2
             ],
-            "scale": 3,
-            "selectedLayer": 3,
+            "scale": 0.75,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 985.5,
-                "y": 524.3333333333334
+                "x": 1658,
+                "y": 458
             }
         },
         "areas/secretarea3.tmx": {
@@ -371,8 +371,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1865,
-                "y": 592
+                "x": 1601,
+                "y": 728
             }
         },
         "areas/tag.tmx": {
@@ -423,8 +423,8 @@
             "scale": 8,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 550.6875,
-                "y": 263.125
+                "x": 670.9375,
+                "y": 263.9375
             }
         },
         "areas/yoka1.tmx": {
@@ -623,27 +623,25 @@
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "areas/acdc3.tmx",
-        "assets/tiles/Cyber Elephant Slide.tsx",
         "areas/secretarea1.tmx",
         "areas/secretarea2.tmx",
-        "areas/default.tmx",
-        "assets/tiles/RushTile.tsx"
+        "areas/secretarea3.tmx",
+        "assets/tiles/BN3 remake Secret.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
         "areas/secretarea1.tmx",
+        "assets/tiles/BN3 remake Secret.tsx",
         "areas/secretarea3.tmx",
+        "areas/secretarea2.tmx",
+        "areas/undernetsqr.tmx",
         "assets/tiles/Bn3UndernetFlashingWarpVariant2.tsx",
         "assets/tiles/RushTile.tsx",
         "areas/default.tmx",
-        "areas/secretarea2.tmx",
         "assets/tiles/Cyber Elephant Slide.tsx",
         "areas/acdc3.tmx",
         "assets/tiles/BN3-revamped.tsx",
-        "assets/tiles/Cyber Play Dome.tsx",
-        "areas/undernet3.tmx",
-        "areas/secretArea3.tmx"
+        "assets/tiles/Cyber Play Dome.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

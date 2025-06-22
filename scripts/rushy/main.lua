@@ -1,5 +1,7 @@
 local food_details = {name = "Rush Food", description = "Mysterious food", type = "keyitem"}
 local rush_roads = {}
+local rush_texture = "/server/assets/rushy/rushy.png"
+local rush_animation = "/server/assets/rushy/rushy.anim"
 
 local function handle_item_gen()
   local food = Net.create_item("rush_food", food_details)
@@ -68,10 +70,17 @@ function handle_object_interaction(player_id, object_id)
         end
         end
         if (player_items[index] ~= nil) then
+            local y_adjust = object.y + 0.3
+            local x_adjust = object.x + .15
+            local windup_keyframes = {properties = { {property = "Animation", value = "WIND_UP"},}, duration = 5 }
         print("player has food")
-           Net.question_player(player_id, "Would you like to use rush food?")
-        -- Net.animate_bot_properties
-           Net.exclude_object_for_player(player_id, object_id)
+
+           --Net.question_player(player_id, "Would you like to use rush food?")
+           
+           Net.create_bot("rush", { "Rush", area, true, rush_texture, rush_animation, "IDLE_D", object.x, object.y, object.z, "Down", false })
+           Net.move_bot("rush", object.x, y_adjust, object.z)
+           Net.animate_bot_properties("rush", windup_keyframes)
+           --Net.exclude_object_for_player(player_id, object_id)
         end
         -- ending clause if we get beyond here we don't care.
     else

@@ -1,0 +1,18 @@
+animation state="FED_DL"
+frame duration="0.0833333" x="316" y="32" w="64" h="32" originx="32" originy="31"
+
+animation state="FED_DR"
+frame duration="0.0833333" x="316" y="32" w="64" h="32" originx="32" originy="31" flipx="1"
+
+animation state="IDLE_D"
+frame duration="0.0666667" x="18" y="20" w="27" h="32" originx="14" originy="30"
+
+animation state="LAUNCH"
+frame duration="0.0666667" x="145" y="18" w="27" h="32" originx="14" originy="30"
+
+animation state="SPIN"
+frame duration="0.0666667" x="210" y="18" w="27" h="32" originx="14" originy="30"
+frame duration="0.0666667" x="274" y="18" w="27" h="32" originx="14" originy="30"
+
+animation state="WIND_UP"
+frame duration="0.0666667" x="82" y="20" w="27" h="32" originx="14" originy="30"  

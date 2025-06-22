@@ -1,10 +1,10 @@
 {
-    "activeFile": "assets/tiles/Cyber Play Dome.tsx",
+    "activeFile": "areas/secretarea2.tmx",
     "expandedProjectPaths": [
         ".",
-        "assets/tiles",
         "areas",
-        "assets"
+        "assets",
+        "assets/tiles"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -201,11 +201,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 5.5,
+            "scale": 11,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 857.3636363636363,
-                "y": 379
+                "x": 707.9545454545455,
+                "y": 430.5909090909091
             }
         },
         "areas/acdcsqr.tmx": {
@@ -344,23 +344,23 @@
             "expandedObjectLayers": [
                 6
             ],
-            "scale": 5.5,
+            "scale": 8,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1408.090909090909,
+                "x": 1408.0625,
                 "y": 696
             }
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                4,
-                2
+                2,
+                4
             ],
-            "scale": 0.33,
-            "selectedLayer": 3,
+            "scale": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1234.8484848484848,
-                "y": -315.151515151515
+                "x": 1739.5,
+                "y": 254.5
             }
         },
         "areas/tag.tmx": {
@@ -607,21 +607,21 @@
     "openFiles": [
         "areas/acdc3.tmx",
         "assets/tiles/Cyber Elephant Slide.tsx",
-        "assets/tiles/BN3-revamped.tsx",
-        "assets/tiles/Cyber Play Dome.tsx"
+        "areas/secretarea1.tmx",
+        "areas/secretarea2.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
         "areas/acdc3.tmx",
         "assets/tiles/Cyber Elephant Slide.tsx",
+        "areas/secretarea1.tmx",
+        "areas/secretarea2.tmx",
         "assets/tiles/BN3-revamped.tsx",
         "assets/tiles/Cyber Play Dome.tsx",
         "areas/undernet3.tmx",
         "areas/secretArea3.tmx",
-        "areas/secretarea2.tmx",
         "assets/tiles/BN3 remake Secret.tsx",
         "assets/tiles/WaterTilesV2.tsx",
-        "areas/secretarea1.tmx",
         "areas/undernetsqr.tmx",
         "assets/tiles/water-fix-arrows.tsx"
     ],

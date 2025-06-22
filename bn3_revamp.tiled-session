@@ -1,9 +1,9 @@
 {
-    "activeFile": "areas/secretarea2.tmx",
+    "activeFile": "areas/secretarea1.tmx",
     "expandedProjectPaths": [
-        "assets",
         "assets/tiles",
         "areas",
+        "assets",
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -344,35 +344,36 @@
             "expandedObjectLayers": [
                 6
             ],
-            "scale": 1,
-            "selectedLayer": 0,
+            "scale": 8,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1286.5,
-                "y": 743.5
+                "x": 1192.0625,
+                "y": 445.3125
             }
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                2,
                 8,
+                2,
                 4
             ],
-            "scale": 0.75,
-            "selectedLayer": 6,
+            "scale": 3,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1658,
-                "y": 458
+                "x": 959.1666666666665,
+                "y": 325.5
             }
         },
         "areas/secretarea3.tmx": {
             "expandedObjectLayers": [
+                20,
                 2
             ],
-            "scale": 5.5,
-            "selectedLayer": 21,
+            "scale": 1.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1745,
-                "y": 187.72727272727275
+                "x": 2103,
+                "y": 679
             }
         },
         "areas/tag.tmx": {
@@ -625,23 +626,22 @@
     "openFiles": [
         "areas/secretarea1.tmx",
         "areas/secretarea2.tmx",
-        "areas/secretarea3.tmx",
-        "assets/tiles/BN3 remake Secret.tsx"
+        "areas/secretarea3.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "areas/secretarea1.tmx",
-        "assets/tiles/BN3 remake Secret.tsx",
         "areas/secretarea3.tmx",
         "areas/secretarea2.tmx",
+        "areas/secretarea1.tmx",
+        "areas/yokasqr.tmx",
+        "assets/tiles/bn3-bbs.tsx",
+        "assets/tiles/BN3 remake Secret.tsx",
         "areas/undernetsqr.tmx",
         "assets/tiles/Bn3UndernetFlashingWarpVariant2.tsx",
         "assets/tiles/RushTile.tsx",
         "areas/default.tmx",
         "assets/tiles/Cyber Elephant Slide.tsx",
-        "areas/acdc3.tmx",
-        "assets/tiles/BN3-revamped.tsx",
-        "assets/tiles/Cyber Play Dome.tsx"
+        "areas/acdc3.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

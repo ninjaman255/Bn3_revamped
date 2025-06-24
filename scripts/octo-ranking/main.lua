@@ -191,7 +191,7 @@ Net:on("actor_interaction", function(event)
 				Net.exclusive_player_emote(player_id, player_id, 7)
 
 				Net.close_bbs(player_id)
-			elseif event.post_id == "Challenge2" then
+			else if event.post_id == "Challenge2" then
 				player_challenges[actor_id] = nil
 				Net.initiate_pvp(player_id,actor_id)
 				players_in_battle[player_id] = actor_id

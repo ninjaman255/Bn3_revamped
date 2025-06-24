@@ -689,15 +689,15 @@
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                4,
                 2,
-                8
+                8,
+                4
             ],
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1281.6666666666665,
-                "y": 870.6666666666666
+                "x": 1281.6666666666667,
+                "y": 871
             }
         },
         "areas/secretarea3.tmx": {
@@ -974,10 +974,10 @@
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
+        "areas/acdc2.tmx",
+        "assets/tiles/BN3-revamped.tsx",
         "areas/secretarea2.tmx",
         "areas/secretarea3.tmx",
-        "assets/tiles/BN3-revamped.tsx",
-        "areas/acdc2.tmx",
         "assets/tiles/SecretStairs.tsx",
         "C:/Users/aaron/Documents/Code/Bn3/areas/default.tmx",
         "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/default.tmx",

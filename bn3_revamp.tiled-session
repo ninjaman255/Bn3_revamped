@@ -1,9 +1,9 @@
 {
-    "activeFile": "assets/tiles/SecretStairs.tsx",
+    "activeFile": "areas/acdc2.tmx",
     "expandedProjectPaths": [
-        "areas",
         "assets",
         "assets/tiles",
+        "areas",
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -689,21 +689,21 @@
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                8,
                 4,
-                2
+                2,
+                8
             ],
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1467,
-                "y": 563.6666666666666
+                "x": 1281.6666666666665,
+                "y": 870.6666666666666
             }
         },
         "areas/secretarea3.tmx": {
             "expandedObjectLayers": [
-                20,
-                2
+                2,
+                20
             ],
             "scale": 4,
             "selectedLayer": 2,
@@ -831,7 +831,7 @@
         "assets/tiles/BN3-revamped.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
-            "scaleInEditor": 0.5
+            "scaleInEditor": 1
         },
         "assets/tiles/BN3ACDC1Warp.tsx": {
             "scaleInDock": 1,
@@ -969,7 +969,6 @@
     "openFiles": [
         "areas/secretarea2.tmx",
         "areas/secretarea3.tmx",
-        "assets/tiles/SecretStairs.tsx",
         "areas/acdc2.tmx",
         "assets/tiles/BN3-revamped.tsx"
     ],

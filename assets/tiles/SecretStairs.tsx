@@ -13,7 +13,11 @@
    <property name="Direction" value="Up Right"/>
   </properties>
  </tile>
- <tile id="2" type="Stairs"/>
+ <tile id="2" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
  <tile id="3" type="Stairs">
   <properties>
    <property name="Direction" value="Up Right"/>
@@ -24,12 +28,24 @@
    <property name="Direction" value="Up Right"/>
   </properties>
  </tile>
- <tile id="5" type="Stairs"/>
+ <tile id="5" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
  <tile id="6" type="Stairs">
   <properties>
    <property name="Direction" value="Up Right"/>
   </properties>
  </tile>
- <tile id="7" type="Stairs"/>
- <tile id="8" type="Stairs"/>
+ <tile id="7" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="8" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
 </tileset>

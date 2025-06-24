@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/secretarea3.tmx",
+    "activeFile": "assets/tiles/SecretStairs.tsx",
     "expandedProjectPaths": [
-        ".",
+        "areas",
         "assets",
         "assets/tiles",
-        "areas"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -689,15 +689,15 @@
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                2,
                 8,
-                4
+                4,
+                2
             ],
-            "scale": 1,
-            "selectedLayer": 3,
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1032.5,
-                "y": 400
+                "x": 1467,
+                "y": 563.6666666666666
             }
         },
         "areas/secretarea3.tmx": {
@@ -705,11 +705,11 @@
                 20,
                 2
             ],
-            "scale": 2,
+            "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1348.25,
-                "y": 590
+                "x": 1600.125,
+                "y": 720
             }
         },
         "areas/tag.tmx": {
@@ -878,7 +878,8 @@
             "scaleInDock": 1
         },
         "assets/tiles/SecretStairs.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "assets/tiles/SecretStairsAndWater.tsx": {
             "scaleInDock": 1
@@ -967,22 +968,25 @@
     "map.lastUsedFormat": "tmx",
     "openFiles": [
         "areas/secretarea2.tmx",
-        "areas/secretarea3.tmx"
+        "areas/secretarea3.tmx",
+        "assets/tiles/SecretStairs.tsx",
+        "areas/acdc2.tmx",
+        "assets/tiles/BN3-revamped.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
         "areas/secretarea2.tmx",
         "areas/secretarea3.tmx",
-        "C:/Users/aaron/Documents/Code/Bn3/areas/default.tmx",
+        "assets/tiles/BN3-revamped.tsx",
         "areas/acdc2.tmx",
+        "assets/tiles/SecretStairs.tsx",
+        "C:/Users/aaron/Documents/Code/Bn3/areas/default.tmx",
         "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/default.tmx",
         "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC2.tmx",
         "areas/default.tmx",
         "areas/yokasqr.tmx",
         "areas/yoka2.tmx",
-        "areas/yoka1.tmx",
-        "areas/undernetsqr.tmx",
-        "areas/acdc3.tmx"
+        "areas/yoka1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

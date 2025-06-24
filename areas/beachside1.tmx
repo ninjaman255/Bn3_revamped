@@ -7,6 +7,7 @@
   <property name="Background Vel X" type="float" value="0.1"/>
   <property name="Background Vel Y" type="float" value="0.1"/>
   <property name="Name" value="Beachside_1"/>
+  <property name="OctoPVP" value="true"/>
   <property name="Song" value="/server/assets/music/network is spreading.ogg"/>
  </properties>
  <tileset firstgid="1" source="../assets/tiles/BN3-revamped.tsx"/>

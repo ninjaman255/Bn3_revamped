@@ -1,8 +1,8 @@
 {
-    "activeFile": "D:/ONBFiles/ServerBackups/ChristmasStuffForOBN/Server_12_10_2021_Christmas/areas/default.tmx",
+    "activeFile": "areas/yoka1.tmx",
     "expandedProjectPaths": [
-        "areas",
         "assets/tiles",
+        "areas",
         ".",
         "assets"
     ],
@@ -22,16 +22,16 @@
             "scale": 3,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 847.3333333333333,
-                "y": 522.5
+                "x": 896.1666666666666,
+                "y": 432.16666666666663
             }
         },
         "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC4Liberation.tmx": {
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 954.4999999999999,
-                "y": 562.5
+                "x": 1175.8333333333333,
+                "y": 429.83333333333326
             }
         },
         "C:/Users/aaron/Documents/Code/Bn3/areas/Beachside.tmx": {
@@ -183,9 +183,11 @@
             "scaleInDock": 1
         },
         "C:/Users/aaron/Documents/Code/Bn3/assets/tiles/Custom_Central_Tiles.tsx": {
+            "dynamicWrapping": true,
             "scaleInDock": 1
         },
         "C:/Users/aaron/Documents/Code/Bn3/assets/tiles/DarkLiberationArrow.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "C:/Users/aaron/Documents/Code/Bn3/assets/tiles/DarkLiberationRamp.tsx": {
@@ -473,8 +475,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1240.5,
-                "y": 259.5
+                "x": 911.5,
+                "y": 424.5
             }
         },
         "D:/ONBFiles/ServerBackups/ChristmasStuffForOBN/Server_12_10_2021_Christmas/assets/tiles/IceRoads.tsx": {
@@ -811,22 +813,22 @@
         },
         "areas/secretarea3.tmx": {
             "expandedObjectLayers": [
-                20,
-                2
+                2,
+                20
             ],
-            "scale": 5.5,
-            "selectedLayer": 21,
+            "scale": 8,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1600.090909090909,
-                "y": 720
+                "x": 1600.0625,
+                "y": 720.0625
             }
         },
         "areas/tag.tmx": {
-            "scale": 1,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1850.5,
-                "y": 502
+                "x": 1519.3333333333335,
+                "y": 696.6666666666665
             }
         },
         "areas/undernet1.tmx": {
@@ -874,11 +876,11 @@
             }
         },
         "areas/yoka1.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 8,
+            "scale": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 1312.6666666666665,
-                "y": 624.6666666666666
+                "x": 1312.25,
+                "y": 624.25
             }
         },
         "areas/yoka2.tmx": {
@@ -1043,6 +1045,11 @@
         "assets/tiles/coffee.tsx": {
             "scaleInDock": 1
         },
+        "assets/tiles/compression.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
         "assets/tiles/fire-pedestal.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -1058,6 +1065,10 @@
         },
         "assets/tiles/rush_floor.tsx": {
             "scaleInDock": 1
+        },
+        "assets/tiles/secret-compression.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "assets/tiles/undernet-bbs.tsx": {
             "scaleInDock": 1,
@@ -1079,22 +1090,26 @@
     "openFiles": [
         "C:/Users/aaron/Desktop/ice-tile.tsx",
         "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC4Liberation.tmx",
-        "D:/ONBFiles/ServerBackups/ChristmasStuffForOBN/Server_12_10_2021_Christmas/areas/default.tmx"
+        "D:/ONBFiles/ServerBackups/ChristmasStuffForOBN/Server_12_10_2021_Christmas/areas/default.tmx",
+        "areas/tag.tmx",
+        "areas/secretarea3.tmx",
+        "areas/yoka1.tmx",
+        "assets/tiles/compression.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
         "C:/Users/aaron/Desktop/ice-tile.tsx",
         "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC4Liberation.tmx",
         "D:/ONBFiles/ServerBackups/ChristmasStuffForOBN/Server_12_10_2021_Christmas/areas/default.tmx",
+        "areas/tag.tmx",
+        "areas/secretarea3.tmx",
+        "assets/tiles/compression.tsx",
+        "areas/yoka1.tmx",
+        "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC2.tmx",
+        "assets/tiles/secret-compression.tsx",
         "assets/tiles/SecretArea3StairFix.tsx",
         "assets/tiles/BN3 remake Secret.tsx",
-        "areas/secretarea3.tmx",
-        "areas/secretarea2.tmx",
-        "areas/acdc2.tmx",
-        "assets/tiles/BN3-revamped.tsx",
-        "assets/tiles/SecretStairs.tsx",
-        "C:/Users/aaron/Documents/Code/Bn3/areas/default.tmx",
-        "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/default.tmx"
+        "areas/secretarea2.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

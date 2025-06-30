@@ -1,10 +1,10 @@
 {
-    "activeFile": "",
+    "activeFile": "areas/hades.tmx",
     "expandedProjectPaths": [
+        "assets/tiles",
         "assets",
-        "areas",
         ".",
-        "assets/tiles"
+        "areas"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -904,11 +904,11 @@
                 5,
                 28
             ],
-            "scale": 0.75,
-            "selectedLayer": 1,
+            "scale": 4,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 1391.3333333333333,
-                "y": -69.33333333333348
+                "x": 1424.75,
+                "y": 276.375
             }
         },
         "areas/scilab1 (1).tmx": {
@@ -1340,6 +1340,8 @@
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
+        "areas/hades.tmx",
+        "assets/tiles/hades-spike.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [

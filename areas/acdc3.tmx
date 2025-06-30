@@ -10,7 +10,7 @@
   <property name="OctoPVP" value="true"/>
   <property name="Song" value="/server/assets/music/network is spreading.ogg"/>
  </properties>
- <tileset firstgid="1" source="../assets/tiles/BN3-revamped.tsx"/>
+ <tileset firstgid="1" source="../assets/tiles/main-net.tsx"/>
  <tileset firstgid="1521" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
  <tileset firstgid="1530" source="../assets/tiles/Cyber Elephant Slide.tsx"/>
  <tileset firstgid="1533" source="../assets/tiles/Cyber Play Dome.tsx"/>

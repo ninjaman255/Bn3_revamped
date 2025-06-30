@@ -11,7 +11,7 @@
   <property name="Song" value="/server/assets/music/network is spreading.ogg"/>
  </properties>
  <tileset firstgid="1" source="../assets/tiles/gate.tsx"/>
- <tileset firstgid="11" source="../assets/tiles/BN3-revamped.tsx"/>
+ <tileset firstgid="11" source="../assets/tiles/main-net.tsx"/>
  <tileset firstgid="1531" source="../assets/tiles/BN3ACDC1Warp.tsx"/>
  <tileset firstgid="1540" source="../assets/tiles/RushTile.tsx"/>
  <tileset firstgid="1541" source="../assets/tiles/rush_floor.tsx"/>

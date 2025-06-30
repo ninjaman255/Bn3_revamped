@@ -9,12 +9,11 @@
   <property name="Name" value="Undernet_3"/>
   <property name="Song" value="/server/assets/music/dangerous black.ogg"/>
  </properties>
- <tileset firstgid="1" source="../assets/tiles/BN3 remake undernet2.tsx"/>
- <tileset firstgid="7" source="../assets/tiles/BN3 remake undernet1.tsx"/>
- <tileset firstgid="175" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
- <tileset firstgid="184" source="../assets/tiles/BN3UndernetWarpVariant2.tsx"/>
- <tileset firstgid="193" source="../assets/tiles/obstacle_fire_1.tsx"/>
- <tileset firstgid="201" source="../assets/tiles/fire-pedestal.tsx"/>
+ <tileset firstgid="1" source="../assets/tiles/undernet-ramps.tsx"/>
+ <tileset firstgid="7" source="../assets/tiles/undernet.tsx"/>
+ <tileset firstgid="175" source="../assets/tiles/BN3UndernetWarpVariant2.tsx"/>
+ <tileset firstgid="184" source="../assets/tiles/fire.tsx"/>
+ <tileset firstgid="192" source="../assets/tiles/fire-pedestal.tsx"/>
  <layer id="1" name="Floor" width="29" height="32">
   <properties>
    <property name="Background" value="custom"/>
@@ -71,17 +70,17 @@
    </properties>
    <point/>
   </object>
-  <object id="77" type="Custom Warp" gid="185" x="96" y="384" width="64" height="40">
+  <object id="77" type="Custom Warp" gid="176" x="96" y="384" width="64" height="40">
    <properties>
     <property name="Direction" value="Down Left"/>
     <property name="Target Area" value="undernetsqr"/>
     <property name="Target Object" value="81"/>
    </properties>
   </object>
-  <object id="78" gid="201" x="400" y="240" width="48" height="64"/>
-  <object id="79" gid="201" x="208" y="240" width="48" height="64"/>
-  <object id="80" gid="201" x="208" y="80" width="48" height="64"/>
-  <object id="81" gid="201" x="400" y="80" width="48" height="64"/>
+  <object id="78" gid="192" x="400" y="240" width="48" height="64"/>
+  <object id="79" gid="192" x="208" y="240" width="48" height="64"/>
+  <object id="80" gid="192" x="208" y="80" width="48" height="64"/>
+  <object id="81" gid="192" x="400" y="80" width="48" height="64"/>
  </objectgroup>
  <layer id="25" name="Tile Layer 2" width="29" height="32" offsetx="0" offsety="-16">
   <data encoding="csv">
@@ -120,9 +119,9 @@
 </data>
  </layer>
  <objectgroup id="26" name="Object Layer 2" offsetx="0" offsety="-16">
-  <object id="82" gid="193" x="392" y="72" width="64" height="128"/>
-  <object id="83" gid="193" x="200" y="72" width="64" height="128"/>
-  <object id="84" gid="193" x="200" y="232" width="64" height="128"/>
-  <object id="85" gid="193" x="392" y="232" width="64" height="128"/>
+  <object id="82" gid="184" x="392" y="72" width="64" height="128"/>
+  <object id="83" gid="184" x="200" y="72" width="64" height="128"/>
+  <object id="84" gid="184" x="200" y="232" width="64" height="128"/>
+  <object id="85" gid="184" x="392" y="232" width="64" height="128"/>
  </objectgroup>
 </map>

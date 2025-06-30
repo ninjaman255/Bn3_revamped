@@ -2,7 +2,7 @@
 <tileset version="1.8" tiledversion="1.11.2" name="BN3 square custom" tilewidth="64" tileheight="80" tilecount="245" columns="7">
  <tileoffset x="0" y="32"/>
  <grid orientation="orthogonal" width="64" height="64"/>
- <image source="BN3_square_custom.png" width="448" height="2800"/>
+ <image source="square.png" width="448" height="2800"/>
  <tile id="2">
   <objectgroup draworder="index" id="2">
    <object id="1" x="64" y="0">

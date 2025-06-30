@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.8" tiledversion="1.11.2" name="SecretStairs" tilewidth="64" tileheight="64" tilecount="9" columns="3">
- <tileoffset x="0" y="7"/>
+<tileset version="1.8" tiledversion="1.11.2" name="SecretStairs" tilewidth="64" tileheight="64" tilecount="12" columns="4">
+ <tileoffset x="0" y="12"/>
  <grid orientation="orthogonal" width="64" height="59"/>
- <image source="SecretStairs.png" width="192" height="192"/>
+ <image source="SecretStairs.png" width="256" height="192"/>
  <tile id="0" type="Stairs">
   <properties>
    <property name="Direction" value="Up Right"/>
@@ -14,11 +14,6 @@
   </properties>
  </tile>
  <tile id="2" type="Stairs">
-  <properties>
-   <property name="Direction" value="Up Right"/>
-  </properties>
- </tile>
- <tile id="3" type="Stairs">
   <properties>
    <property name="Direction" value="Up Right"/>
   </properties>
@@ -38,12 +33,17 @@
    <property name="Direction" value="Up Right"/>
   </properties>
  </tile>
- <tile id="7" type="Stairs">
+ <tile id="8" type="Stairs">
   <properties>
    <property name="Direction" value="Up Right"/>
   </properties>
  </tile>
- <tile id="8" type="Stairs">
+ <tile id="9" type="Stairs">
+  <properties>
+   <property name="Direction" value="Up Right"/>
+  </properties>
+ </tile>
+ <tile id="10" type="Stairs">
   <properties>
    <property name="Direction" value="Up Right"/>
   </properties>

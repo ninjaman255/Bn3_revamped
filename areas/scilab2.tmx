@@ -10,7 +10,7 @@
   <property name="OctoPVP" value="true"/>
   <property name="Song" value="/server/assets/music/network is spreading.ogg"/>
  </properties>
- <tileset firstgid="1" source="../assets/tiles/BN3 remake full.tsx"/>
+ <tileset firstgid="1" source="../assets/tiles/main-net.tsx"/>
  <tileset firstgid="1521" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
  <layer id="29" name="Tile Layer 0" width="34" height="28">
   <data encoding="csv">

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.8" tiledversion="1.11.2" name="WaterTilesV2" tilewidth="64" tileheight="44" tilecount="36" columns="9">
+ <tileoffset x="0" y="16"/>
  <image source="WaterTilesV2.png" width="576" height="176"/>
  <tile id="0">
   <objectgroup draworder="index" id="2">

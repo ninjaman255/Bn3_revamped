@@ -9,12 +9,12 @@
   <property name="Name" value="Undernet_Sqr"/>
   <property name="Song" value="/server/assets/music/dangerous black.ogg"/>
  </properties>
- <tileset firstgid="1" source="../assets/tiles/BN3 square custom.tsx"/>
+ <tileset firstgid="1" source="../assets/tiles/square.tsx"/>
  <tileset firstgid="246" source="../assets/tiles/BN3UndernetWarpVariant2.tsx"/>
  <tileset firstgid="255" source="../assets/tiles/UndernetStatue.tsx"/>
  <tileset firstgid="256" source="../assets/tiles/UndernetInteractWarp.tsx"/>
  <tileset firstgid="257" source="../assets/tiles/fire-pedestal.tsx"/>
- <tileset firstgid="259" source="../assets/tiles/obstacle_fire_1.tsx"/>
+ <tileset firstgid="259" source="../assets/tiles/fire.tsx"/>
  <tileset firstgid="267" source="../assets/tiles/bn3-bbs.tsx"/>
  <layer id="1" name="Floor" width="29" height="24">
   <properties>

@@ -9,8 +9,8 @@
   <property name="Name" value="Undernet_2"/>
   <property name="Song" value="/server/assets/music/dangerous black.ogg"/>
  </properties>
- <tileset firstgid="1" source="../assets/tiles/BN3 remake undernet2.tsx"/>
- <tileset firstgid="7" source="../assets/tiles/BN3 remake undernet1.tsx"/>
+ <tileset firstgid="1" source="../assets/tiles/undernet-ramps.tsx"/>
+ <tileset firstgid="7" source="../assets/tiles/undernet.tsx"/>
  <tileset firstgid="175" source="../assets/tiles/BN3UndernetWarpVariant1.tsx"/>
  <layer id="1" name="Floor" width="34" height="31">
   <properties>

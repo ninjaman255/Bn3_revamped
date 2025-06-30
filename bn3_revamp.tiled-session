@@ -1,10 +1,10 @@
 {
-    "activeFile": "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/areas/default.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
+        "assets",
         "areas",
-        "assets/tiles",
         ".",
-        "assets"
+        "assets/tiles"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -602,8 +602,8 @@
             "scale": 1.0407752403846153,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 368.47532984958286,
-                "y": 416.03603083407927
+                "x": 831.591650547103,
+                "y": 415.5556197130237
             }
         },
         "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/ShanghaiWarps1.tsx": {
@@ -699,12 +699,30 @@
             "scaleInDock": 1
         },
         "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/areas/DebugRoom.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 568.8333333333333,
                 "y": -86.5
             }
+        },
+        "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/assets/tiles/ShanghaiWarps1.tsx": {
+            "scaleInDock": 1
+        },
+        "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/assets/tiles/home_warp.tsx": {
+            "scaleInDock": 1
+        },
+        "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/assets/tiles/jukebox.tsx": {
+            "scaleInDock": 1
+        },
+        "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/assets/tiles/mobcyber1.tsx": {
+            "scaleInDock": 1
+        },
+        "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/assets/tiles/tile.tsx": {
+            "scaleInDock": 1
         },
         "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/default.tmx": {
             "expandedObjectLayers": [
@@ -886,11 +904,11 @@
                 5,
                 28
             ],
-            "scale": 2,
-            "selectedLayer": 8,
+            "scale": 0.75,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1216,
-                "y": 576
+                "x": 1391.3333333333333,
+                "y": -69.33333333333348
             }
         },
         "areas/scilab1 (1).tmx": {
@@ -1260,6 +1278,10 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "assets/tiles/hades-spike.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "assets/tiles/home_warp.tsx": {
             "scaleInDock": 1
         },
@@ -1318,27 +1340,25 @@
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "areas/hades.tmx",
-        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/areas/default.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "C:/Users/aaron/Documents/Code/pon_v2.5/areas/_dev-room.tmx",
+        "assets/tiles/hades-spike.tsx",
         "areas/hades.tmx",
         "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/areas/default.tmx",
+        "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/areas/DebugRoom.tmx",
+        "C:/Users/aaron/Documents/Code/pon_v2.5/areas/_dev-room.tmx",
         "areas/yoka1.tmx",
         "areas/yoka2.tmx",
         "areas/yokasqr.tmx",
         "areas/undernetsqr.tmx",
         "areas/undernet2.tmx",
         "areas/undernet3.tmx",
-        "areas/undernet1.tmx",
-        "areas/tag.tmx",
-        "areas/secretarea3.tmx"
+        "areas/undernet1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 46,
+        "height": 64,
         "width": 64
     }
 }

@@ -1,10 +1,10 @@
 {
     "activeFile": "areas/hades.tmx",
     "expandedProjectPaths": [
-        "assets/tiles",
-        "assets",
         ".",
-        "areas"
+        "assets/tiles",
+        "areas",
+        "assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -901,14 +901,14 @@
         },
         "areas/hades.tmx": {
             "expandedObjectLayers": [
-                5,
-                28
+                28,
+                5
             ],
-            "scale": 4,
+            "scale": 2,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 1424.75,
-                "y": 276.375
+                "x": 1351.5,
+                "y": 702.25
             }
         },
         "areas/scilab1 (1).tmx": {

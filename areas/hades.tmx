@@ -147,15 +147,15 @@
    </properties>
    <point/>
   </object>
-  <object id="104" gid="1656" x="736" y="768" width="64" height="64"/>
-  <object id="105" gid="1656" x="736" y="704" width="64" height="64"/>
-  <object id="106" gid="1656" x="1056" y="896" width="64" height="64"/>
-  <object id="107" gid="1656" x="992" y="896" width="64" height="64"/>
-  <object id="108" gid="1656" x="1056" y="832" width="64" height="64"/>
-  <object id="109" gid="1656" x="544" y="864" width="64" height="64"/>
-  <object id="110" gid="1656" x="608" y="864" width="64" height="64"/>
-  <object id="111" gid="1656" x="896" y="384" width="64" height="64"/>
-  <object id="112" gid="1656" x="960" y="384" width="64" height="64"/>
+  <object id="104" gid="1656" x="720" y="752" width="64" height="64"/>
+  <object id="105" gid="1656" x="720" y="688" width="64" height="64"/>
+  <object id="106" gid="1656" x="1040" y="880" width="64" height="64"/>
+  <object id="107" gid="1656" x="976" y="880" width="64" height="64"/>
+  <object id="108" gid="1656" x="1040" y="816" width="64" height="64"/>
+  <object id="109" gid="1656" x="528" y="848" width="64" height="64"/>
+  <object id="110" gid="1656" x="592" y="848" width="64" height="64"/>
+  <object id="111" gid="1656" x="880" y="368" width="64" height="64"/>
+  <object id="112" gid="1656" x="944" y="368" width="64" height="64"/>
  </objectgroup>
  <layer id="21" name="Tile Layer 2" width="41" height="35" offsetx="0" offsety="-16">
   <data encoding="csv">
@@ -429,11 +429,11 @@
    </properties>
    <point/>
   </object>
-  <object id="96" gid="1656" x="448" y="192" width="64" height="64"/>
-  <object id="98" gid="1656" x="768" y="160" width="64" height="64"/>
-  <object id="99" gid="1656" x="768" y="224" width="64" height="64"/>
-  <object id="100" gid="1656" x="704" y="224" width="64" height="64"/>
-  <object id="102" gid="1656" x="512" y="192" width="64" height="64"/>
-  <object id="103" gid="1656" x="448" y="256" width="64" height="64"/>
+  <object id="96" gid="1656" x="432" y="176" width="64" height="64"/>
+  <object id="98" gid="1656" x="752" y="144" width="64" height="64"/>
+  <object id="99" gid="1656" x="752" y="208" width="64" height="64"/>
+  <object id="100" gid="1656" x="688" y="208" width="64" height="64"/>
+  <object id="102" gid="1656" x="496" y="176" width="64" height="64"/>
+  <object id="103" gid="1656" x="432" y="240" width="64" height="64"/>
  </objectgroup>
 </map>

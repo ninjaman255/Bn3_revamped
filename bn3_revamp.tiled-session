@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/hades.tmx",
+    "activeFile": "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/areas/default.tmx",
     "expandedProjectPaths": [
-        "assets",
-        ".",
         "areas",
-        "assets/tiles"
+        "assets/tiles",
+        ".",
+        "assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -504,6 +504,32 @@
         "C:/Users/aaron/Documents/Code/CyanServerTheBlock/assets/tiles/vines.tsx": {
             "scaleInDock": 1
         },
+        "C:/Users/aaron/Documents/Code/pon_v2.5/areas/_dev-room.tmx": {
+            "scale": 2.946484375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 256.0678775023201,
+                "y": 33.429669892615664
+            }
+        },
+        "C:/Users/aaron/Documents/Code/pon_v2.5/assets/ezlibs-assets/ezmystery/BlueMysteryData.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/aaron/Documents/Code/pon_v2.5/assets/tiles/boss-sphere.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/aaron/Documents/Code/pon_v2.5/assets/tiles/jukebox.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/aaron/Documents/Code/pon_v2.5/assets/tiles/net-key.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/aaron/Documents/Code/pon_v2.5/assets/tiles/secret-net-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/aaron/Documents/Code/pon_v2.5/assets/tiles/warpsv4.tsx": {
+            "scaleInDock": 1
+        },
         "C:/Users/aaron/Documents/Code/tiles/BN3 remake full.tsx": {
             "scaleInDock": 1
         },
@@ -572,6 +598,47 @@
         "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/openMMBN-web-map-generator/prefab-processor/resources/floor-tiles.tsx": {
             "scaleInDock": 1
         },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/areas/default.tmx": {
+            "scale": 1.0407752403846153,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 368.47532984958286,
+                "y": 416.03603083407927
+            }
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/ShanghaiWarps1.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/cloud.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/coffee.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/floor.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/gate.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/genNet1f1.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/home_warp.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/hp_warp.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/tile.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/tree.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/warp.tsx": {
+            "scaleInDock": 1
+        },
         "D:/ONBFiles/ServerBackups/ChristmasStuffForOBN/Server_12_10_2021_Christmas/areas/default.tmx": {
             "scale": 1,
             "selectedLayer": 0,
@@ -630,6 +697,14 @@
         },
         "D:/ONBFiles/ServerBackups/ChristmasStuffForOBN/Server_12_10_2021_Christmas/assets/tiles/waterworks1F5.tsx": {
             "scaleInDock": 1
+        },
+        "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/areas/DebugRoom.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 568.8333333333333,
+                "y": -86.5
+            }
         },
         "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/default.tmx": {
             "expandedObjectLayers": [
@@ -814,8 +889,8 @@
             "scale": 2,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 1366,
-                "y": 596.25
+                "x": 1216,
+                "y": 576
             }
         },
         "areas/scilab1 (1).tmx": {
@@ -1243,11 +1318,14 @@
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "areas/hades.tmx"
+        "areas/hades.tmx",
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/areas/default.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
+        "C:/Users/aaron/Documents/Code/pon_v2.5/areas/_dev-room.tmx",
         "areas/hades.tmx",
+        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/areas/default.tmx",
         "areas/yoka1.tmx",
         "areas/yoka2.tmx",
         "areas/yokasqr.tmx",
@@ -1256,9 +1334,7 @@
         "areas/undernet3.tmx",
         "areas/undernet1.tmx",
         "areas/tag.tmx",
-        "areas/secretarea3.tmx",
-        "areas/secretarea2.tmx",
-        "areas/secretarea1.tmx"
+        "areas/secretarea3.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

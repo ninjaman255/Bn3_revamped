@@ -1,9 +1,9 @@
 {
-    "activeFile": "areas/hades.tmx",
+    "activeFile": "areas/secretarea3.tmx",
     "expandedProjectPaths": [
         "assets/tiles",
-        ".",
         "areas",
+        ".",
         "assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -728,11 +728,11 @@
             "expandedObjectLayers": [
                 19
             ],
-            "scale": 3,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1049,
-                "y": 992.1666666666666
+                "x": 1291.3333333333335,
+                "y": 1001.9999999999999
             }
         },
         "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/gravy-pot.tmx": {
@@ -741,10 +741,10 @@
                 9
             ],
             "scale": 3,
-            "selectedLayer": 0,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 2208.5,
-                "y": 693.8333333333333
+                "x": 1534.8333333333333,
+                "y": 856.5
             }
         },
         "F:/OBN/OpenNetBattleMyFork/gravy-yum/assets/assets/ezlibs-assets/ezmystery/GreenMysteryData.tsx": {
@@ -854,14 +854,14 @@
         },
         "areas/beachside1.tmx": {
             "expandedObjectLayers": [
-                5,
-                32
+                32,
+                5
             ],
             "scale": 1.5,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 1216.6666666666665,
-                "y": 645
+                "x": 1216.3333333333333,
+                "y": 535.9999999999999
             }
         },
         "areas/beachside2.tmx": {
@@ -895,8 +895,8 @@
             "scale": 2,
             "selectedLayer": 17,
             "viewCenter": {
-                "x": 1127,
-                "y": 278.75
+                "x": 1072.75,
+                "y": 210.25
             }
         },
         "areas/hades.tmx": {
@@ -904,11 +904,11 @@
                 5,
                 28
             ],
-            "scale": 1.5,
+            "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1372.6666666666665,
-                "y": 387
+                "x": 1216.1666666666665,
+                "y": 576
             }
         },
         "areas/scilab1 (1).tmx": {
@@ -926,8 +926,8 @@
             "scale": 2,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 928.5,
-                "y": 514.25
+                "x": 928.25,
+                "y": 432
             }
         },
         "areas/scilab2.tmx": {
@@ -950,8 +950,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 512,
-                "y": 365
+                "x": 512.3333333333333,
+                "y": 255.99999999999994
             }
         },
         "areas/secretArea1.tmx": {
@@ -994,15 +994,15 @@
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                8,
                 2,
+                8,
                 4
             ],
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 1522.6666666666665,
-                "y": 581.6666666666666
+                "x": 1280.3333333333333,
+                "y": 615.9999999999999
             }
         },
         "areas/secretarea3.tmx": {
@@ -1010,11 +1010,11 @@
                 2,
                 20
             ],
-            "scale": 2,
-            "selectedLayer": 20,
+            "scale": 0.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1631.5,
-                "y": 660.25
+                "x": 1720,
+                "y": -422
             }
         },
         "areas/tag.tmx": {
@@ -1029,8 +1029,8 @@
             "scale": 0.75,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 892,
-                "y": 623.3333333333333
+                "x": 960.6666666666666,
+                "y": 447.9999999999999
             }
         },
         "areas/undernet2.tmx": {
@@ -1052,21 +1052,21 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 926.6666666666667,
-                "y": 520.6666666666666
+                "x": 976.6666666666665,
+                "y": 479.9999999999999
             }
         },
         "areas/undernetsqr.tmx": {
             "expandedObjectLayers": [
+                22,
                 5,
-                23,
-                22
+                23
             ],
             "scale": 1,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 702,
-                "y": 7.5
+                "x": 848.5,
+                "y": 392
             }
         },
         "areas/yoka1.tmx": {
@@ -1340,22 +1340,22 @@
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "areas/hades.tmx",
-        "assets/tiles/hades-spike.tsx"
+        "areas/secretarea3.tmx",
+        "assets/tiles/secret-compression.tsx"
     ],
     "project": "bn3_revamp.tiled-project",
     "recentFiles": [
-        "assets/tiles/hades-spike.tsx",
-        "areas/hades.tmx",
-        "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/areas/default.tmx",
-        "F:/OBN/OpenNetBattleMyFork/Shanghai/Server_6_25_2022_Shanghai/areas/DebugRoom.tmx",
-        "C:/Users/aaron/Documents/Code/pon_v2.5/areas/_dev-room.tmx",
-        "areas/yoka1.tmx",
-        "areas/yoka2.tmx",
-        "areas/yokasqr.tmx",
-        "areas/undernetsqr.tmx",
-        "areas/undernet2.tmx",
+        "assets/tiles/secret-compression.tsx",
+        "areas/secretarea3.tmx",
+        "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/gravy-pot.tmx",
+        "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/default.tmx",
+        "areas/beachside1.tmx",
+        "areas/default.tmx",
+        "areas/scilab1.tmx",
+        "areas/scilabsqr.tmx",
+        "areas/secretarea2.tmx",
         "areas/undernet3.tmx",
+        "areas/undernetsqr.tmx",
         "areas/undernet1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

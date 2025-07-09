@@ -1,10 +1,10 @@
 {
-    "activeFile": "areas/default.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
         ".",
+        "assets",
         "areas",
-        "assets/tiles",
-        "assets"
+        "assets/tiles"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -856,8 +856,8 @@
             "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 944.75,
-                "y": 604.25
+                "x": 944.25,
+                "y": 440
             }
         },
         "areas/acdcsqr.tmx": {
@@ -907,9 +907,9 @@
         },
         "areas/default.tmx": {
             "expandedObjectLayers": [
-                18,
                 12,
-                5
+                5,
+                18
             ],
             "scale": 2,
             "selectedLayer": 17,
@@ -1007,33 +1007,33 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1415,
-                "y": 619.6666666666666
+                "x": 1408.3333333333333,
+                "y": 695.9999999999999
             }
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
+                2,
                 8,
-                4,
-                2
+                4
             ],
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
                 "x": 1280.3333333333333,
-                "y": 725
+                "y": 615.9999999999999
             }
         },
         "areas/secretarea3.tmx": {
             "expandedObjectLayers": [
-                2,
-                20
+                20,
+                2
             ],
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1678.5,
-                "y": 610.5
+                "x": 1600,
+                "y": 719
             }
         },
         "areas/tag.tmx": {
@@ -1076,11 +1076,11 @@
             }
         },
         "areas/undernet4.tmx": {
-            "scale": 1.35078125,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 768.0740312319259,
-                "y": 441.5962984384038
+                "x": 921.6666666666667,
+                "y": 149
             }
         },
         "areas/undernet5.tmx": {
@@ -1088,15 +1088,15 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 1024.0987083092348,
-                "y": 642.0975515712358
+                "y": 479.7223828802777
             }
         },
         "areas/undernet6.tmx": {
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1288.3333333333333,
-                "y": 789
+                "x": 1024.3333333333333,
+                "y": 511.99999999999994
             }
         },
         "areas/undernet7.tmx": {
@@ -1104,7 +1104,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 1024.0987083092348,
-                "y": 609.5238095238096
+                "y": 448.1357239251977
             }
         },
         "areas/undernetsqr.tmx": {
@@ -1365,6 +1365,10 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "assets/tiles/undernet-pillar.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "assets/tiles/undernet-ramps.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -1391,36 +1395,26 @@
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "areas/secretarea3.tmx",
-        "assets/tiles/secret-compression.tsx",
-        "areas/undernet4.tmx",
-        "areas/undernet5.tmx",
-        "areas/undernet6.tmx",
-        "areas/undernet7.tmx",
-        "areas/secretarea2.tmx",
-        "areas/secretarea1.tmx",
-        "areas/acdc3.tmx",
-        "areas/default.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "property.type": "object",
     "recentFiles": [
-        "areas/secretarea3.tmx",
-        "assets/tiles/secret-compression.tsx",
+        "assets/tiles/undernet-pillar.tsx",
         "areas/undernet4.tmx",
-        "areas/undernet5.tmx",
-        "areas/undernet6.tmx",
-        "areas/undernet7.tmx",
-        "areas/secretarea2.tmx",
-        "areas/secretarea1.tmx",
-        "areas/acdc3.tmx",
         "areas/default.tmx",
-        "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC2.tmx",
-        "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/gravy-pot.tmx"
+        "areas/acdc3.tmx",
+        "areas/secretarea1.tmx",
+        "areas/secretarea2.tmx",
+        "areas/undernet7.tmx",
+        "areas/undernet6.tmx",
+        "areas/undernet5.tmx",
+        "assets/tiles/secret-compression.tsx",
+        "areas/secretarea3.tmx",
+        "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC2.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 64,
-        "width": 64
+        "height": 100,
+        "width": 44
     }
 }

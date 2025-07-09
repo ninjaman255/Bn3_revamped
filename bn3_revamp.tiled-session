@@ -1,9 +1,9 @@
 {
-    "activeFile": "areas/secretarea3.tmx",
+    "activeFile": "areas/default.tmx",
     "expandedProjectPaths": [
-        "assets/tiles",
-        "areas",
         ".",
+        "areas",
+        "assets/tiles",
         "assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -22,8 +22,8 @@
             "scale": 3,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 896.1666666666666,
-                "y": 432.16666666666663
+                "x": 943.6666666666666,
+                "y": 432.33333333333337
             }
         },
         "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC4Liberation.tmx": {
@@ -83,11 +83,11 @@
             }
         },
         "C:/Users/aaron/Documents/Code/Bn3/areas/default.tmx": {
-            "scale": 2,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 13,
             "viewCenter": {
-                "x": 833.5,
-                "y": 191.75
+                "x": 1226.6666666666665,
+                "y": 179.33333333333326
             }
         },
         "C:/Users/aaron/Documents/Code/Bn3/assets/Shading.tsx": {
@@ -530,6 +530,9 @@
         "C:/Users/aaron/Documents/Code/pon_v2.5/assets/tiles/warpsv4.tsx": {
             "scaleInDock": 1
         },
+        "C:/Users/aaron/Documents/Code/tiles/BN3 remake Secret.tsx": {
+            "scaleInDock": 1
+        },
         "C:/Users/aaron/Documents/Code/tiles/BN3 remake full.tsx": {
             "scaleInDock": 1
         },
@@ -638,6 +641,22 @@
         },
         "D:/ONBFiles/EverythingOpenBN/OBN SERVER BACKUPS/server_8_28_2021 Shanghai/assets/tiles/warp.tsx": {
             "scaleInDock": 1
+        },
+        "D:/ONBFiles/OBN SERVER BACKUPS/gravy-yum-main/areas/default.tmx": {
+            "scale": 0.25494140625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1278.7251972726576,
+                "y": 600.1378993334865
+            }
+        },
+        "D:/ONBFiles/OBN SERVER BACKUPS/gravy-yum-main/areas/gravy-pot.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 765.5,
+                "y": 432.75
+            }
         },
         "D:/ONBFiles/ServerBackups/ChristmasStuffForOBN/Server_12_10_2021_Christmas/areas/default.tmx": {
             "scale": 1,
@@ -837,8 +856,8 @@
             "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 944.5,
-                "y": 522.25
+                "x": 944.75,
+                "y": 604.25
             }
         },
         "areas/acdcsqr.tmx": {
@@ -889,14 +908,14 @@
         "areas/default.tmx": {
             "expandedObjectLayers": [
                 18,
-                5,
-                12
+                12,
+                5
             ],
             "scale": 2,
             "selectedLayer": 17,
             "viewCenter": {
                 "x": 1072.75,
-                "y": 210.25
+                "y": 292.25
             }
         },
         "areas/hades.tmx": {
@@ -988,21 +1007,21 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1414.6666666666665,
-                "y": 510.3333333333333
+                "x": 1415,
+                "y": 619.6666666666666
             }
         },
         "areas/secretarea2.tmx": {
             "expandedObjectLayers": [
-                2,
                 8,
-                4
+                4,
+                2
             ],
             "scale": 1.5,
             "selectedLayer": 6,
             "viewCenter": {
                 "x": 1280.3333333333333,
-                "y": 615.9999999999999
+                "y": 725
             }
         },
         "areas/secretarea3.tmx": {
@@ -1010,11 +1029,11 @@
                 2,
                 20
             ],
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1720,
-                "y": -422
+                "x": 1678.5,
+                "y": 610.5
             }
         },
         "areas/tag.tmx": {
@@ -1054,6 +1073,38 @@
             "viewCenter": {
                 "x": 976.6666666666665,
                 "y": 479.9999999999999
+            }
+        },
+        "areas/undernet4.tmx": {
+            "scale": 1.35078125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 768.0740312319259,
+                "y": 441.5962984384038
+            }
+        },
+        "areas/undernet5.tmx": {
+            "scale": 1.0130859374999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1024.0987083092348,
+                "y": 642.0975515712358
+            }
+        },
+        "areas/undernet6.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1288.3333333333333,
+                "y": 789
+            }
+        },
+        "areas/undernet7.tmx": {
+            "scale": 1.0130859374999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1024.0987083092348,
+                "y": 609.5238095238096
             }
         },
         "areas/undernetsqr.tmx": {
@@ -1341,22 +1392,31 @@
     "map.lastUsedFormat": "tmx",
     "openFiles": [
         "areas/secretarea3.tmx",
-        "assets/tiles/secret-compression.tsx"
+        "assets/tiles/secret-compression.tsx",
+        "areas/undernet4.tmx",
+        "areas/undernet5.tmx",
+        "areas/undernet6.tmx",
+        "areas/undernet7.tmx",
+        "areas/secretarea2.tmx",
+        "areas/secretarea1.tmx",
+        "areas/acdc3.tmx",
+        "areas/default.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
+    "property.type": "object",
     "recentFiles": [
-        "assets/tiles/secret-compression.tsx",
         "areas/secretarea3.tmx",
-        "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/gravy-pot.tmx",
-        "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/default.tmx",
-        "areas/beachside1.tmx",
-        "areas/default.tmx",
-        "areas/scilab1.tmx",
-        "areas/scilabsqr.tmx",
+        "assets/tiles/secret-compression.tsx",
+        "areas/undernet4.tmx",
+        "areas/undernet5.tmx",
+        "areas/undernet6.tmx",
+        "areas/undernet7.tmx",
         "areas/secretarea2.tmx",
-        "areas/undernet3.tmx",
-        "areas/undernetsqr.tmx",
-        "areas/undernet1.tmx"
+        "areas/secretarea1.tmx",
+        "areas/acdc3.tmx",
+        "areas/default.tmx",
+        "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC2.tmx",
+        "F:/OBN/OpenNetBattleMyFork/gravy-yum/areas/gravy-pot.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

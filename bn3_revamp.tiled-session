@@ -1,8 +1,8 @@
 {
-    "activeFile": "areas/undernet2.tmx",
+    "activeFile": "areas/undernet4.tmx",
     "expandedProjectPaths": [
-        "assets/tiles",
         ".",
+        "assets/tiles",
         "areas"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -906,8 +906,8 @@
         },
         "areas/default.tmx": {
             "expandedObjectLayers": [
-                12,
                 18,
+                12,
                 5
             ],
             "scale": 2,
@@ -950,9 +950,9 @@
         },
         "areas/scilab2.tmx": {
             "expandedObjectLayers": [
-                28,
+                30,
                 5,
-                30
+                28
             ],
             "scale": 1,
             "selectedLayer": 8,
@@ -1397,24 +1397,18 @@
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
-        "areas/undernet4.tmx",
-        "areas/undernet3.tmx",
-        "areas/default.tmx",
-        "areas/undernet2.tmx",
-        "areas/scilab1.tmx",
-        "areas/scilab2.tmx",
-        "areas/scilabsqr.tmx"
+        "areas/undernet4.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "property.type": "object",
     "recentFiles": [
         "areas/undernet4.tmx",
-        "areas/undernet3.tmx",
-        "areas/default.tmx",
         "areas/scilabsqr.tmx",
         "areas/scilab2.tmx",
         "areas/scilab1.tmx",
         "areas/undernet2.tmx",
+        "areas/default.tmx",
+        "areas/undernet3.tmx",
         "assets/tiles/undernet-pillar.tsx",
         "areas/acdc3.tmx",
         "areas/secretarea1.tmx",

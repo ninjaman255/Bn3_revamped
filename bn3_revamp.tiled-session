@@ -1,10 +1,9 @@
 {
-    "activeFile": "",
+    "activeFile": "areas/scilabsqr.tmx",
     "expandedProjectPaths": [
-        ".",
-        "assets",
+        "assets/tiles",
         "areas",
-        "assets/tiles"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -907,15 +906,15 @@
         },
         "areas/default.tmx": {
             "expandedObjectLayers": [
+                18,
                 12,
-                5,
-                18
+                5
             ],
             "scale": 2,
-            "selectedLayer": 17,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 1072.75,
-                "y": 292.25
+                "x": 943.75,
+                "y": 424
             }
         },
         "areas/hades.tmx": {
@@ -946,19 +945,19 @@
             "selectedLayer": 9,
             "viewCenter": {
                 "x": 928.25,
-                "y": 432
+                "y": 431.75
             }
         },
         "areas/scilab2.tmx": {
             "expandedObjectLayers": [
-                5,
+                28,
                 30,
-                28
+                5
             ],
             "scale": 1,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 993,
+                "x": 992.5,
                 "y": 595.5
             }
         },
@@ -970,7 +969,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 512.3333333333333,
-                "y": 255.99999999999994
+                "y": 255.66666666666663
             }
         },
         "areas/secretArea1.tmx": {
@@ -1054,14 +1053,14 @@
         },
         "areas/undernet2.tmx": {
             "expandedObjectLayers": [
-                5,
-                24
+                24,
+                5
             ],
-            "scale": 1,
-            "selectedLayer": 11,
+            "scale": 1.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1139,
-                "y": 615.5
+                "x": 1040.3333333333333,
+                "y": 479.99999999999994
             }
         },
         "areas/undernet3.tmx": {
@@ -1071,16 +1070,19 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 976.6666666666665,
+                "x": 680.6666666666666,
                 "y": 479.9999999999999
             }
         },
         "areas/undernet4.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
             "scale": 1.5,
             "selectedLayer": 11,
             "viewCenter": {
-                "x": 921.6666666666667,
-                "y": 149
+                "x": 951.6666666666667,
+                "y": 213
             }
         },
         "areas/undernet5.tmx": {
@@ -1395,22 +1397,29 @@
     "last.imagePath": "C:/Users/aaron/Documents/Code/Bn3_revamped/assets/tiles",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
+        "areas/undernet4.tmx",
+        "areas/undernet3.tmx",
+        "areas/default.tmx",
+        "areas/undernet2.tmx",
+        "areas/scilab1.tmx",
+        "areas/scilab2.tmx",
+        "areas/scilabsqr.tmx"
     ],
     "project": "bn3_revamp.tiled-project",
     "property.type": "object",
     "recentFiles": [
-        "assets/tiles/undernet-pillar.tsx",
         "areas/undernet4.tmx",
+        "areas/undernet3.tmx",
         "areas/default.tmx",
+        "areas/undernet2.tmx",
+        "areas/scilab1.tmx",
+        "areas/scilab2.tmx",
+        "areas/scilabsqr.tmx",
+        "assets/tiles/undernet-pillar.tsx",
         "areas/acdc3.tmx",
         "areas/secretarea1.tmx",
         "areas/secretarea2.tmx",
-        "areas/undernet7.tmx",
-        "areas/undernet6.tmx",
-        "areas/undernet5.tmx",
-        "assets/tiles/secret-compression.tsx",
-        "areas/secretarea3.tmx",
-        "C:/Users/aaron/Documents/Code/Bn3/areas/ACDC2.tmx"
+        "areas/undernet7.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

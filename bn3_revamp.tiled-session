@@ -1,9 +1,9 @@
 {
-    "activeFile": "areas/scilabsqr.tmx",
+    "activeFile": "areas/undernet2.tmx",
     "expandedProjectPaths": [
         "assets/tiles",
-        "areas",
-        "."
+        ".",
+        "areas"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -906,8 +906,8 @@
         },
         "areas/default.tmx": {
             "expandedObjectLayers": [
-                18,
                 12,
+                18,
                 5
             ],
             "scale": 2,
@@ -945,20 +945,20 @@
             "selectedLayer": 9,
             "viewCenter": {
                 "x": 928.25,
-                "y": 431.75
+                "y": 432
             }
         },
         "areas/scilab2.tmx": {
             "expandedObjectLayers": [
                 28,
-                30,
-                5
+                5,
+                30
             ],
             "scale": 1,
             "selectedLayer": 8,
             "viewCenter": {
                 "x": 992.5,
-                "y": 595.5
+                "y": 432
             }
         },
         "areas/scilabsqr.tmx": {
@@ -969,7 +969,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 512.3333333333333,
-                "y": 255.66666666666663
+                "y": 255.99999999999994
             }
         },
         "areas/secretArea1.tmx": {
@@ -1060,7 +1060,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 1040.3333333333333,
-                "y": 479.99999999999994
+                "y": 479.66666666666663
             }
         },
         "areas/undernet3.tmx": {
@@ -1079,7 +1079,7 @@
                 7
             ],
             "scale": 1.5,
-            "selectedLayer": 11,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 951.6666666666667,
                 "y": 213
@@ -1411,10 +1411,10 @@
         "areas/undernet4.tmx",
         "areas/undernet3.tmx",
         "areas/default.tmx",
-        "areas/undernet2.tmx",
-        "areas/scilab1.tmx",
-        "areas/scilab2.tmx",
         "areas/scilabsqr.tmx",
+        "areas/scilab2.tmx",
+        "areas/scilab1.tmx",
+        "areas/undernet2.tmx",
         "assets/tiles/undernet-pillar.tsx",
         "areas/acdc3.tmx",
         "areas/secretarea1.tmx",

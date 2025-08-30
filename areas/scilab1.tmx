@@ -226,8 +226,8 @@
   <object id="65" type="Radius Warp" x="80" y="432">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>
-    <property name="Arrival Animation" value="arrow_down_right_in"/>
-    <property name="Leave Animation" value="arrow_down_right_out"/>
+    <property name="Arrival Animation" value="arrow_up_left_in"/>
+    <property name="Leave Animation" value="arrow_up_left_out"/>
     <property name="Target Area" value="undernet5"/>
     <property name="Target Object" value="5"/>
    </properties>

@@ -64,8 +64,8 @@
   <object id="5" type="Radius Warp" x="240" y="16">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>
-    <property name="Arrival Animation" value="arrow_down_left_in"/>
-    <property name="Leave Animation" value="arrow_down_left_out"/>
+    <property name="Arrival Animation" value="arrow_up_right_in"/>
+    <property name="Leave Animation" value="arrow_up_right_out"/>
     <property name="Target Area" value="scilab1"/>
     <property name="Target Object" value="65"/>
    </properties>

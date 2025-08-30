@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="4">
+<map version="1.10" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="5">
  <properties>
   <property name="Background" value="custom"/>
   <property name="Background Animation" value="/server/assets/backgrounds/undernet.animation"/>
@@ -11,9 +11,11 @@
  </properties>
  <tileset firstgid="1" source="../assets/tiles/undernet.tsx"/>
  <tileset firstgid="169" source="../assets/tiles/undernet-ramps.tsx"/>
+ <tileset firstgid="175" source="../assets/tiles/drillmanhole.tsx"/>
+ <tileset firstgid="181" source="../assets/tiles/main-net.tsx"/>
  <layer id="1" name="Tile Layer 1" width="32" height="32">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1621,0,0,0,0,0,0,0,0,0,0,0,0,14,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,1,121,1,4,4,4,4,4,4,4,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,2,0,2,0,0,0,2,0,0,2,0,1,4,3,4,4,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,2,0,2,0,0,0,2,0,0,2,1,3,0,0,0,2,0,0,0,0,0,0,0,0,0,
@@ -57,6 +59,13 @@
     <property name="Target Object" value="1"/>
    </properties>
    <point/>
+  </object>
+  <object id="4" type="Custom Warp" gid="175" x="207.5" y="-27.5" width="64" height="48">
+   <properties>
+    <property name="Direction" value="Down Left"/>
+    <property name="Target Area" value="scilab1"/>
+    <property name="Target Object" value="64"/>
+   </properties>
   </object>
  </objectgroup>
  <layer id="2" name="Tile Layer 2" width="32" height="32" offsetx="0" offsety="-16">

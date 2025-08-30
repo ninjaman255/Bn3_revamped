@@ -60,13 +60,7 @@
    </properties>
    <point/>
   </object>
-  <object id="4" type="Custom Warp" gid="175" x="207.5" y="-27.5" width="64" height="48">
-   <properties>
-    <property name="Direction" value="Down Left"/>
-    <property name="Target Area" value="scilab1"/>
-    <property name="Target Object" value="64"/>
-   </properties>
-  </object>
+  <object id="4" gid="175" x="207.5" y="-27.5" width="64" height="48"/>
   <object id="5" type="Radius Warp" x="240" y="16">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>

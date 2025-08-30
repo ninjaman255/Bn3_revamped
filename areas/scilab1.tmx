@@ -222,7 +222,7 @@
    </properties>
    <point/>
   </object>
-  <object id="64" type="Radius Warp" gid="1524" x="36" y="400" width="64" height="48"/>
+  <object id="64" gid="1524" x="36" y="400" width="64" height="48"/>
   <object id="65" type="Radius Warp" x="80" y="432">
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>

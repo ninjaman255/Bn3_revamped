@@ -15,34 +15,39 @@
 --
 -- Required libs:
 --   json.lua by rxi (store as scripts/libs/json.lua)
-local json = require("scripts/libs/json")
-local BBS_BOARD_DATA = "scripts/bbs/data.json"
-local TITLE_LIMIT = 14
-local AUTHOR_LIMIT = 7
+local json                   = require("scripts/libs/json")
+local admin_pass             = require('scripts/bbs/admin_pass_seed')
+local helpers                = require('scripts/ezlibs-scripts/helpers')
+local sha                    = require('scripts/octo-ranking/sha256')
+
+local BBS_BOARD_DATA         = "scripts/bbs/data.json"
+local TITLE_LIMIT            = 14
+local AUTHOR_LIMIT           = 7
 -- Defaults to true unless otherwise stated
-local POSTABLE = {}
-local BBS_ITEMS = {}
-local perm_card_details = {name = "BBS PERMS", description = "Allows posting to BBS boards.", type = "keyitem"}
+local POSTABLE               = {}
+local BBS_ITEMS              = {}
+local perm_card_details      = { name = "BBS PERMS", description = "Allows posting to BBS boards.", type = "keyitem" }
 
 -- storing last time players checked BBS to display the NEW icon
-local last_read_time = {}
-local player_states = {}
+local last_read_time         = {}
+local player_states          = {}
 local player_has_permissions = {}
-local save_data = {}
-local saving = false
-local pending_save = false
-local posts = {}
-local color = {r = 0, g =0, b=0}
+local save_data              = {}
+local saving                 = false
+local pending_save           = false
+local posts                  = {}
+local color                  = { r = 0, g = 0, b = 0 }
+local shad_pass              = admin_pass
 
 local function handle_item_gen()
   local perm_card = Net.create_item(0, perm_card_details)
   print("made item")
-  end
+end
 
 handle_item_gen()
 
 Async.read_file(BBS_BOARD_DATA).and_then(function(value)
-  local status, err = pcall(function ()
+  local status, err = pcall(function()
     if value ~= "" then
       save_data = json.decode(value)
     end
@@ -54,20 +59,26 @@ Async.read_file(BBS_BOARD_DATA).and_then(function(value)
   end
 end)
 
-local function gift_admin_key(player_id)
-local player_name = Net.get_player_name(player_id)
-  if (player_name == "D3str0y3d") then Net.give_player_item(player_id, 0) 
-    print(player_name == "D3str0y3d")
+function handle_player_connect(player_id)
+  last_read_time[player_id] = os.time()
+  local player_items = Net.get_player_items(player_id)
+  if (player_items ~= nil) then
+    player_has_permissions[player_id] = Net.player_has_item(player_id, 0)
   end
 end
 
-function handle_player_connect(player_id)
-last_read_time[player_id] = os.time()
-gift_admin_key(player_id)
-local player_items = Net.get_player_items(player_id)
-if (player_items ~= nil) then
-  player_has_permissions[player_id] = Net.player_has_item(player_id, 0)
-  end
+function handle_player_join(player_id)
+  return async(function()
+    local question = await(Async.question_player(player_id, "Would you like to enter admin password?"))
+    local admin_pass = ''
+    if question == 1 then
+      admin_pass = await(Async.prompt_player(player_id))
+    else
+    end
+    if (sha.sha256(admin_pass) == shad_pass) then
+      Net.give_player_item(player_id, 0)
+    end
+  end)
 end
 
 function handle_player_disconnect(player_id)
@@ -88,14 +99,14 @@ function handle_object_interaction(player_id, object_id)
   local color_string = object.custom_properties.Color
   local postable = true
   if (object.custom_properties.Postable ~= nil) then
-  postable = object.custom_properties.Postable
+    postable = object.custom_properties.Postable
   end
   local player_items = Net.get_player_items(player_id)
   if (player_items ~= nil) then
     player_has_permissions[player_id] = Net.player_has_item(player_id, 0)
-  end 
+  end
 
- color = {
+  color = {
     r = tonumber(string.sub(color_string, 4, 5), 16),
     g = tonumber(string.sub(color_string, 6, 7), 16),
     b = tonumber(string.sub(color_string, 8, 9), 16)
@@ -128,7 +139,7 @@ function handle_object_interaction(player_id, object_id)
           post.read = true
         end
 
-        posts[#posts+1] = post
+        posts[#posts + 1] = post
       end
     end
 
@@ -145,7 +156,7 @@ function handle_object_interaction(player_id, object_id)
           post.read = true
         end
 
-        posts[#posts+1] = post
+        posts[#posts + 1] = post
       end
     end
   end
@@ -184,42 +195,42 @@ function handle_post_selection(player_id, post_id)
       send_post_form(player_id)
     elseif (player_has_permissions[player_id] == true) then
       send_post_form(player_id)
-    elseif (player_states[player_id].current_board_postable == true) then 
+    elseif (player_states[player_id].current_board_postable == true) then
       send_post_form(player_id)
     else
       Net.message_player(player_id, "It appears you do not have permission to post here...")
     end
   elseif (player_has_permissions[player_id] == true) then
-  Async.quiz_player(player_id, "Show Post", "Pin Post","Delete Post" , nil, nil).and_then(function(response)
-  if(response == 0) then 
+    Async.quiz_player(player_id, "Show Post", "Pin Post", "Delete Post", nil, nil).and_then(function(response)
+      if (response == 0) then
+        show_post(player_id, post_id)
+      elseif (response == 1) then
+        local posts = save_data[board_name].posts
+        local clone
+        for i, p in ipairs(posts) do
+          if p.id == post_id then
+            p.pin = not p.pin
+            save()
+            break
+          end
+        end
+        local player_state = player_states[player_id]
+        local name = player_state.board_name
+        push_post(player_state.board_name, player_state.area_id, p)
+      elseif (response == 2) then
+        local posts = save_data[board_name].posts
+        for i, p in ipairs(posts) do
+          if p.id == post_id then
+            table.remove(posts, i)
+            break
+          end
+        end
+        Net.remove_post(player_id, post_id)
+        save()
+      end
+    end)
+  else
     show_post(player_id, post_id)
-
-  elseif(response == 1) then 
-  local posts = save_data[board_name].posts
-  local clone
-  for i, p in ipairs(posts) do
-    if p.id == post_id then
-      p.pin = not p.pin
-      save()
-      break
-    end
-  end
-  local player_state = player_states[player_id]
-  local name = player_state.board_name 
-  push_post(player_state.board_name, player_state.area_id, p)
-  elseif(response == 2) then 
-  local posts = save_data[board_name].posts
-  for i, p in ipairs(posts) do
-    if p.id == post_id then
-      table.remove(posts, i)
-      break
-    end
-  end
-  Net.remove_post(player_id, post_id)
-  save()
-  end 
-end)  
-  else show_post(player_id, post_id)  
   end
 end
 
@@ -331,7 +342,7 @@ function create_post(player_id, player_state, pinned)
 
   push_post(player_state.board_name, player_state.area_id, post)
 
-  board_data.posts[#board_data.posts+1] = post
+  board_data.posts[#board_data.posts + 1] = post
   save_data[player_state.board_name] = board_data
   save()
 end

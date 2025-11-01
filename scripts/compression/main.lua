@@ -1,4 +1,3 @@
-
 local colliders = {}
 local compressed_players = {}
 local compressSfx = "/server/assets/sfx/compress.ogg"
@@ -23,8 +22,8 @@ end
 
 function is_colliding(collider, x, y, z)
   return collider.z == z and
-         x > collider.x and x < collider.x + collider.width and
-         y > collider.y and y < collider.y + collider.height
+      x > collider.x and x < collider.x + collider.width and
+      y > collider.y and y < collider.y + collider.height
 end
 
 function compress(player_id)
@@ -36,8 +35,8 @@ function compress(player_id)
   Net.animate_player_properties(player_id, {
     {
       properties = {
-        { property = "ScaleX", value = 3/8, ease = "Linear" },
-        { property = "ScaleY", value = 3/8, ease = "Linear" }
+        { property = "ScaleX", value = 3 / 8, ease = "Linear" },
+        { property = "ScaleY", value = 3 / 8, ease = "Linear" }
       },
       duration = .15
     }
@@ -80,7 +79,7 @@ for _, area_id in ipairs(Net.list_areas()) do
     local object = Net.get_object_by_id(area_id, object_id)
 
     if object.custom_properties.Compress or object.custom_properties.Decompress then
-      area_colliders[#area_colliders+1] = object
+      area_colliders[#area_colliders + 1] = object
     end
   end
 

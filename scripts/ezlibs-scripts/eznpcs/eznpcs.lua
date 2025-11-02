@@ -1,5 +1,6 @@
 local Direction = require("scripts/ezlibs-scripts/direction")
 local helpers = require('scripts/ezlibs-scripts/helpers')
+local CONFIG = require('scripts/ezlibs-scripts/ezconfig')
 local ezmemory = require('scripts/ezlibs-scripts/ezmemory')
 local ezcache = require('scripts/ezlibs-scripts/ezcache')
 local math = require('math')
@@ -7,8 +8,8 @@ local math = require('math')
 local eznpcs = {}
 local placeholder_to_botid = {}
 
-local npc_asset_folder = '/server/assets/ezlibs-assets/eznpcs/'
-local custom_events_script_path = 'scripts/events/eznpcs_events'
+local npc_asset_folder = CONFIG.NPC_ASSET_FOLDER
+local custom_events_script_path = CONFIG.NPC_EVENTS_SCRIPT_PATH
 local custom_events_script_loaded = false
 local generic_npc_mug_animation_path = npc_asset_folder..'mug/mug.animation'
 local npcs = {}
@@ -17,7 +18,7 @@ local current_player_conversation = {}
 local npc_required_properties = {"Direction","Asset Name"}
 local object_cache = {}
 
-function printd(...)
+local function printd(...)
     local arg={...}
     print('[eznpcs]',table.unpack(arg))
 end
@@ -172,7 +173,7 @@ function add_behaviour(npc,behaviour)
         if behaviour.initialize then
             behaviour.initialize(npc)
         end
-        printd('added '..behaviour.type..' behaviour to NPC')
+        --printd('added '..behaviour.type..' behaviour to NPC')
     end
 end
 
@@ -294,7 +295,7 @@ end
 function on_npc_reached_waypoint(npc,waypoint)
     local should_be_cached = ezcache.object_is_of_type(waypoint,{"Waypoint"})
     if not should_be_cached then
-        print("[eznpcs] WARNING Waypoint "..waypoint.id.." at "..waypoint.x..","..waypoint.y.." in "..npc.area_id.." has incorrect type and wont be cached")
+        printd("WARNING Waypoint "..waypoint.id.." at "..waypoint.x..","..waypoint.y.." in "..npc.area_id.." has incorrect type and wont be cached")
     end
     if waypoint.custom_properties['Wait Time'] ~= nil then
         npc.wait_time = tonumber(waypoint.custom_properties['Wait Time'])
@@ -408,7 +409,7 @@ end
 function eznpcs.handle_object_interaction(player_id, object_id)
     local area_id = Net.get_player_area(player_id)
     local relay_object = Net.get_object_by_id(area_id,object_id)
-    if relay_object.custom_properties["Interact Relay"] then
+    if relay_object and relay_object.custom_properties["Interact Relay"] then
         local placeholder_id = relay_object.custom_properties["Interact Relay"]
         local bot_id = placeholder_to_botid[area_id][placeholder_id]
         do_actor_interaction(player_id,bot_id,relay_object)

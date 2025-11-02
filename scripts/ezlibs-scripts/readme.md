@@ -22,11 +22,11 @@ Supported warp types:
 - `Interact Warp`
     - (a warp activated by interaction)
     - supports arrival animations
-    - supports landing animations
+    - supports leaving animations
 - `Radius Warp`
     - (a warp activated by entering its radius)
     - supports arrival animations
-    - supports landing animations
+    - supports leaving animations
 
 Supported warp custom properties:
 - `Incoming Data` (string) secret to share with the server that is linking to you; for their `Data`
@@ -92,6 +92,9 @@ Custom properties:
 - `Asset Name` string
     - name of npc tilesheet from `yourserver/assets/ezlibs-assets/eznpcs/sheet`
     - for example `heel-navi-exe4_black` (no file extension)
+- `Mug Animation Name` string
+    - name of a .animation file to use to animate the NPC's mugshot
+    - the .animation file should be in the /mug folder
 - `Direction` string
     - see the section on [`Directions`](#Directions).
 - `Dialogue Type` string
@@ -282,20 +285,16 @@ By default this behaviour is disabled unless you specify a valid minimum and max
 
 ### Mystery Dataum
 Custom properties:
+(Same as [`Items`](#Items) with the following extras)
 - `Type` string
-    - one of these three options
-        - money
-        - keyitem
         - random
-- `Amount` number
-    - the amount of money to give the player
-- `Name` string
-    - name of the key item to give the player (the item will be created automatically by ezmystery if it does not exist)
-- `Description` string
-    - description of the key item to give the player, if keyitems with the same name already exist, all of them will be updated with the new description
 - `Next #`: object
     - You can have up to 9 of these, named `Next 1`, `Next 2` etc
     - if using the `random` type, the reward will be selected from a `Mystery Option` type object; randomly selected from a `Next #` property
+- `Once` boolean
+    - like a blue or purple mystery data, this mystery data will never appear again for this player
+- `Locked` boolean
+    - like a purple mystery data, requires an item named `Unlocker` to open
 
 ### Mystery Option
 Custom properties:
@@ -381,7 +380,7 @@ encounter options:
         - `Canodumb` (1,2,3) ~Author Konstinople#7692
         - `Canosmart` (1) ~Author DawnOwl#5358
         - `Volgear` (1,2,3,4) ~Author LouisE#9864
-        - `KillerEye` (1,2,6,7) ~Author LouisE#9864
+        - `KillerEye` (1,4,6,7) ~Author LouisE#9864
         - `DemonEye` (1) ~Author LouisE#9864
         - `JokerEye` (1) ~Author LouisE#9864
         - `HauntedCandle` (1,2,3,4,6,7) ~Author LouisE#9864
@@ -396,6 +395,52 @@ encounter options:
         - `FighterPlane` (1,2,3,4) ~Author DawnOwl#5358
         - `Catack` (1,2,3,4) ~Author DawnOwl#5358
         - `Ratty` (1,2,3,4) ~Author DawnOwl#5358
+        - `Yort` (1,2,3,4,6,7,8) ~Author LouisE#9864
+        - `Volcano` (1,2,3,4,6,7,8) ~Author LouisE#9864
+        - `Swordy` (1,2,3,4,8) ~Author LouisE#9864
+        - `Skarab` (1,4,6,7,8) ~Author LouisE#9864
+        - `Skarry` (1) ~Author LouisE#9864
+        - `Skelly` (1) ~Author LouisE#9864
+        - `Scutz` (1) ~Author LouisE#9864
+        - `Scuttle` (1) ~Author LouisE#9864
+        - `Scuttler` (1) ~Author LouisE#9864
+        - `Scuttzer` (1) ~Author LouisE#9864
+        - `Scuttlest` (1,4) ~Author LouisE#9864
+        - `Lark` (1,4,6,7,8) ~Author LouisE#9864
+        - `Bark` (1) ~Author LouisE#9864
+        - `Tark` (1) ~Author LouisE#9864
+        - `Flashy` (1) ~Author LouisE#9864
+        - `DthFire` (1,4,6,7,8) ~Author LouisE#9864
+        - `FulFire` (1,4,6,7,8) ~Author LouisE#9864
+        - `MetFire` (1,4,6,7,8) ~Author LouisE#9864
+        - `Elemperor` (1,2,3,4,6,7,8) ~Author LouisE#9864
+        - `Dominerd` (1,2,3,4,8) ~Author LouisE#9864
+        - `Cragger` (1,2,3,4,6,7,8) ~Author LouisE#9864
+        - `DarkMech` (1,2,3,4,6,7) ~Honest Signal#7759
+        - `CirKill` (1,4,6,7,8) ~Author LouisE#9864
+        - `CirCrush` (1) ~Author LouisE#9864
+        - `CirSmash` (1) ~Author LouisE#9864
+        - `WindBox` (1,2,3,4,8) ~Author LouisE#9864
+        - `VacuumFan` (1,2,3,4) ~Author LouisE#9864
+        - `OldStove` (1,4,6,7,8) ~Author LouisE#9864
+        - `OldHeater` (1) ~Author LouisE#9864
+        - `OldBurner` (1) ~Author LouisE#9864
+        - `Bunny` (1) ~Author LouisE#9864
+        - `TuffBunny` (1) ~Author LouisE#9864
+        - `MegaBunny` (1) ~Author LouisE#9864
+        - `Bugtank` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Shrimpy` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Puffy` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `HotHead` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `ColdHead` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `HardHead` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Gloomer` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Doomer` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Boomer` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Piranha` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Breaker` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Shaker` (1) ~Author LouisE#9864 ??? Versions to be documented
+        - `Quaker` (1) ~Author LouisE#9864 ??? Versions to be documented
 
 - positions (grid)
     - where to spawn each enemy, 0 = no enemy, to spawn an enemy use the index of the enemy you listed in the enemies table you provided (1 = enemy at index 1 in your enemies table)
@@ -585,6 +630,30 @@ Custom Properties:
 - `Name` (string) name of the encounter (from encounter table) to activate
 - `Path` (string) if name is not specified, you can trigger an encounter with a mob package zip by specifying it's path
 - `Once` (boolean) if true, this encounter will never appear again for this player after they beat it
+
+# ezcheckpoints
+Lets you create checkpoints such as security cubes or gates with unlock requirements
+
+Type: `Checkpoint`
+Custom Properties:
+- `Description` (string) message sent to the player when they inspect the cube
+- `Unlocking Asset Name` (string) the asset name of the unlocking animation,
+    Examples built in:
+    - `bn5cubegreen_bot`
+- `Unlocking Animation Time` (float) the time to display the cube unlock animation for, if you set this too long the animation will loop
+- `Password` (string) you can specify a password that the user will be prompted to input
+    (note, the password is currently stored in the map file so its not very secure)
+- `Key Name` (string) you may specify an item name here which will be required to unlock the checkpoint
+    you can set this to `money` to require money for unlocking the cube
+- `Required Keys` (number) the number of keys required to open the checkpoint
+- `Consume` (bool) set to true if you want the required item/money to be consumed after unlocking
+- `Skip Prompt` (bool) usually the player is prompted to ask if they want to try unlocking the cube with an item/money, this will skip that confirmation (if true)
+- `Unlocked Message` (string) a message to send the player when they unlock the cube
+- `Unlock Failed Message` (string) a message to send the player when they fail to unlock the cube
+- `Once` (bool) set to true if you want this cube to never appear again for this player after they unlock the cube
+- 
+
+
 
 
 # ezweather

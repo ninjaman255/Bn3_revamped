@@ -250,8 +250,7 @@ function use_warp(player_id,warp_object,warp_meta)
                     local entry_pos = prepare_player_arrival(player_id,target_object.x,target_object.y,target_object.z,arrival_animation_name)
                     Net.transfer_player(player_id, target_area, warp_in, entry_pos.x, entry_pos.y, entry_pos.z, direction)
                 else
-                    Net.transfer_player(player_id, target_area, true, target_object.x+0.5,target_object.y+0.5,target_object.z, direction)                    
-                    print(player_id, target_area, true, target_object.x+0.5, target_object.y+0.5,target_object.z, direction)
+                    Net.transfer_player(player_id, target_area, true, target_object.x+0.5,target_object.y+0.5,target_object.z, direction)
                 end
             else
                 log('unable to transfer, no target object')
@@ -266,7 +265,9 @@ function ezwarps.handle_custom_warp(player_id, object_id)
     end
     local player_area = Net.get_player_area(player_id)
     local object = Net.get_object_by_id(player_area, object_id)
-
+    if not object then
+        return
+    end
     local target_object = object.custom_properties["Target Object"]
     local target_area = object.custom_properties["Target Area"]
     if not (target_area and target_object) then

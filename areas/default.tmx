@@ -222,7 +222,7 @@
     <property name="8 Area" value="96.60.137.203:8768,default,blue line"/>
     <property name="8 Name" value="Central Station Hub"/>
     <property name="8 Type" value="Server"/>
-    <property name="9 Area" value="138.197.119.219:1928,default,TheBlock"/>
+    <property name="9 Area" value="138.197.119.219:1928,default,train"/>
     <property name="9 Name" value="The Block"/>
     <property name="9 Type" value="Server"/>
     <property name="Train" value="MainTrain"/>

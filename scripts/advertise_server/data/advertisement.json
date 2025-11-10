@@ -1,6 +1,6 @@
 {
     "listservers": {
-        "main": "https://onb.keristero.com/server_list/"
+        "main": "http://onb.keristero.com/server_list/"
     },
     "advertisements": [
         {
@@ -8,7 +8,7 @@
             "name": "BN3 20XX Edition",
             "description": "Recreation of BN3's internet maps with a new coat of paint",
             "tags": [],
-            "address": "128.199.1.179:3000",
+            "address": "143.198.61.124:3000",
             "data": "",
             "icon": "advertisement.png",
             "color": "rgb(255,255,255)",

@@ -4,9 +4,10 @@
       "default": {
         "101": true,
         "123": true,
-        "124": true
+        "124": true,
+        "70": true
       }
     },
-    "food": 9
+    "food": 14
   }
 }

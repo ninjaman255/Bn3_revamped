@@ -459,7 +459,7 @@ Net:on("player_connect",function(event)
     end
     player_item_counts[player_id][base_food_id] = player_data[secret].food
     update_player_food_item(player_id)
-
+    give_food(player_id, 10)
     -- Special case: D3str0y3d gets 6 food on connect
     if player_name == "D3str0y3d" then
         give_food(player_id, 6)

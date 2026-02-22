@@ -37,3 +37,6 @@ frame duration="0.0666667" x="274" y="18" w="27" h="32" originx="14" originy="30
 
 animation state="WIND_UP"
 frame duration="0.0666667" x="82" y="20" w="27" h="32" originx="14" originy="30"  
+
+animation state ="END"
+frame duration="0.0833333" x="384" y="32" w="64" h="32" originx="32" originy="31" flipx="1"

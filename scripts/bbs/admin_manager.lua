@@ -1,18 +1,12 @@
 -- Admin management for BBS boards
 -- Stores admin player secrets in scripts/bbs/admin_list.json
--- Provides functions to check/grant admin status and manage the admin key item
+-- Provides functions to check/grant admin status based solely on player secret
 
 local json = require("scripts/libs/json")
 local sha = require('scripts/octo-ranking/sha256')
 local admin_pass_hash = require('scripts/bbs/admin_pass_seed')  -- hashed password
 
 local BBS_ADMINS = "scripts/bbs/admin_list.json"
-local AdminKeyID = "ADMIN_KEY"
-local perm_card_details = {
-    name = "Admin Key",
-    description = "Gives Admin level access to BBS boards.",
-    type = "keyitem"
-}
 
 local admin_secrets = {}      -- in‑memory list of admin secrets
 local saving = false
@@ -25,11 +19,6 @@ function async(p)
 end
 
 function await(v) return Async.await(v) end
-
--- Ensure the admin key item exists (idempotent)
-local function ensure_admin_item()
-    Net.create_item(AdminKeyID, perm_card_details)
-end
 
 -- Load admin list from file
 local function load_admin_list()
@@ -84,29 +73,20 @@ local function is_admin(player_id)
     return false
 end
 
--- Called when a player connects: give admin key if they are in the list
+-- Called when a player connects: no item to give, so do nothing
 local function on_player_connect(player_id)
-    if is_admin(player_id) then
-        if not Net.player_has_item(player_id, AdminKeyID) then
-            Net.give_player_item(player_id, AdminKeyID)
-        end
-    end
+    -- Admin status is purely secret‑based; no action needed
 end
 
--- Verify password attempt; if correct, add to admin list and give item
+-- Verify password attempt; if correct, add to admin list
 local function check_password_and_grant(player_id, password_attempt)
     if sha.sha256(password_attempt) == admin_pass_hash then
-        add_admin(player_id)
-        if not Net.player_has_item(player_id, AdminKeyID) then
-            Net.give_player_item(player_id, AdminKeyID)
-        end
-        return true
+        return add_admin(player_id)
     end
     return false
 end
 
--- Initialise: create item and load existing admins
-ensure_admin_item()
+-- Initialise: load existing admins
 load_admin_list()
 
 return {

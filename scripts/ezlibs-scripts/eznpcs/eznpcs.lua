@@ -1,29 +1,71 @@
 local Direction = require("scripts/ezlibs-scripts/direction")
 local helpers = require('scripts/ezlibs-scripts/helpers')
-local CONFIG = require('scripts/ezlibs-scripts/ezconfig')
 local ezmemory = require('scripts/ezlibs-scripts/ezmemory')
 local ezcache = require('scripts/ezlibs-scripts/ezcache')
+local object_registry = require('scripts/ezlibs-scripts/object_registry')
 local math = require('math')
+local ezbus = require('scripts/ezlibs-scripts/ezbus')
 
 local eznpcs = {}
-local placeholder_to_botid = {}
+local placeholder_to_botid = {}          -- area_id -> placeholder_id -> global bot ID (for non-exclusive NPCs)
+local exclusive_npcs = {}                -- player_id -> { placeholder_id = bot_id }
+local exclusive_placeholders = {}        -- list of { area_id, object_id } for all exclusive NPC placeholders
+local npcs = {}                           -- global bot ID -> npc data (for all bots, including exclusive)
+local current_player_conversation = {}
 
-local npc_asset_folder = CONFIG.NPC_ASSET_FOLDER
-local custom_events_script_path = CONFIG.NPC_EVENTS_SCRIPT_PATH
+local npc_asset_folder = '/server/assets/ezlibs-assets/eznpcs/'
+local custom_events_script_path = 'scripts/events/eznpcs_events'
 local custom_events_script_loaded = false
 local generic_npc_mug_animation_path = npc_asset_folder..'mug/mug.animation'
-local npcs = {}
 local events = require('scripts/ezlibs-scripts/eznpcs/dialogue_types')
-local current_player_conversation = {}
 local npc_required_properties = {"Direction","Asset Name"}
-local object_cache = {}
+
 
 local function printd(...)
     local arg={...}
     print('[eznpcs]',table.unpack(arg))
 end
 
---TODO load all waypoints / dialogues on server start and delete them from the map to save bandwidth
+-- Helper to safely evaluate boolean properties from Tiled (can be boolean or string)
+local function is_property_true(val)
+    if val == true then return true end
+    if type(val) == "string" then return val:lower() == "true" end
+    if type(val) == "number" then return val ~= 0 end
+    return false
+end
+
+-- Helper: get all players currently in the server (across all areas)
+local function get_all_players()
+    local players = {}
+    local areas = Net.list_areas()
+    for _, area_id in ipairs(areas) do
+        local area_players = Net.list_players(area_id) or {}
+        for _, pid in ipairs(area_players) do
+            table.insert(players, pid)
+        end
+    end
+    return players
+end
+
+-- Helper: exclude a bot from everyone except the owner
+local function exclude_except_for(owner_id, bot_id)
+    local all_players = get_all_players()
+    for _, pid in ipairs(all_players) do
+        if pid ~= owner_id then
+            Net.exclude_actor_for_player(pid, bot_id)
+        end
+    end
+    printd("Excluded bot", bot_id, "from all except", owner_id)
+end
+
+-- Helper: include a bot for all players (used when creating a non-exclusive bot)
+local function include_for_all(bot_id)
+    local all_players = get_all_players()
+    for _, pid in ipairs(all_players) do
+        Net.include_actor_for_player(pid, bot_id)
+    end
+end
+
 
 function eznpcs.get_dialogue_mugshot(npc,player_id,dialogue)
     local mugshot_asset_name = npc.asset_name
@@ -75,48 +117,63 @@ function do_dialogue(npc,player_id,dialogue,relay_object)
     end)
 end
 
-function create_bot_from_object(area_id,object_id)
-    local placeholder_object = ezcache.get_object_by_id_cached(area_id, object_id)
-    if not placeholder_object then
-        return
-    end
-    local x = placeholder_object.x
-    local y = placeholder_object.y
-    local z = placeholder_object.z
+-- Creates a bot (global or per-player) and returns its npc_data
+function create_bot_from_object(area_id, object, player_id)
+    if not object then return end
+    local x = object.x
+    local y = object.y
+    local z = object.z
 
     for i, prop_name in pairs(npc_required_properties) do
-        if not placeholder_object.custom_properties[prop_name] then
+        if not object.custom_properties[prop_name] then
             printd('NPC objects require the custom property '..prop_name)
             return false
         end
     end  
 
-    local npc_asset_name = placeholder_object.custom_properties["Asset Name"]
-    local npc_animation_name = placeholder_object.custom_properties["Animation Name"] or false
-    local npc_mug_animation_name = placeholder_object.custom_properties["Mug Animation Name"] or false
-    local npc_turns_to_talk = placeholder_object.custom_properties["Dont Face Player"] == "true"
-    local direction = placeholder_object.custom_properties.Direction
+    local npc_asset_name = object.custom_properties["Asset Name"]
+    local npc_animation_name = object.custom_properties["Animation Name"] or false
+    local npc_mug_animation_name = object.custom_properties["Mug Animation Name"] or false
+    local npc_turns_to_talk = is_property_true(object.custom_properties["Dont Face Player"])
+    local direction = object.custom_properties.Direction
 
-    local npc = create_npc(area_id,npc_asset_name,x,y,z,direction,placeholder_object.name,npc_animation_name,npc_mug_animation_name,npc_turns_to_talk)
+    -- Debug: print asset paths
+    printd("Creating NPC with asset:", npc_asset_name, "texture:", npc_asset_folder.."sheet/"..npc_asset_name..".png")
 
-    if not placeholder_to_botid[area_id] then
-        placeholder_to_botid[area_id] = {}
+    -- Create the bot (initially visible to all)
+    local npc = create_npc(area_id, npc_asset_name, x, y, z, direction,
+                           object.name, npc_animation_name, npc_mug_animation_name, npc_turns_to_talk)
+
+    if not npc then 
+        printd("Failed to create bot for", npc_asset_name)
+        return 
     end
-    placeholder_to_botid[area_id][tostring(object_id)] = npc.bot_id
-    --printd('added placeholder mapping '..object_id..' to '..npc.bot_id)
 
-    if placeholder_object.custom_properties["Dialogue Type"] then
-        --If the placeholder has Chat text, add behaviour to have it respond to interactions
-        npc.first_dialogue = placeholder_object
+    -- If this is an exclusive NPC for a specific player, hide it from everyone else
+    if player_id then
+        if not exclusive_npcs[player_id] then exclusive_npcs[player_id] = {} end
+        exclusive_npcs[player_id][tostring(object.id)] = npc.bot_id
+        exclude_except_for(player_id, npc.bot_id)
+        printd("Exclusive bot", npc.bot_id, "created for player", player_id)
+    else
+        -- Global NPC: store in placeholder_to_botid and ensure visible to all
+        if not placeholder_to_botid[area_id] then placeholder_to_botid[area_id] = {} end
+        placeholder_to_botid[area_id][tostring(object.id)] = npc.bot_id
+        printd("Global bot", npc.bot_id, "created for placeholder", object.id)
+    end
+
+    if object.custom_properties["Dialogue Type"] then
+        npc.first_dialogue = object
         local chat_behaviour = chat_behaviour()
-        add_behaviour(npc,chat_behaviour)
+        add_behaviour(npc, chat_behaviour)
     end
 
-    if placeholder_object.custom_properties["Next Waypoint 1"] then
-        --If the placeholder has npc_first_waypoint
-        local waypoint_follow_behaviour = waypoint_follow_behaviour(placeholder_object.custom_properties["Next Waypoint 1"])
-        add_behaviour(npc,waypoint_follow_behaviour)
+    if object.custom_properties["Next Waypoint 1"] then
+        local waypoint_follow_behaviour = waypoint_follow_behaviour(object.custom_properties["Next Waypoint 1"])
+        add_behaviour(npc, waypoint_follow_behaviour)
     end
+
+    return npc
 end
 
 function create_npc(area_id,asset_name,x,y,z,direction,bot_name,animation_name,mug_animation_name,npc_turns_to_talk)
@@ -134,10 +191,6 @@ function create_npc(area_id,asset_name,x,y,z,direction,bot_name,animation_name,m
     if npc_turns_to_talk == nil then
         npc_turns_to_talk = true
     end
-    --Log final paths
-    --printd('texture path: '..texture_path)
-    --printd('animation path: '..animation_path)
-    --printd('mug animation path: '..mug_animation_path)
     --Create bot
     local npc_data = {
         asset_name=asset_name,
@@ -155,25 +208,26 @@ function create_npc(area_id,asset_name,x,y,z,direction,bot_name,animation_name,m
         size=0.2,
         speed=1,
         dont_face_player=npc_turns_to_talk,
+        warp_in = true,  -- Explicitly set warp_in to ensure visibility
     }
+    printd("Creating bot with texture:", texture_path, "animation:", animation_path)
     local lastBotId = Net.create_bot(npc_data)
+    if not lastBotId then 
+        printd("Net.create_bot returned nil for", asset_name)
+        return nil 
+    end
     npc_data.bot_id = lastBotId
     npcs[lastBotId] = npc_data
-    printd('created npc '..name..' id:'..lastBotId..' at ('..x..','..y..','..z..')')
+    printd('created npc '..(name or "unnamed")..' id:'..lastBotId..' at ('..x..','..y..','..z..')')
     return npc_data
 end
 
 function add_behaviour(npc,behaviour)
-    --Behaviours have a type and an action
-    --type is the event that triggers them, on_interact or on_tick
-    --action is the callback for the logic
-    --optionally initialize can exist to init the behaviour when it is first added
     if behaviour.type and behaviour.action then
         npc[behaviour.type] = behaviour
         if behaviour.initialize then
             behaviour.initialize(npc)
         end
-        --printd('added '..behaviour.type..' behaviour to NPC')
     end
 end
 
@@ -182,10 +236,14 @@ function clear_player_conversation(player_id)
     local bot_id = current_player_conversation[player_id]
     if bot_id then
         local npc = npcs[bot_id]
-        if not npc.dont_face_player then
+        if npc and not npc.dont_face_player then
             Net.set_bot_direction(npc.bot_id, npc.direction)
         end
         current_player_conversation[player_id] = nil
+        ezbus:emit("dialogue_ended", {
+            player_id = player_id,
+            npc_id = bot_id
+        })
     end
 end
 
@@ -196,21 +254,21 @@ function chat_behaviour()
         action=function(npc,player_id,relay_object)
             return async(function ()
                 if current_player_conversation[player_id] == npc.bot_id then
-                    --this player is already in a conversation with this npc
                     return
                 end
-                --printd('started talking to npc')
                 current_player_conversation[player_id] = npc.bot_id
 
                 if not npc.dont_face_player then
                     local player_pos = Net.get_player_position(player_id)
-                    Net.set_bot_direction(npc.bot_id, Direction.from_points(npc, player_pos))
+                    local dir = player_pos and Direction.from_points(npc, player_pos) or nil
+                    if dir then
+                        Net.set_bot_direction(npc.bot_id, dir)
+                    end
                 end
 
                 local dialogue = npc.first_dialogue
                 Net.lock_player_input(player_id)
                 await(do_dialogue(npc,player_id,dialogue,relay_object))
-                --printd('finished talking to npc')
                 clear_player_conversation(player_id)
             end)
         end
@@ -237,28 +295,21 @@ function waypoint_follow_behaviour(first_waypoint_id)
 end
 
 function do_actor_interaction(player_id,actor_id,relay_object)
-    local npc_id = actor_id
-    if npcs[npc_id] then
-        local npc = npcs[npc_id]
-        if npc.on_interact then
-            npc.on_interact.action(npc,player_id,relay_object)
-        end
+    local npc = npcs[actor_id]
+    if npc and npc.on_interact then
+        npc.on_interact.action(npc,player_id,relay_object)
     end
 end
 
 function is_anyone_talking_to_npc(npc_id)
     for player_id, chatty_npc_id in pairs(current_player_conversation) do
-        if npc_id == chatty_npc_id then
-            return true
-        end
+        if npc_id == chatty_npc_id then return true end
     end
     return false
 end
 
 function move_npc(npc,delta_time)
-    if is_anyone_talking_to_npc(npc.bot_id) then
-        return
-    end
+    if is_anyone_talking_to_npc(npc.bot_id) then return end
     if npc.wait_time and npc.wait_time > 0 then
         npc.wait_time = npc.wait_time - delta_time
         return
@@ -282,14 +333,11 @@ function move_npc(npc,delta_time)
     new_pos.x = npc.x + vel_x * delta_time
     new_pos.y = npc.y + vel_y * delta_time
 
-    if helpers.position_overlaps_something(new_pos,area_id) then
-        return
-    end
+    if helpers.position_overlaps_something(new_pos,area_id) then return end
 
     Net.move_bot(npc.bot_id, new_pos.x, new_pos.y, new_pos.z)
     npc.x = new_pos.x
     npc.y = new_pos.y
-
 end
 
 function on_npc_reached_waypoint(npc,waypoint)
@@ -308,7 +356,6 @@ function on_npc_reached_waypoint(npc,waypoint)
     if waypoint.custom_properties["Waypoint Type"] then
         waypoint_type = waypoint.custom_properties["Waypoint Type"]
     end
-    --select next waypoint based on Waypoint Type
     local next_waypoints = helpers.extract_numbered_properties(waypoint,"Next Waypoint ")
     local next_waypoint_id = nil
     if waypoint_type == "first" then
@@ -318,7 +365,6 @@ function on_npc_reached_waypoint(npc,waypoint)
         local next_waypoint_index = math.random(#next_waypoints)
         next_waypoint_id = next_waypoints[next_waypoint_index]
     end
-    --date based events
     local date_b = waypoint.custom_properties['Date']
     if waypoint_type == "before" then
         if date_b then
@@ -342,25 +388,47 @@ function on_npc_reached_waypoint(npc,waypoint)
     end
 end
 
-function eznpcs.add_npcs_to_area(area_id)
-    --Loop over all objects in area, spawning NPCs for each NPC type object.
-    local objects = Net.list_objects(area_id)
-    for i, object_id in next, objects do
-        local object = ezcache.get_object_by_id_cached(area_id, object_id)
-        if object.type == "NPC" then
-            create_bot_from_object(area_id, object_id)
+-- Register handler for NPC objects
+object_registry.register_handler("NPC", function(area_id, object)
+    local props = object.custom_properties or {}
+    local is_quest = is_property_true(props["Quest NPC"])
+    local is_exclusive = is_property_true(props["Player Exclusive"])
+
+    if is_quest or is_exclusive then
+        printd("Skipping quest/exclusive NPC placeholder id "..object.id.." in "..area_id)
+        if is_exclusive then
+            -- Store exclusive placeholder for later use
+            table.insert(exclusive_placeholders, {area_id = area_id, object_id = object.id})
         end
+    else
+        create_bot_from_object(area_id, object)
+    end
+end)
+
+-- Public API
+function eznpcs.load_npcs()
+    local areas = Net.list_areas()
+    for i, area_id in next, areas do
+        eznpcs.add_npcs_to_area(area_id)
     end
 end
 
---Interface
---all of these must be used by entry script for this to function.
-function eznpcs.load_npcs()
-    --for each area, load NPCS
-    local areas = Net.list_areas()
-    for i, area_id in next, areas do
-        --Add npcs to existing areas on startup
-        eznpcs.add_npcs_to_area(area_id)
+function eznpcs.add_npcs_to_area(area_id)
+    -- Legacy: scan area for NPCs (already handled by registry, but keep for completeness)
+    local objects = Net.list_objects(area_id)
+    for i, object_id in next, objects do
+        local object = ezcache.get_object_by_id_cached(area_id, object_id)
+        if object and object.type == "NPC" then
+            local props = object.custom_properties or {}
+            local is_quest = is_property_true(props["Quest NPC"])
+            local is_exclusive = is_property_true(props["Player Exclusive"])
+            if not is_quest and not is_exclusive then
+                create_bot_from_object(area_id, object)
+            elseif is_exclusive then
+                -- Also store in exclusive_placeholders in case area was added after startup
+                table.insert(exclusive_placeholders, {area_id = area_id, object_id = object.id})
+            end
+        end
     end
 end
 
@@ -375,12 +443,14 @@ function eznpcs.add_event(event_object)
     events[event_object.name] = event_object
     printd('added event '..event_object.name)
 end
+
 function eznpcs.create_npc_from_object(area_id,object_id)
-    return ( create_bot_from_object(area_id,object_id) )
+    local object = ezcache.get_object_by_id_cached(area_id, object_id)
+    return create_bot_from_object(area_id, object)
 end
 
 function eznpcs.handle_actor_interaction(player_id,actor_id)
-    return ( do_actor_interaction(player_id,actor_id) )
+    return do_actor_interaction(player_id,actor_id)
 end
 
 function eznpcs.on_tick(delta_time)
@@ -394,26 +464,117 @@ function eznpcs.on_tick(delta_time)
         end
     end
 end
+
 function eznpcs.create_npc(area_id,asset_name,x,y,z,direction,bot_name,animation_name,mug_animation_name)
-    return ( create_npc(area_id,asset_name,x,y,z,direction,bot_name,animation_name,mug_animation_name) )
+    return create_npc(area_id,asset_name,x,y,z,direction,bot_name,animation_name,mug_animation_name)
 end
 
 function eznpcs.handle_player_transfer(player_id)
     clear_player_conversation(player_id)
 end
-  
+
+function eznpcs.handle_player_join(player_id)
+    -- When a new player joins, create their exclusive NPCs (if not already cleared)
+    for _, entry in ipairs(exclusive_placeholders) do
+        local object = ezcache.get_object_by_id_cached(entry.area_id, entry.object_id)
+        if object then
+            -- Check if player has already cleared this NPC (placeholder hidden)
+            local hidden = ezmemory.object_is_hidden_from_player(player_id, entry.area_id, entry.object_id)
+            if not hidden then
+                -- Check if bot already exists for this player
+                if not exclusive_npcs[player_id] or not exclusive_npcs[player_id][tostring(entry.object_id)] then
+                    create_bot_from_object(entry.area_id, object, player_id)
+                end
+            end
+        end
+    end
+
+    -- Also exclude all existing exclusive NPCs from this new player (in case they were created for others)
+    for owner_id, npcs_for_owner in pairs(exclusive_npcs) do
+        for placeholder_id, bot_id in pairs(npcs_for_owner) do
+            -- Skip the current player's own NPCs
+            if owner_id ~= player_id then
+                Net.exclude_actor_for_player(player_id, bot_id)
+                printd("Excluding bot", bot_id, "from player", player_id, "(owned by", owner_id, ")")
+            else
+                -- Verify that the player's own bot is visible
+                printd("Player's own bot", bot_id, "should be visible")
+            end
+        end
+    end
+end
+
 function eznpcs.handle_player_disconnect(player_id)
     clear_player_conversation(player_id)
+    -- Remove all exclusive NPCs owned by this player
+    if exclusive_npcs[player_id] then
+        for placeholder_id, bot_id in pairs(exclusive_npcs[player_id]) do
+            Net.remove_bot(bot_id)
+            npcs[bot_id] = nil
+        end
+        exclusive_npcs[player_id] = nil
+        printd("Removed all exclusive NPCs for player", player_id)
+    end
 end
 
 function eznpcs.handle_object_interaction(player_id, object_id)
     local area_id = Net.get_player_area(player_id)
-    local relay_object = Net.get_object_by_id(area_id,object_id)
-    if relay_object and relay_object.custom_properties["Interact Relay"] then
-        local placeholder_id = relay_object.custom_properties["Interact Relay"]
-        local bot_id = placeholder_to_botid[area_id][placeholder_id]
-        do_actor_interaction(player_id,bot_id,relay_object)
+    -- Use cached object (placeholders are cached)
+    local object = ezcache.get_object_by_id_cached(area_id, object_id)
+    if not object then 
+        printd("handle_object_interaction: object not found in cache", object_id)
+        return 
     end
+
+    -- Check if it's an exclusive NPC placeholder
+    if object.type == "NPC" and object.custom_properties and is_property_true(object.custom_properties["Player Exclusive"]) then
+        printd("Exclusive NPC interaction for player", player_id, "placeholder", object.id)
+        -- Create the exclusive bot if it doesn't exist yet
+        if not exclusive_npcs[player_id] or not exclusive_npcs[player_id][tostring(object.id)] then
+            local npc = create_bot_from_object(area_id, object, player_id)
+            if npc then
+                -- Store the bot ID (already done in create_bot_from_object)
+                -- Now start dialogue on that bot
+                do_actor_interaction(player_id, npc.bot_id, object)
+            end
+        else
+            -- Bot already exists, use it
+            local bot_id = exclusive_npcs[player_id][tostring(object.id)]
+            printd("Using existing exclusive bot", bot_id, "for player", player_id)
+            do_actor_interaction(player_id, bot_id, object)
+        end
+        return
+    end
+
+    -- Existing relay logic for non-exclusive NPCs
+    if object.custom_properties and object.custom_properties["Interact Relay"] then
+        local placeholder_id = object.custom_properties["Interact Relay"]
+        if placeholder_to_botid[area_id] and placeholder_to_botid[area_id][placeholder_id] then
+            local bot_id = placeholder_to_botid[area_id][placeholder_id]
+            do_actor_interaction(player_id, bot_id, object)
+        end
+    end
+end
+
+-- Helper to remove an exclusive NPC (called from dialogue_types on win)
+function eznpcs.remove_exclusive_npc(player_id, placeholder_id)
+    if exclusive_npcs[player_id] then
+        local bot_id = exclusive_npcs[player_id][tostring(placeholder_id)]
+        if bot_id then
+            Net.remove_bot(bot_id)
+            npcs[bot_id] = nil
+            exclusive_npcs[player_id][tostring(placeholder_id)] = nil
+            printd("Removed exclusive NPC bot", bot_id, "for player", player_id)
+        end
+    end
+end
+
+-- Helper to get bot ID for placeholder (used in ezmemory)
+function eznpcs.get_bot_id_for_placeholder(area_id, placeholder_id)
+    if placeholder_to_botid[area_id] then
+        return placeholder_to_botid[area_id][tostring(placeholder_id)]
+    end
+    return nil
 end
 
 return eznpcs

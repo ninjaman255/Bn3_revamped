@@ -123,30 +123,30 @@ function handle_object_interaction(player_id, object_id)
     local board_data = save_data[name]
 
     if board_data then
-        for i = #board_data.posts, 1, -1 do
-            local post = board_data.posts[i]
+        local _, pinned, unpinned = bbs_display_order_ids(board_data)
+
+        local function add_display_post(src)
+            local post = shallow_copy(src)
+    
+            -- Title formatting
             if post.pin then
-                post = shallow_copy(post)
                 post.title = "PIN: " .. string.sub(post.title, 1, TITLE_LIMIT - 5)
-                if last_time == nil or post.time < last_time then
-                    post.read = true
-                end
-                posts[#posts + 1] = post
+            else
+                post.title = string.sub(post.title, 1, TITLE_LIMIT)
             end
+
+            -- Read/unread should be based on ORIGINAL post.time (not pin_time)
+            local t = tonumber(post.time) or 0
+            if last_time == nil or t < last_time then
+                post.read = true
+            end
+
+            posts[#posts + 1] = post
         end
 
-        for i = #board_data.posts, 1, -1 do
-            local post = board_data.posts[i]
-            if not post.pin then
-                post = shallow_copy(post)
-                if last_time == nil or post.time < last_time then
-                    post.read = true
-                end
-                posts[#posts + 1] = post
-            end
-        end
-    end
-
+    for _, p in ipairs(pinned) do add_display_post(p) end
+    for _, p in ipairs(unpinned) do add_display_post(p) end
+end
     Net.open_board(player_id, name, color, posts)
 
     player_states[player_id] = {
@@ -164,6 +164,46 @@ function shallow_copy(original)
         copy[key] = value
     end
     return copy
+end
+
+function bbs_compare_pinned(a, b)
+    local at = tonumber(a.pin_time or a.time) or 0
+    local bt = tonumber(b.pin_time or b.time) or 0
+    if at ~= bt then return at > bt end
+
+    local at2 = tonumber(a.time) or 0
+    local bt2 = tonumber(b.time) or 0
+    if at2 ~= bt2 then return at2 > bt2 end
+
+    return tostring(a.id) > tostring(b.id)
+end
+
+function bbs_compare_unpinned(a, b)
+    local at = tonumber(a.time) or 0
+    local bt = tonumber(b.time) or 0
+    if at ~= bt then return at > bt end
+    return tostring(a.id) > tostring(b.id)
+end
+
+function bbs_display_order_ids(board_data)
+    local pinned, unpinned = {}, {}
+    local posts_table = (board_data and board_data.posts) or {}
+
+    for _, p in ipairs(posts_table) do
+        if p.pin then
+            pinned[#pinned + 1] = p
+        else
+            unpinned[#unpinned + 1] = p
+        end
+    end
+
+    table.sort(pinned, bbs_compare_pinned)
+    table.sort(unpinned, bbs_compare_unpinned)
+
+    local ids = {}
+    for _, p in ipairs(pinned) do ids[#ids + 1] = p.id end
+    for _, p in ipairs(unpinned) do ids[#ids + 1] = p.id end
+    return ids, pinned, unpinned
 end
 
 function handle_post_selection(player_id, post_id)
@@ -185,83 +225,71 @@ function handle_post_selection(player_id, post_id)
                 if response == 0 then
                     show_post(player_id, post_id)
                 elseif response == 1 then
-        -- ===== INSTANT PIN/UNPIN with correct title formatting =====
-        local board_data = save_data[board_name]
-        if not board_data then return end
-        local posts_table = board_data.posts
-                
-        -- Locate the original post
-        local old_post = nil
-        local old_index = nil
-        for i, p in ipairs(posts_table) do
-            if p.id == post_id then
-                old_post = p
-                old_index = i
-                break
-            end
-        end
-        if not old_post then return end
-    
-        local new_pin = not old_post.pin   -- toggle pin flag
-    
-        -- Create a new post with current time, same content, fresh ID (store original title)
-        local new_post = {
-            time = os.time(),
-            author = old_post.author,
-            title = old_post.title,                 -- original title (no prefix)
-            body = old_post.body,
-            pin = new_pin,
-            id = tostring(board_data.next_id)
-        }
-        board_data.next_id = board_data.next_id + 1
-    
-        -- Remove old post from data, insert new one at the end
-        table.remove(posts_table, old_index)
-        table.insert(posts_table, new_post)
-        save()
-    
-        -- Prepare the displayed version of the new post (add "PIN:" if needed)
-        local display_post = shallow_copy(new_post)
-        if new_pin then
-            -- Prepend "PIN: " and truncate to fit TITLE_LIMIT (14) with 5 chars for "PIN: "
-            local base_title = string.sub(display_post.title, 1, TITLE_LIMIT - 5)
-            display_post.title = "PIN: " .. base_title
-        else
-            -- Truncate unpinned title to TITLE_LIMIT (no prefix)
-            display_post.title = string.sub(display_post.title, 1, TITLE_LIMIT)
-        end
-    
-        -- Collect all players currently viewing this board
-        local viewers = {}
-        for pid, state in pairs(player_states) do
-            if state.board_name == board_name then
-                table.insert(viewers, pid)
-            end
-        end
-    
-        -- Determine the correct anchor ID for insertion
-        local anchor_id
-        if new_pin then
-            -- Pinned posts go right after the "POST" button
-            anchor_id = "POST"
-        else
-            -- Unpinned: find the last pinned post (lowest in pinned section)
-            local last_pinned_id = nil
-            for i = #posts_table, 1, -1 do
-                if posts_table[i].pin then
-                    last_pinned_id = posts_table[i].id
-                    break
+                -- ===== PIN/UNPIN without changing id/time (no "NEW" icon bug) =====
+                local board_data = save_data[board_name]
+                if not board_data then return end
+                local posts_table = board_data.posts or {}
+
+                -- Locate the post by id
+                local post = nil
+                for _, p in ipairs(posts_table) do
+                    if p.id == post_id then
+                        post = p
+                        break
+                    end
                 end
-            end
-            anchor_id = last_pinned_id or "POST"
-        end
-    
-        -- Update every viewer's board
-        for _, pid in ipairs(viewers) do
-            Net.remove_post(pid, post_id)                       -- remove the old post
-            Net.append_posts(pid, {display_post}, anchor_id)    -- insert the displayed post after anchor
-        end
-                -- ========================================================
+                if not post then return end
+
+                -- Toggle pin and set/clear pin_time (used only for pinned ordering)
+                post.pin = not post.pin
+                if post.pin then
+                    post.pin_time = os.time()
+                else
+                    post.pin_time = nil
+                end
+
+                save()
+
+                -- Everyone currently viewing this board
+                local viewers = {}
+                for pid, state in pairs(player_states) do
+                    if state.board_name == board_name then
+                        viewers[#viewers + 1] = pid
+                    end
+                end
+
+                -- Figure out where it should be inserted now (based on sorted display order)
+                local ordered_ids = bbs_display_order_ids(board_data)
+                local anchor_id = "POST"
+                for i, id in ipairs(ordered_ids) do
+                    if id == post_id then
+                        anchor_id = (i == 1) and "POST" or ordered_ids[i - 1]
+                        break
+                    end
+                end
+
+                -- Base display post (title formatting only)
+                local base_display = shallow_copy(post)
+                if post.pin then
+                    base_display.title = "PIN: " .. string.sub(base_display.title, 1, TITLE_LIMIT - 5)
+                else
+                    base_display.title = string.sub(base_display.title, 1, TITLE_LIMIT)
+                end
+
+                -- Update every viewer: remove then insert at correct position, preserving read state
+                for _, pid in ipairs(viewers) do
+                    local display_post = shallow_copy(base_display)
+                
+                    local last_time_for_viewer = last_read_time[pid]
+                    local t = tonumber(post.time) or 0
+                    if last_time_for_viewer == nil or t < last_time_for_viewer then
+                        display_post.read = true
+                    end
+
+                    Net.remove_post(pid, post_id)
+                    Net.append_posts(pid, { display_post }, anchor_id)
+                end
+                -- ===============================================================
             elseif response == 2 then
                 -- Delete post (also update all viewers for consistency)
                 local posts = save_data[board_name].posts

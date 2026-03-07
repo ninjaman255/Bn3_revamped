@@ -1,1 +1,52 @@
-{"Welcome Board":{"posts":[{"pin":true,"time":1749937189,"author":"D3str0y","title":"Welcome!","id":"1","body":"Welcome to BN3 Revamped. This server was made possible by these talented creators:\\nIndiana - Cyber-Trains server library.\\nDjRezzed/Enzan - Bn3 music remixes,\\nKuri - Secret net and water tiles,\\nQuetzen - Bn3 Internet tiles reimagined,\\nKeristero - Ezlibs,\\nKonst - Original BBS script,\\nD3str0y3d - Modifications to BBS script, handling server making + setup,\\nCyanman - Conductor prog sprites,\\n\\nand last, but not least every creator who made a mod based on a BN3 navi, chip, or navi cust piece.\\n\\nPlease Enjoy!"}],"next_id":2}}
+{
+  "ACDC_SQR1": {
+    "next_id": 6,
+    "posts": [
+      {
+        "author": "D3str0y",
+        "body": "xxxxxx",
+        "id": "1",
+        "pin": false,
+        "time": 1771648586,
+        "title": "xxxxxxxxxx"
+      },
+      {
+        "author": "D3str0y",
+        "body": "xxxxxxxxxxxxxx",
+        "id": "5",
+        "pin": true,
+        "time": 1771648608,
+        "title": "xxxxxxxxxxxxxx"
+      }
+    ]
+  },
+  "Welcome Board": {
+    "next_id": 59,
+    "posts": [
+      {
+        "author": "D3str0y",
+        "body": "xxxxxxxxxx",
+        "id": "56",
+        "pin": false,
+        "time": 1771959149,
+        "title": "xxxxxxxxxxxxxx"
+      },
+      {
+        "author": "D3str0y",
+        "body": "xxxxxx",
+        "id": "57",
+        "pin": false,
+        "time": 1771960028,
+        "title": "xxxxxxxx"
+      },
+      {
+        "author": "D3str0y",
+        "body": "kggjhkvjhvhjvxx",
+        "id": "58",
+        "pin": false,
+        "time": 1771960111,
+        "title": "kggjhkvjhvhjvx"
+      }
+    ]
+  }
+}

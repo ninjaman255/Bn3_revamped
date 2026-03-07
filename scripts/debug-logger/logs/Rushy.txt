@@ -1,1 +1,1 @@
-["Information","Details :{\"name\":\"Rush Food\",\"type\":\"keyitem\",\"description\":\"Mysterious food\"}"]
+["Information","Details :{\"type\":\"keyitem\",\"description\":\"Mysterious food\",\"name\":\"Rush Food\"}"]

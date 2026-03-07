@@ -1,7 +1,7 @@
 -- ezrushroads.lua
 -- Rush Roads minigame integrated with ezlibs
 -- Uses eztriggers for tile detection and ezmemory for persistence
-local ezrushroads = {}
+local ezrushroads = {}-- ezrushroads.lua
 -- ezrushroads.lua
 -- Rush Roads minigame integrated with ezlibs
 -- Uses eztriggers for tile detection and ezmemory for persistence
@@ -11,15 +11,27 @@ local ezmemory = require('scripts/ezlibs-scripts/ezmemory')
 local eztriggers = require('scripts/ezlibs-scripts/eztriggers')
 local ezbus = require('scripts/ezlibs-scripts/ezbus')
 
--- Local references to async/await in case globals are not defined
-local async = helpers.async or _G.async
-local await = helpers.await or _G.await
+-- Define local async/await using the global Async object (for use in handle_object_interaction)
+local async = function(p)
+    local co = coroutine.create(p)
+    return Async.promisify(co)
+end
+local await = Async.await
 
--- Local table length helper (replaces helpers.get_table_length if missing)
+-- Local table length helper
 local function get_table_length(tbl)
     local n = 0
     for _ in pairs(tbl) do n = n + 1 end
     return n
+end
+
+-- Helper to get animation state from direction string
+local function get_anim_state_from_direction(direction)
+    if direction == "Down Right" then
+        return "IDLE_DR"
+    elseif direction == "Down Left" then
+        return "IDLE_DL"
+    end
 end
 
 -- ============================================================================
@@ -33,9 +45,14 @@ local any_player = {}               -- [player_id] = true (online)
 local OFFMAP_X = -1000
 local OFFMAP_Y = -1000
 
--- Assets
+-- Assets for temporary bots (original rush sheet)
 local rush_texture = "/server/assets/rush-roads/rushy.png"
 local rush_animation = "/server/assets/rush-roads/rushy.anim"
+
+-- Assets for permanent bots (new fed_rush sheet with direction‑specific animations)
+local FED_RUSH_TEXTURE = "/server/assets/rush-roads/fed_rush.png"
+local RUSH_DL_ANIM = "/server/assets/rush-roads/rush_dl.anim"
+local RUSH_DR_ANIM = "/server/assets/rush-roads/rush_dr.anim"
 
 -- Food item base name (constant)
 local BASE_FOOD_NAME = "Rush Food"
@@ -110,7 +127,6 @@ local function group_rush_roads_in_area(area_id)
     local roads = rush_roads[area_id]
     if not roads then return end
 
-    -- Collect all road IDs
     local road_ids = {}
     for id, _ in pairs(roads) do
         table.insert(road_ids, id)
@@ -166,26 +182,31 @@ local function create_permanent_bot(area_id, road_id, linked_obj, direction)
     local bot_name = "rush_perm_" .. area_id .. "_" .. road_id
     local bot_x = linked_obj.x - 0.5
     local bot_y = linked_obj.y - 0.5
+    local bot_z = linked_obj.z - 1
 
-    local anim_state
+    local anim_state = get_anim_state_from_direction(direction)
+
+    -- Choose the correct animation file based on direction
+    local anim_path
     if direction == "Down Right" then
-        anim_state = "FED_DR"
+        anim_path = RUSH_DR_ANIM
     elseif direction == "Down Left" then
-        anim_state = "FED_DL"
-    else
-        anim_state = "IDLE_D"
+        anim_path = RUSH_DL_ANIM   -- default to Down Left
     end
+
+    print(string.format("[ezrushroads] Creating permanent bot %s at (%.2f, %.2f, %.2f) with anim %s (direction: %s, anim file: %s)",
+        bot_name, bot_x, bot_y, bot_z, anim_state, direction, anim_path))
 
     local success, err = pcall(Net.create_bot, bot_name, {
         name = "Rush Bot",
         area_id = area_id,
         warp_in = true,
-        texture_path = rush_texture,
-        animation_path = rush_animation,
+        texture_path = FED_RUSH_TEXTURE,   -- new texture
+        animation_path = anim_path,        -- direction‑specific animation file
         animation = anim_state,
         x = bot_x,
         y = bot_y,
-        z = linked_obj.z - 1,
+        z = bot_z,
         solid = false
     })
 
@@ -194,14 +215,21 @@ local function create_permanent_bot(area_id, road_id, linked_obj, direction)
         road.bot_name = bot_name
         road.original_x = bot_x
         road.original_y = bot_y
-        bot_occupants[bot_name] = { players = {}, road = road }
+        road.original_z = bot_z
+        road.anim_state = anim_state
+        road.down_x = bot_x + 0.1
+        road.down_y = bot_y + 0.1
+        road.down_z = bot_z
 
-        -- Initially hide this bot from all players
+        -- Immediately register in bot_occupants (record persists forever)
+        bot_occupants[bot_name] = { players = {}, road = road }
+        print("[ezrushroads] Created permanent bot " .. bot_name .. " and registered occupants")
+
+        -- Initially show this bot to all players (so pressure plate effect is visible even before clearing)
         for pid, _ in pairs(any_player) do
-            Net.exclude_actor_for_player(pid, bot_name)
+            Net.include_actor_for_player(pid, bot_name)
         end
 
-        print("[ezrushroads] Created permanent bot " .. bot_name)
         return true
     else
         print("[ezrushroads] Failed to create permanent bot: " .. tostring(err))
@@ -226,33 +254,57 @@ local function process_rush_road(area_id, object)
         group_id = nil,
         bot_name = nil,
         original_x = nil,
-        original_y = nil
+        original_y = nil,
+        original_z = nil,
+        down_x = nil,
+        down_y = nil,
+        down_z = nil,
+        anim_state = nil
     }
     rush_roads[area_id][object.id] = road
+    print("[ezrushroads] Registered road " .. object.id .. " at (" .. object.x .. "," .. object.y .. "," .. object.z .. ")")
 
-    -- Create a rectangle trigger for this road tile (1x1)
-    local emitter = eztriggers.add_rectangle_trigger(area_id, object, 1, 1)
+    -- If there is a linked object, create a permanent bot FIRST
+    local linked_id = object.custom_properties["Rush Object"]
+    if linked_id then
+        local linked_obj = Net.get_object_by_id(area_id, linked_id)
+        if linked_obj then
+            local direction = object.custom_properties["Direction"] or "Down Left"
+            create_permanent_bot(area_id, object.id, linked_obj, direction)
+        else
+            print("[ezrushroads] Linked object " .. tostring(linked_id) .. " not found in " .. area_id)
+        end
+    end
+
+    -- Create a rectangle trigger for this road tile (use object's width/height, or default to 1)
+    local width = 64
+    local height = 32
+    local emitter = eztriggers.add_rectangle_trigger(area_id, object, width, height, "rush_trigger")
     if emitter then
         emitter:on("entered", function(event)
             local player_id = event.player_id
             -- Only trigger if the road is not cleared for this player
-            local rush, _ = get_player_rush_memory(player_id)
-            if rush.cleared[area_id] and rush.cleared[area_id][tostring(object.id)] then
-                return -- cleared, ignore
-            end
+            -- local rush, _ = get_player_rush_memory(player_id)
+            -- if rush.cleared[area_id] and rush.cleared[area_id][tostring(object.id)] then
+            --     return -- cleared, ignore
+            -- end
             if road.bot_name then
+                print("[ezrushroads] 🟢 Tile entered by player " .. player_id .. " for road " .. object.id .. " bot " .. road.bot_name)
                 ezbus:emit("rush_tile_entered", {
                     player_id = player_id,
                     area_id = area_id,
                     road_id = object.id,
                     bot_name = road.bot_name
                 })
+            else
+                print("[ezrushroads] ⚠️ Tile entered but no bot_name yet for road " .. object.id)
             end
         end)
 
         emitter:on("departed", function(event)
             local player_id = event.player_id
             if road.bot_name then
+                print("[ezrushroads] 🔴 Tile departed by player " .. player_id .. " for road " .. object.id)
                 ezbus:emit("rush_tile_departed", {
                     player_id = player_id,
                     area_id = area_id,
@@ -262,25 +314,13 @@ local function process_rush_road(area_id, object)
             end
         end)
     end
-
-    -- If there is a linked object, create a permanent bot
-    local linked_id = object.custom_properties["Rush Object"]
-    if linked_id then
-        -- Use Net.get_object_by_id because the object is not cached
-        local linked_obj = Net.get_object_by_id(area_id, linked_id)
-        if linked_obj then
-            local direction = object.custom_properties["Direction"] or "Down Left"
-            create_permanent_bot(area_id, object.id, linked_obj, direction)
-        else
-            print("[ezrushroads] Linked object " .. tostring(linked_id) .. " not found in " .. area_id)
-        end
-    end
 end
 
 -- ============================================================================
 -- After all objects are loaded, scan for Rush Roads and process them
 -- ============================================================================
 function ezrushroads.init()
+    print("[ezrushroads] Initializing...")
     local areas = Net.list_areas()
     for _, area_id in ipairs(areas) do
         local objects = Net.list_objects(area_id)
@@ -313,14 +353,10 @@ local function update_visibility_for_player(player_id, area_id)
         local road_id_str = tostring(road_id)
         if cleared[road_id_str] then
             Net.exclude_object_for_player(player_id, road_id)
-            if road.bot_name then
-                Net.include_actor_for_player(player_id, road.bot_name)
-            end
+            -- Bot remains visible (already visible)
         else
             Net.include_object_for_player(player_id, road_id)
-            if road.bot_name then
-                Net.exclude_actor_for_player(player_id, road.bot_name)
-            end
+            -- Bot is already visible
         end
     end
 end
@@ -331,6 +367,7 @@ end
 local function create_temp_bots_for_player(player_id)
     if player_temp_bots[player_id] then return end
     player_temp_bots[player_id] = {}
+    print("[ezrushroads] Creating temp bots for player " .. player_id)
 
     for area_id, roads in pairs(rush_roads) do
         player_temp_bots[player_id][area_id] = {}
@@ -340,8 +377,8 @@ local function create_temp_bots_for_player(player_id)
                 name = "Rush Temp",
                 area_id = area_id,
                 warp_in = true,
-                texture_path = rush_texture,
-                animation_path = rush_animation,
+                texture_path = rush_texture,      -- original texture
+                animation_path = rush_animation,  -- original animation file
                 animation = "IDLE_D",
                 x = OFFMAP_X,
                 y = OFFMAP_Y,
@@ -386,28 +423,35 @@ local function clear_active_animation(player_id)
 end
 
 -- ============================================================================
--- Handle pressure plate effects via bus events
+-- Handle pressure plate effects via bus events (with short delay for animation)
 -- ============================================================================
 ezbus:on("rush_tile_entered", function(event)
     local player_id = event.player_id
     local bot_name = event.bot_name
     local occ = bot_occupants[bot_name]
-    if not occ then return end
+    if not occ then
+        print("[ezrushroads] ❌ ERROR: No occupant record for bot " .. bot_name)
+        return
+    end
 
     if not occ.players[player_id] then
         occ.players[player_id] = true
-        -- If first occupant, press bot down (move up-right)
-        if get_table_length(occ.players) == 1 then
+        local new_count = get_table_length(occ.players)
+        print("[ezrushroads] Player " .. player_id .. " entered tile, now " .. new_count .. " occupants")
+        -- If first occupant, move bot down instantly, then set animation after a short delay
+        if new_count == 1 then
             local road = occ.road
-            if road.original_x and road.original_y then
-                local keyframes = {{
-                    properties = {
-                        { property = "X", value = road.original_x + 0.1 },
-                        { property = "Y", value = road.original_y + 0.1 }
-                    },
-                    duration = 0.2
-                }}
-                Net.animate_bot_properties(bot_name, keyframes)
+            if road.down_x and road.down_y then
+                print(string.format("[ezrushroads] ⬇️ Moving bot %s down to (%.2f, %.2f)", bot_name, road.down_x, road.down_y))
+                --local direction = road.custom_properties and road.custom_properties["Direction"] or "Down Left"
+                --local anim_state = get_anim_state_from_direction(direction)
+                -- Net.animate_bot(bot_name, anim_state, true)
+                Net.move_bot(bot_name, road.down_x, road.down_y, road.down_z)
+                -- set_anim(bot_name, anim_state)
+                -- Determine correct animation from the road's Direction property
+           
+                --print("[ezrushroads] Using direction " .. direction .. " -> animation " .. anim_state)
+                
             end
         end
     end
@@ -417,27 +461,35 @@ ezbus:on("rush_tile_departed", function(event)
     local player_id = event.player_id
     local bot_name = event.bot_name
     local occ = bot_occupants[bot_name]
-    if not occ or not occ.players[player_id] then return end
+    if not occ then
+        print("[ezrushroads] ❌ ERROR: No occupant record for bot " .. bot_name .. " on departure")
+        return
+    end
 
-    occ.players[player_id] = nil
-    if get_table_length(occ.players) == 0 then
-        bot_occupants[bot_name] = nil
-        local road = occ.road
-        if road.original_x and road.original_y then
-            local keyframes = {{
-                properties = {
-                    { property = "X", value = road.original_x },
-                    { property = "Y", value = road.original_y }
-                },
-                duration = 0.2
-            }}
-            Net.animate_bot_properties(bot_name, keyframes)
+    if occ.players[player_id] then
+        occ.players[player_id] = nil
+        local new_count = get_table_length(occ.players)
+        print("[ezrushroads] Player " .. player_id .. " departed tile, remaining " .. new_count)
+        if new_count == 0 then
+            -- No players left, move bot back up instantly, then set animation after a short delay
+            local road = occ.road
+            if road.original_x and road.original_y then
+                --local direction = road.custom_properties and road.custom_properties["Direction"] or "Down Left"
+                --local anim_state = get_anim_state_from_direction(direction)
+                print(string.format("[ezrushroads] ⬆️ Returning bot %s to (%.2f, %.2f)", bot_name, road.original_x, road.original_y))
+                --Net.animate_bot(bot_name, anim_state, true)
+                Net.move_bot(bot_name, road.original_x, road.original_y, road.original_z)
+
+                -- Determine correct animation from the road's Direction property (same as entry)
+                --print("[ezrushroads] Using direction " .. direction .. " -> animation " .. anim_state)
+                --set_anim(bot_name, anim_state)
+            end
         end
     end
 end)
 
 -- ============================================================================
--- Event handlers
+-- Event handlers (called from main.lua)
 -- ============================================================================
 function ezrushroads.handle_player_join(player_id)
     any_player[player_id] = true
@@ -468,23 +520,21 @@ function ezrushroads.handle_player_disconnect(player_id)
     clear_active_animation(player_id)
     remove_temp_bots_for_player(player_id)
 
-    -- Remove from bot_occupants
+    -- Remove player from bot_occupants but keep the records
     for bot_name, occ in pairs(bot_occupants) do
         if occ.players[player_id] then
             occ.players[player_id] = nil
             if get_table_length(occ.players) == 0 then
-                bot_occupants[bot_name] = nil
-                -- Revert bot position
+                -- Reset bot position to original (no delay needed on disconnect)
                 local road = occ.road
                 if road and road.original_x and road.original_y then
-                    local keyframes = {{
-                        properties = {
-                            { property = "X", value = road.original_x },
-                            { property = "Y", value = road.original_y }
-                        },
-                        duration = 0.2
-                    }}
-                    Net.animate_bot_properties(bot_name, keyframes)
+                    print("[ezrushroads] Player disconnect resetting bot " .. bot_name)
+                    Net.move_bot(bot_name, road.original_x, road.original_y, road.original_z)
+
+                    -- Use correct animation from direction
+                    -- local direction = road.custom_properties and road.custom_properties["Direction"] or "Down Left"
+                    -- local anim_state = get_anim_state_from_direction(direction)
+                    -- Net.animate_bot(bot_name, anim_state, true)
                 end
             end
         end
@@ -526,7 +576,7 @@ function ezrushroads.handle_object_interaction(player_id, object_id)
         return
     end
 
-    -- Return an async function (promise) that will be awaited by the engine
+    -- Return an async function (promise) using our locally defined async/await
     return async(function()
         local choice = await(Async.question_player(player_id,
             "Would you like to use " .. group_size .. " Rush Food to activate this group?"))
@@ -562,12 +612,9 @@ function ezrushroads.handle_object_interaction(player_id, object_id)
         end
         ezmemory.save_player_memory(secret)
 
-        -- Immediately hide road objects and show permanent bots for this player
+        -- Immediately hide road objects (they stay hidden)
         for id, _ in pairs(group_roads) do
             Net.exclude_object_for_player(player_id, id)
-            if rush_roads[area][id].bot_name then
-                Net.include_actor_for_player(player_id, rush_roads[area][id].bot_name)
-            end
         end
 
         -- Animation sequence
@@ -594,7 +641,7 @@ function ezrushroads.handle_object_interaction(player_id, object_id)
             local move_in = {{ properties = { { property = "X", value = x }, { property = "Y", value = y } }, duration = 0 }}
             Net.animate_bot_properties(temp_bot, move_in)
 
-            -- Full animation keyframes (same as original)
+            -- Full animation keyframes
             local keyframes = {
                 { properties = { { property = "Animation", value = "IDLE_D" }, { property = "X", ease = "In", value = x }, { property = "Y", ease = "In", value = y } }, duration = 1.0 },
                 { properties = { { property = "Animation", value = "WIND_UP" }, { property = "X", ease = "In", value = (x - .2) }, { property = "Y", ease = "In", value = (y - .2) } }, duration = 0.1 },
@@ -617,15 +664,25 @@ function ezrushroads.handle_object_interaction(player_id, object_id)
 
         player_active_animation[player_id] = anim_state
 
-        -- After animation, move temp bots off-map and unlock input
-        await(Async.sleep(3.6))  -- total animation duration
+        -- After animation, move temp bots off-map and show permanent bots
+        await(Async.sleep(3.6))
         local current = player_active_animation[player_id]
         if current and current.seq == seq then
             if Net.get_player_name(player_id) then  -- player still online
+                -- Move temp bots off-map
                 for id, bot_name in pairs(anim_state.roads) do
                     local move_out = {{ properties = { { property = "X", value = OFFMAP_X }, { property = "Y", value = OFFMAP_Y } }, duration = 0 }}
                     Net.animate_bot_properties(bot_name, move_out)
                 end
+
+                -- Show permanent bots for all cleared roads in this group
+                for id, _ in pairs(group_roads) do
+                    if rush_roads[area][id].bot_name then
+                        Net.include_actor_for_player(player_id, rush_roads[area][id].bot_name)
+                        print("[ezrushroads] 👁️ Showing permanent bot " .. rush_roads[area][id].bot_name .. " after animation")
+                    end
+                end
+
                 Net.unlock_player_input(player_id)
             end
             player_active_animation[player_id] = nil

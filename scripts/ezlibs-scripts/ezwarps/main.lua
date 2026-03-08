@@ -4,6 +4,7 @@ local create_jack_in_out_animation = require('scripts/ezlibs-scripts/ezwarps/log
 local eztriggers = require('scripts/ezlibs-scripts/eztriggers')
 local object_registry = require('scripts/ezlibs-scripts/object_registry')
 local ezbus = require('scripts/ezlibs-scripts/ezbus')
+local ezcache = require('scripts/ezlibs-scripts/ezcache')
 
 local ezwarps = {}
 
@@ -119,13 +120,15 @@ function add_custom_warp(object, object_id, area_id, area_name)
     local target_area = object.custom_properties["Target Area"]
     local dont_teleport = object.custom_properties["Dont Teleport"]
     if not dont_teleport and target_area then
-        target_object = Net.get_object_by_id(target_area, object.custom_properties["Target Object"])                
+        local target_object_id = tostring(object.custom_properties["Target Object"])
+        target_object = ezcache.get_object_by_id_cached(target_area, target_object_id)
         if target_object == nil then
             log('found warp in ' .. area_name .. ' with target area, but could not find target object')
             log('skipping current warp due to missing target object')
-            warp_is_valid = false                    
+            warp_is_valid = false
         end
     end
+    -- Note: This function is currently unused; triggers are set up in process_warp_object.
 end
 
 -- Shared function to process any warp object
@@ -149,10 +152,10 @@ local function process_warp_object(area_id, object)
     end
 end
 
--- Register handlers for all warp types
-object_registry.register_handler("Radius Warp", process_warp_object)
-object_registry.register_handler("Custom Warp", process_warp_object)
-object_registry.register_handler("Interact Warp", process_warp_object)
+-- Register handlers for all warp types with caching disabled
+object_registry.register_handler("Radius Warp", process_warp_object, false)
+object_registry.register_handler("Custom Warp", process_warp_object, false)
+object_registry.register_handler("Interact Warp", process_warp_object, false)
 
 function prepare_player_arrival(player_id,x,y,z,special_animation_name)
     local entry_x = x
@@ -235,7 +238,14 @@ function use_warp(player_id,warp_object,warp_meta)
             local arrival_animation_name = nil
             local dont_teleport = warp_object.custom_properties["Dont Teleport"]
             if target_object_id and not dont_teleport then
-                local target_object = Net.get_object_by_id(target_area,target_object_id)
+                -- Use cache to get the target object, converting ID to string
+                local target_id_str = tostring(target_object_id)
+                local target_object = ezcache.get_object_by_id_cached(target_area, target_id_str)
+                if not target_object then
+                    log('ERROR: target object not found! ID: ' .. target_id_str .. ' in area: ' .. target_area)
+                    Net.unlock_player_input(player_id)
+                    return
+                end
                 if target_object.custom_properties["Direction"] then
                     direction = target_object.custom_properties["Direction"]
                 end
@@ -264,7 +274,8 @@ function ezwarps.handle_custom_warp(player_id, object_id)
         return
     end
     local player_area = Net.get_player_area(player_id)
-    local object = Net.get_object_by_id(player_area, object_id)
+    -- Use cache for the warp object itself (though it's not cached due to cache=false, this still works)
+    local object = ezcache.get_object_by_id_cached(player_area, tostring(object_id))
     if not object then
         return
     end

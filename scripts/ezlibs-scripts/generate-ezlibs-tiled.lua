@@ -168,7 +168,7 @@ local object_types = {
             prop("Arrival Animation", "string", ""),
             prop("Dont Teleport", "bool", false),
             prop("Target Area", "string", ""),
-            prop("Target Object", "object", ""),
+            prop("Target Object", "string", ""),
             prop("Leave Animation", "string", ""),
         }
     },
@@ -182,7 +182,7 @@ local object_types = {
             prop("Arrival Animation", "string", ""),
             prop("Dont Teleport", "bool", false),
             prop("Target Area", "string", ""),
-            prop("Target Object", "object", ""),
+            prop("Target Object", "string", ""),
             prop("Leave Animation", "string", ""),
         }
     },
@@ -197,7 +197,7 @@ local object_types = {
             prop("Dont Teleport", "bool", false),
             prop("Activation Radius", "number", 1),
             prop("Target Area", "string", ""),
-            prop("Target Object", "object", ""),
+            prop("Target Object", "string", ""),
             prop("Leave Animation", "string", ""),
         }
     },

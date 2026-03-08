@@ -266,22 +266,22 @@
     <property name="Rush Object" type="object" value="141"/>
    </properties>
   </object>
-  <object id="136" x="864" y="800">
+  <object id="136" x="848" y="784">
    <point/>
   </object>
-  <object id="137" x="896" y="800">
+  <object id="137" x="880" y="784">
    <point/>
   </object>
-  <object id="138" x="928" y="800">
+  <object id="138" x="912" y="784">
    <point/>
   </object>
-  <object id="139" x="960" y="800">
+  <object id="139" x="944" y="784">
    <point/>
   </object>
-  <object id="140" x="960" y="768">
+  <object id="140" x="944" y="752">
    <point/>
   </object>
-  <object id="141" x="960" y="736">
+  <object id="141" x="944" y="720">
    <point/>
   </object>
  </objectgroup>
@@ -495,13 +495,13 @@
     <property name="Rush Object" type="object" value="127"/>
    </properties>
   </object>
-  <object id="125" x="544" y="416">
+  <object id="125" x="528" y="400">
    <point/>
   </object>
-  <object id="126" x="512" y="448">
+  <object id="126" x="496" y="432">
    <point/>
   </object>
-  <object id="127" x="448" y="320">
+  <object id="127" x="432" y="304">
    <point/>
   </object>
   <object id="131" name="Rush Road" type="Rush Road" gid="1540" x="416" y="416" width="64" height="32">
@@ -510,7 +510,7 @@
     <property name="Rush Object" type="object" value="132"/>
    </properties>
   </object>
-  <object id="132" x="448" y="448">
+  <object id="132" x="432" y="432">
    <point/>
   </object>
   <object id="133" name="Rush Road" type="Rush Road" gid="1540" x="480" y="288" width="64" height="32">
@@ -519,10 +519,10 @@
     <property name="Rush Object" type="object" value="134"/>
    </properties>
   </object>
-  <object id="134" x="512" y="320">
+  <object id="134" x="496" y="304">
    <point/>
   </object>
-  <object id="135" x="640" y="384">
+  <object id="135" x="624" y="368">
    <point/>
   </object>
  </objectgroup>

@@ -1,23 +1,23 @@
 animation state="IDLE_DR"
-frame duration="0.0833333" x="0" y="0" w="64" h="32" originx="32" originy="32" flipx="1"
+frame duration="0.0833333" x="0" y="0" w="64" h="32" originx="32" originy="16" flipx="1"
 
 animation state="IDLE_DL"
-frame duration="0.0833333" x="0" y="0" w="64" h="32" originx="32" originy="32"
+frame duration="0.0833333" x="0" y="0" w="64" h="32" originx="32" originy="16"
 
 animation state="IDLE_D"
-frame duration="0.0666667" x="0" y="0" w="64" h="32" originx="32" originy="32" flipx="1"
+frame duration="0.0666667" x="0" y="0" w="64" h="32" originx="32" originy="16" flipx="1"
 
 animation state="IDLE_U"
-frame duration="0.0666667" x="0" y="0" w="64" h="32" originx="32" originy="32" flipx="1"
+frame duration="0.0666667" x="0" y="0" w="64" h="32" originx="32" originy="16" flipx="1"
 
 animation state="WALK_DR"
-frame duration="0.0833333" x="0" y="0" w="64" h="32" originx="32" originy="32" flipx="1"
+frame duration="0.0833333" x="0" y="0" w="64" h="32" originx="32" originy="16" flipx="1"
 
 animation state="WALK_DL"
-frame duration="0.0833333" x="0" y="0" w="64" h="32" originx="32" originy="32"
+frame duration="0.0833333" x="0" y="0" w="64" h="32" originx="32" originy="16"
 
 animation state="WALK_D"
-frame duration="0.0666667" x="0" y="0" w="64" h="32" originx="32" originy="32" flipx="1"
+frame duration="0.0666667" x="0" y="0" w="64" h="32" originx="32" originy="16" flipx="1"
 
 animation state="WALK_U"
-frame duration="0.0666667" x="0" y="0" w="64" h="32" originx="32" originy="32" flipx="1"
+frame duration="0.0666667" x="0" y="0" w="64" h="32" originx="32" originy="16" flipx="1"

@@ -28,14 +28,96 @@ local sfx = {
     item_get = '/server/assets/ezlibs-assets/sfx/item_get.ogg',
 }
 
--- Ensure all required directories exist
-helpers.ensure_directory(area_path_prefix)
-helpers.ensure_directory(player_path_prefix)
--- Ensure parent directories for files (players_path, items_path)
+-- ============================================================================
+-- Ensure directories and files exist at startup
+-- ============================================================================
+
+-- Ensure base memory directory
+helpers.ensure_directory('./memory/')
+
+-- Ensure parent directories for players.json and items.json
 local players_dir = players_path:match("^(.*[/\\])")
 if players_dir then helpers.ensure_directory(players_dir) end
 local items_dir = items_path:match("^(.*[/\\])")
 if items_dir then helpers.ensure_directory(items_dir) end
+
+-- Helper to create a file with default content if it doesn't exist
+local function ensure_file(path, default_content)
+    local f = io.open(path, "rb")
+    if not f then
+        f = io.open(path, "w")
+        if f then
+            f:write(default_content)
+            f:close()
+            print("[ezmemory] Created default file:", path)
+        else
+            print("[ezmemory] Warning: Could not create file", path)
+        end
+    else
+        f:close()
+    end
+end
+
+-- Ensure players.json and items.json exist with default empty tables
+ensure_file(players_path, "{}")
+ensure_file(items_path, "{}")
+
+-- Ensure area and player directories
+helpers.ensure_directory(area_path_prefix)
+helpers.ensure_directory(player_path_prefix)
+
+-- ============================================================================
+-- File I/O helpers (fixed path handling)
+-- ============================================================================
+
+-- Given a full file path (e.g., "./memory/players.json"), returns the base
+-- and extension. For backup we insert "_backup" before extension.
+local function split_path_ext(fullpath)
+    local base = fullpath:match("^(.*)%.[^%.]+$")
+    local ext = fullpath:match("%.([^%.]+)$")
+    if base and ext then
+        return base, "." .. ext
+    else
+        return fullpath, ""
+    end
+end
+
+local function ezmemory_load_file(file_path)
+    return async(function ()
+        local base, ext = split_path_ext(file_path)
+        local main_file = base .. ext
+        local backup_file = base .. "_backup" .. ext
+
+        local data = nil
+        pcall(function()
+            data = json.decode(await(Async.read_file(main_file)))
+        end)
+        if data == nil then
+            pcall(function()
+                data = json.decode(await(Async.read_file(backup_file)))
+            end)
+            if data == nil then
+                return {}
+            end
+        end
+        return data
+    end)
+end
+
+local function ezmemory_save_file(file_path, value)
+    return async(function ()
+        local base, ext = split_path_ext(file_path)
+        local main_file = base .. ext
+        local backup_file = base .. "_backup" .. ext
+        local json_str = json.encode(value, true)
+        await(Async.write_file(backup_file, json_str))
+        await(Async.write_file(main_file, json_str))
+    end)
+end
+
+-- ============================================================================
+-- Rest of the module unchanged
+-- ============================================================================
 
 Net:on("handle_player_join", function(event)
     for name, path in pairs(sfx) do
@@ -53,32 +135,6 @@ end)
 local function printd(...)
     local arg={...}
     print('[ezmemory]',table.unpack(arg))
-end
-
-local function ezmemory_load_file(file_path)
-    return async(function ()
-        local data = nil
-        pcall(function()
-            data = json.decode(await(Async.read_file(file_path..".json")))
-        end)
-        if data == nil then
-            pcall(function()
-                data = json.decode(await(Async.read_file(file_path.."_backup.json")))
-            end)
-            if data == nil then
-                return {}
-            end
-        end
-        return data
-    end)
-end
-
-local function ezmemory_save_file(file_path,value)
-    return async(function ()
-        local json = json.encode(value, true)
-        await(Async.write_file(file_path.."_backup.json",json))
-        await(Async.write_file(file_path..".json",json))
-    end)
 end
 
 local function normalize_player_memory(mem)
@@ -286,20 +342,20 @@ function ezmemory.get_or_create_item(item_name,item_description,is_key)
 end
 
 function ezmemory.save_items()
-    ezmemory_save_file(items_path,items)
+    ezmemory_save_file(items_path, items)
 end
 
 function ezmemory.save_area_memory(area_id)
-    ezmemory_save_file('./memory/area/'..area_id,area_memory[area_id])
+    ezmemory_save_file(area_path_prefix .. area_id, area_memory[area_id])
 end
 
 function ezmemory.save_player_memory(safe_secret)
-    ezmemory_save_file('./memory/player/'..safe_secret,player_memory[safe_secret])
+    ezmemory_save_file(player_path_prefix .. safe_secret, player_memory[safe_secret])
 end
 
 function ezmemory.dangerously_override_player_memory(safe_secret,new_memory)
     if player_memory[safe_secret] then
-        ezmemory_save_file('./memory/player/'..safe_secret,new_memory)
+        ezmemory_save_file(player_path_prefix .. safe_secret, new_memory)
     end
 end
 
@@ -349,7 +405,7 @@ end
 
 function ezmemory.get_player_memory(safe_secret)
     if not memory_loaded_flags.player_memory then
-        error("ezmemory is still loading area_memory, please wait a bit")
+        error("ezmemory is still loading player_memory, please wait a bit")
     end
     if player_memory[safe_secret] then
         return player_memory[safe_secret]
@@ -383,7 +439,7 @@ end
 
 function ezmemory.update_player_list(safe_secret,name)
     player_list[safe_secret] = name
-    ezmemory_save_file(players_path,player_list)
+    ezmemory_save_file(players_path, player_list)
 end
 
 function ezmemory.get_player_name_from_safesecret(safe_secret)

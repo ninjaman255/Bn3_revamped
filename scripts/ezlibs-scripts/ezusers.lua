@@ -7,7 +7,7 @@
 
 local helpers = require('scripts/ezlibs-scripts/helpers')
 local ezmemory = require('scripts/ezlibs-scripts/ezmemory')
-local sha = require("scripts/libs/sha256")
+local sha = require("scripts/ezlibs-scripts/sha256")
 local ezconfig = require('scripts/ezlibs-scripts/ezconfig')  -- load server config
 
 -- ============================================================================

@@ -46,13 +46,13 @@ local OFFMAP_X = -1000
 local OFFMAP_Y = -1000
 
 -- Assets for temporary bots (original rush sheet)
-local rush_texture = "/server/assets/rush-roads/rushy.png"
-local rush_animation = "/server/assets/rush-roads/rushy.anim"
+local rush_texture = "/server/assets/ezlibs-assets/ezrushroads/rushy.png"
+local rush_animation = "/server/assets/ezlibs-assets/ezrushroads/rushy.anim"
 
 -- Assets for permanent bots (new fed_rush sheet with direction‑specific animations)
-local FED_RUSH_TEXTURE = "/server/assets/rush-roads/fed_rush.png"
-local RUSH_DL_ANIM = "/server/assets/rush-roads/rush_dl.anim"
-local RUSH_DR_ANIM = "/server/assets/rush-roads/rush_dr.anim"
+local FED_RUSH_TEXTURE = "/server/assets/ezlibs-assets/ezrushroads/fed_rush.png"
+local RUSH_DL_ANIM = "/server/assets/ezlibs-assets/ezrushroads/rush_dl.anim"
+local RUSH_DR_ANIM = "/server/assets/ezlibs-assets/ezrushroads/rush_dr.anim"
 
 -- Food item base name (constant)
 local BASE_FOOD_NAME = "Rush Food"

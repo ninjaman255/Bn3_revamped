@@ -14,7 +14,7 @@ local ezpress = {}
 local compressed_players = {}
 
 -- Sound effect path (adjust if needed)
-local compressSfx = "/server/assets/sfx/compress.ogg"
+local compressSfx = "/server/assets/ezlibs-assets/sfx/compress.ogg"
 
 -- Store trigger data per area for manual checks on join/transfer
 local area_triggers = {}

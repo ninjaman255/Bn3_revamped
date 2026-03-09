@@ -43,7 +43,7 @@ local sfx = {
     item_get = '/server/assets/ezlibs-assets/sfx/item_get.ogg',
     recover = '/server/assets/ezlibs-assets/sfx/recover.ogg',
     card_error = '/server/assets/ezlibs-assets/ezfarms/card_error.ogg',
-    compressSfx = "/server/assets/sfx/compress.ogg"
+    compressSfx = "/server/assets/ezlibs-assets/sfx/compress.ogg"
 }
 
 local custom_script_path = 'scripts/ezlibs-custom/custom'

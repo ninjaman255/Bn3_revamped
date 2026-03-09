@@ -70,24 +70,26 @@ helpers.ensure_directory(player_path_prefix)
 -- File I/O helpers (fixed path handling)
 -- ============================================================================
 
--- Given a full file path (e.g., "./memory/players.json"), returns the base
--- and extension. For backup we insert "_backup" before extension.
-local function split_path_ext(fullpath)
-    local base = fullpath:match("^(.*)%.[^%.]+$")
-    local ext = fullpath:match("%.([^%.]+)$")
-    if base and ext then
-        return base, "." .. ext
+-- Given a base path, returns the main file path and backup file path.
+-- If base already ends with ".json", backup is base with "_backup" inserted before .json.
+-- Otherwise, main is base .. ".json", backup is base .. "_backup.json".
+local function get_file_paths(base)
+    if base:match("%.json$") then
+        -- e.g., "./memory/players.json" -> main: same, backup: "./memory/players_backup.json"
+        local main = base
+        local backup = base:gsub("%.json$", "_backup.json")
+        return main, backup
     else
-        return fullpath, ""
+        -- e.g., "./memory/player/abc123" -> main: "./memory/player/abc123.json", backup: "./memory/player/abc123_backup.json"
+        local main = base .. ".json"
+        local backup = base .. "_backup.json"
+        return main, backup
     end
 end
 
 local function ezmemory_load_file(file_path)
     return async(function ()
-        local base, ext = split_path_ext(file_path)
-        local main_file = base .. ext
-        local backup_file = base .. "_backup" .. ext
-
+        local main_file, backup_file = get_file_paths(file_path)
         local data = nil
         pcall(function()
             data = json.decode(await(Async.read_file(main_file)))
@@ -106,9 +108,7 @@ end
 
 local function ezmemory_save_file(file_path, value)
     return async(function ()
-        local base, ext = split_path_ext(file_path)
-        local main_file = base .. ext
-        local backup_file = base .. "_backup" .. ext
+        local main_file, backup_file = get_file_paths(file_path)
         local json_str = json.encode(value, true)
         await(Async.write_file(backup_file, json_str))
         await(Async.write_file(main_file, json_str))

@@ -49,7 +49,7 @@ local function explode(self, explosion_bot_id)
     return
   end
 
-  Net.play_sound(self.area_id, "/server/assets/sfx/explode.ogg")
+  Net.play_sound(self.area_id, "/server/assets/ezlibs-assets/sfx/explode.ogg")
 
   if math.random(2) == 1 then
     Net.animate_bot(explosion_bot_id, "EXPLODE")
@@ -67,8 +67,8 @@ end
 local function spawn(self)
   for i = 1, self.total_explosions, 1 do
     local explosion_bot_id = Net.create_bot({
-      texture_path = "/server/assets/misc/explosion.png",
-      animation_path = "/server/assets/misc/explosion.animation",
+      texture_path = "/server/assets/ezlibs-assets/ezexplosions/explosion.png",
+      animation_path = "/server/assets/ezlibs-assets/ezexplosions/explosion.animation",
       area_id = self.area_id,
       warp_in = false,
       x = self.position.x,

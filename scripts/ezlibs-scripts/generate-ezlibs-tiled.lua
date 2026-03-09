@@ -336,6 +336,15 @@ local object_types = {
             prop("Rush Object", "object", ""),   -- linked object where the permanent bot appears
             prop("Direction", "string", "Down Left", "Direction"), -- animation direction
         }
+    },
+    -- Compression Tile (for ezpress)
+    {
+        name = "Compression Tile",
+        color = "#88aaff",
+        members = {
+            prop("Compress", "bool", false),
+            prop("Decompress", "bool", false),
+        }
     }
 }
 

@@ -316,7 +316,7 @@ Net:on("player_join", function(event)
 
     ezemail.resend_all(event.player_id)
     pcall(function()
-      local ezannounce = require('scripts/ezlibs-scripts/ezannounce')
+      local ezannounce = require('scripts/ezlibs-scripts/ezannounce/ezannounce')
       ezannounce.send_missing(event.player_id)
     end)
     if ENABLE_TEST_EMAIL_ON_JOIN then

@@ -8,8 +8,8 @@ local ezencounters = require('scripts/ezlibs-scripts/ezencounters/main')
 local math = require('math')
 local ezbus = require('scripts/ezlibs-scripts/ezbus')
 
-local AvatarCache = require('scripts/avatar_utils/main')
-local AvatarUtils = require('scripts/avatar_utils/avatar_utils')
+local AvatarCache = require('scripts/ezlibs-scripts/avatar_utils/main')
+local AvatarUtils = require('scripts/ezlibs-scripts/avatar_utils/avatar_utils')
 
 local object_cache = {}
 local revealed_mysteries_for_players = {}

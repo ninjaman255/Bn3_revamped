@@ -4,7 +4,7 @@ local ezemail  = require('scripts/ezlibs-scripts/ezemail') -- <-- adjust path to
 local ezbus = require('scripts/ezlibs-scripts/ezbus')
 
 local ezannounce = {}
-local FEED_MODULE = 'scripts/ezlibs-scripts/announcements_feed'
+local FEED_MODULE = 'scripts/ezlibs-scripts/ezannounce/announcements_feed'
 local POLL_SECONDS = 10
 
 local _feed_cache = nil

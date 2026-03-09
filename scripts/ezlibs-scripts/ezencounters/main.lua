@@ -4,6 +4,7 @@ local helpers = require('scripts/ezlibs-scripts/helpers')
 local eztriggers = require('scripts/ezlibs-scripts/eztriggers')
 local object_registry = require('scripts/ezlibs-scripts/object_registry')
 local ezbus = require('scripts/ezlibs-scripts/ezbus')
+local ezconfig = require('scripts/ezlibs-scripts/ezconfig')
 
 local ezencounters = {}
 local players_in_encounters = {}
@@ -13,11 +14,14 @@ local named_encounters = {}
 local provided_encounter_assets = {}
 local encounter_finished_callbacks = {}
 
+-- Ensure encounters directory exists
+helpers.ensure_directory(ezconfig.ENCOUNTERS_PATH)
+
 local load_encounters_for_areas = function ()
     local areas = Net.list_areas()
     local area_encounter_tables = {}
     for i, area_id in ipairs(areas) do
-        local encounter_table_path = 'encounters/'..area_id
+        local encounter_table_path = ezconfig.ENCOUNTERS_PATH .. area_id
         local status, err = pcall(function () require(encounter_table_path) end)
         if status == true then
             area_encounter_tables[area_id] = require(encounter_table_path)

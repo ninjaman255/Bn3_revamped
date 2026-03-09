@@ -2,6 +2,7 @@ local json = require('scripts/ezlibs-scripts/json')
 local helpers = require('scripts/ezlibs-scripts/helpers')
 local table = require('table')
 local ezbus = require('scripts/ezlibs-scripts/ezbus')
+local ezconfig = require('scripts/ezlibs-scripts/ezconfig')   -- load config
 local ezmemory = {}
 local player_memory = {}
 local area_memory = {}
@@ -12,10 +13,10 @@ local item_name_table = {}
 local objects_hidden_till_disconnect_for_player = {}
 local highest_item_id = 1
 
-local players_path = './memory/players'
-local items_path = './memory/items'
-local area_path_prefix = './memory/area/'
-local player_path_prefix = './memory/player/'
+local players_path = ezconfig.PLAYERS_PATH
+local items_path = ezconfig.ITEMS_PATH
+local area_path_prefix = ezconfig.AREA_PATH_FOLDER
+local player_path_prefix = ezconfig.PLAYER_PATH_FOLDER
 
 local memory_loaded_flags = {
     area_memory=false,
@@ -26,6 +27,15 @@ local memory_loaded_flags = {
 local sfx = {
     item_get = '/server/assets/ezlibs-assets/sfx/item_get.ogg',
 }
+
+-- Ensure all required directories exist
+helpers.ensure_directory(area_path_prefix)
+helpers.ensure_directory(player_path_prefix)
+-- Ensure parent directories for files (players_path, items_path)
+local players_dir = players_path:match("^(.*[/\\])")
+if players_dir then helpers.ensure_directory(players_dir) end
+local items_dir = items_path:match("^(.*[/\\])")
+if items_dir then helpers.ensure_directory(items_dir) end
 
 Net:on("handle_player_join", function(event)
     for name, path in pairs(sfx) do

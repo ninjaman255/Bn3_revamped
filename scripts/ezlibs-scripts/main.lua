@@ -18,6 +18,8 @@ local ezemail = require('scripts/ezlibs-scripts/ezemail')
 local ezexplosions = require('scripts/ezlibs-scripts/ezexplosions')
 local ezrushroads = require('scripts/ezlibs-scripts/ezrushroads')
 local ezpress = require('scripts/ezlibs-scripts/ezpress')
+local ezusers = require('scripts/ezlibs-scripts/ezusers')
+local ezbbs = require('scripts/ezlibs-scripts/ezbbs')   -- NEW BBS plugin
 
 local plugins = { 
     ezweather, 
@@ -32,6 +34,8 @@ local plugins = {
     ezcheckpoints, 
     ezrushroads,
     ezpress,
+    ezusers,
+    ezbbs,   -- add to plugin list
 }
 
 local sfx = {
@@ -54,7 +58,7 @@ local object_registry = require('scripts/ezlibs-scripts/object_registry')
 object_registry.load_all()
 
 eznpcs.load_npcs()
-ezrushroads.init()  -- ADD THIS: group roads after all objects are cached
+ezrushroads.init()  -- group roads after all objects are cached
 
 Net:on("battle_results", function(event)
     local stats = {

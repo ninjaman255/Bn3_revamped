@@ -190,6 +190,46 @@ function helpers.read_item_information(area_id, item_object_id)
     return item
 end
 
+-- ============================================================================
+-- Cross‑platform directory creation
+-- ============================================================================
+function helpers.ensure_directory(path)
+    -- Remove trailing slashes for mkdir command
+    local dir = path:gsub("[/\\]+$", "")
+    if dir == "" then return end
+
+    -- Try LuaFileSystem first
+    local has_lfs, lfs = pcall(require, "lfs")
+    if has_lfs then
+        local attr = lfs.attributes(dir)
+        if not attr then
+            local ok, err = pcall(lfs.mkdir, dir)
+            if ok then
+                print("[helpers] Created directory:", dir)
+            else
+                print("[helpers] Warning: Could not create directory", dir, "error:", err)
+            end
+        elseif attr.mode ~= "directory" then
+            print("[helpers] Warning:", dir, "exists but is not a directory.")
+        end
+        return
+    end
+
+    -- Fallback: use os.execute with platform detection
+    local command
+    if package.config:sub(1,1) == '\\' then -- Windows
+        command = 'if not exist "' .. dir .. '" mkdir "' .. dir .. '"'
+    else -- Unix-like
+        command = 'mkdir -p "' .. dir .. '"'
+    end
+    local success = pcall(os.execute, command)
+    if success then
+        print("[helpers] Created directory via os.execute:", dir)
+    else
+        print("[helpers] Warning: Could not create directory", dir, "via os.execute. Please create it manually.")
+    end
+end
+
 Net:on("player_disconnect", function(event)
     if locks_by_player[event.player_id] then
         for lock_id, lock in pairs(locks_by_player[event.player_id]) do

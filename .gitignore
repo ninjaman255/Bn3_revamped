@@ -1,2 +1,4 @@
 .DS_Store
 net_battle_server
+/memory/
+#ezlibs-config.lua

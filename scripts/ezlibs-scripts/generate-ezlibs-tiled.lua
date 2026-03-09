@@ -227,10 +227,10 @@ local object_types = {
             prop("Dont Notify", "bool", false),
             prop("Encounter Name", "string", ""),
             prop("Failure Message", "string", ""),
-            prop("Player Exclusive", "bool", false),          -- existing
-            prop("Quest NPC", "bool", false),                  -- existing
-            prop("Quest Exclusive", "string", ""),            -- NEW: name of quest that must be active
-            prop("Quest State", "string", "active"),          -- NEW: required quest state (default "active")
+            prop("Player Exclusive", "bool", false),
+            prop("Quest NPC", "bool", false),
+            prop("Quest Exclusive", "string", ""),
+            prop("Quest State", "string", "active"),
         }
     },
     {
@@ -346,6 +346,15 @@ local object_types = {
         members = {
             prop("Compress", "bool", false),
             prop("Decompress", "bool", false),
+        }
+    },
+    -- Admin Console (for ezusers)
+    {
+        name = "Admin Console",
+        color = "#ffaa00",
+        members = {
+            -- No custom properties needed (uses global password hash)
+            -- You could optionally add a "Password" property for per‑console passwords
         }
     }
 }

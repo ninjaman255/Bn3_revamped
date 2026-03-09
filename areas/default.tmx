@@ -18,7 +18,7 @@
  <tileset firstgid="1541" source="../assets/tiles/rush_floor.tsx"/>
  <tileset firstgid="1545" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
  <tileset firstgid="1554" source="../assets/tiles/bn3-bbs.tsx"/>
- <tileset firstgid="1560" source="../assets/bbs/admin-console.tsx"/>
+ <tileset firstgid="1560" source="../assets/ezlibs-assets/ezusers/admin-console.tsx"/>
  <layer id="16" name="Tile Layer 0" width="33" height="28">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

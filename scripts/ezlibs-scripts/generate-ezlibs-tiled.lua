@@ -227,8 +227,10 @@ local object_types = {
             prop("Dont Notify", "bool", false),
             prop("Encounter Name", "string", ""),
             prop("Failure Message", "string", ""),
-            -- NEW: Player Exclusive
-            prop("Player Exclusive", "bool", false),
+            prop("Player Exclusive", "bool", false),          -- existing
+            prop("Quest NPC", "bool", false),                  -- existing
+            prop("Quest Exclusive", "string", ""),            -- NEW: name of quest that must be active
+            prop("Quest State", "string", "active"),          -- NEW: required quest state (default "active")
         }
     },
     {

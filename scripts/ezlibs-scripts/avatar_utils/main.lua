@@ -22,6 +22,20 @@ local function get_player_secret(player_id)
     return Net.get_player_secret(player_id)
 end
 
+--- Internal helper: resolve input to a player secret.
+--- @param input string|number player ID or existing secret
+--- @return string|nil secret or nil if cannot resolve
+local function resolve_secret(input)
+    if not input then return nil end
+    -- Try as player ID first
+    local ok, secret = pcall(Net.get_player_secret, input)
+    if ok and secret then
+        return secret
+    end
+    -- Assume input is already a secret
+    return input
+end
+
 --- Copies the player's current avatar and mugshot to local files and registers them as assets.
 --- @param player_id string
 --- @return table|nil cached entry or nil on failure
@@ -77,10 +91,16 @@ if not handler_registered then
     handler_registered = true
 end
 
---- Public API: retrieve cached player avatar paths for a given player secret.
---- @param secret string the player's secret (from Net.get_player_secret)
+--- Public API: retrieve cached player avatar paths.
+--- Accepts either a player ID or a player secret.
+--- @param input string|number player ID or secret
 --- @return table|nil the cached sheet/mug paths or nil if not yet cached
-local function get_player_avatar_paths(secret)
+local function get_player_avatar_paths(input)
+    local secret = resolve_secret(input)
+    if not secret then
+        print("NaviSpot: Could not resolve secret from input:", tostring(input))
+        return nil
+    end
     return player_cache[secret]
 end
 
@@ -89,6 +109,30 @@ end
 --- @return table|nil the updated cached entry
 local function refresh_player_avatar(player_id)
     return update_player_avatar(player_id)
+end
+
+--- Public API: parse a player's animation file to get frame data.
+--- Accepts either a player ID or a player secret.
+--- @param input string|number player ID or secret
+--- @param type string "sheet" or "mug"
+--- @return table|nil parsed animation structure or nil if missing/error
+local function parse_player_animation(input, type)
+    local secret = resolve_secret(input)
+    if not secret then
+        print("NaviSpot: Could not resolve secret from input:", tostring(input))
+        return nil
+    end
+    local entry = player_cache[secret]
+    if not entry then
+        print("Player: Player not cached for secret:", secret)
+        return nil
+    end
+    local anim_path = (type == "sheet" and entry.sheet.animation) or (type == "mug" and entry.mug.animation)
+    if not anim_path then
+        print("Player: No animation path for secret", secret, "type", type)
+        return nil
+    end
+    return avatar_utils.parse_animation_file(anim_path)
 end
 
 --- ======================== Bot Avatar Caching ========================
@@ -143,9 +187,10 @@ end
 
 -- Return the public interface
 return {
-    -- Player functions
+    -- Player functions (accept either player_id or secret)
     get_player_avatar_paths = get_player_avatar_paths,
     refresh_player_avatar = refresh_player_avatar,
+    parse_player_animation = parse_player_animation,
 
     -- Bot functions
     register_bot_avatar = register_bot_avatar,

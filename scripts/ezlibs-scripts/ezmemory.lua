@@ -3,6 +3,8 @@ local helpers = require('scripts/ezlibs-scripts/helpers')
 local table = require('table')
 local ezbus = require('scripts/ezlibs-scripts/ezbus')
 local ezconfig = require('scripts/ezlibs-scripts/ezconfig')   -- load config
+local avatar_utils = require('scripts/ezlibs-scripts/avatar_utils/main')
+
 local ezmemory = {}
 local player_memory = {}
 local area_memory = {}
@@ -17,6 +19,17 @@ local players_path = ezconfig.PLAYERS_PATH
 local items_path = ezconfig.ITEMS_PATH
 local area_path_prefix = ezconfig.AREA_PATH_FOLDER
 local player_path_prefix = ezconfig.PLAYER_PATH_FOLDER
+
+local idle_map = {
+    ["Down Right"] = "IDLE_DR",
+    ["Down Left"] = "IDLE_DL",
+    ["Up Right"] = "IDLE_UR",
+    ["Up Left"] = "IDLE_UL",
+    ["Up"] = "IDLE_U",
+    ["Down"] = "IDLE_D",
+    ["Left"] = "IDLE_L",
+    ["Right"] = "IDLE_R",
+}
 
 local memory_loaded_flags = {
     area_memory=false,
@@ -1063,13 +1076,25 @@ end
 -- ===================== Missing Animation Helpers =====================
 function ezmemory.play_anim_get(player_id)
     pcall(function()
-        Net.animate_player(player_id, "ITEM_GET", false)
+        return async(function ()
+        local parsed = avatar_utils.parse_player_animation(player_id, "sheet")
+        print(parsed)
+            if parsed and (parsed["animations"]["ITEM_GET"] ~= nil and parsed["animations"]["ITEM_GET_HOLD"]) then
+                print(parsed["animations"]["ITEM_GET_HOLD"].total_duration_ms)
+                Net.animate_player(player_id, "ITEM_GET", false)    
+                await(Async.sleep(tonumber(parsed["animations"]["ITEM_GET"].total_duration_ms)))            
+                Net.animate_player(player_id, "ITEM_GET_HOLD", true)
+            else
+                Net.animate_player(player_id, "ITEM_GET", false)    
+            end
+        end)
     end)
 end
 
 function ezmemory.set_direction_anim(player_id, direction)
     pcall(function()
-        Net.set_player_direction(player_id, direction)
+        print(direction)
+        Net.animate_player(player_id, idle_map[direction], true)
     end)
 end
 

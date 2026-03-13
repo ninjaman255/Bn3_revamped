@@ -26,7 +26,10 @@ animation state="ITEM_GET"
 frame duration="0.1" x="11" y="3" w="25" h="43" originx="12" originy="41"
 frame duration="0.0333333" x="46" y="403" w="31" h="43" originx="12" originy="41"
 frame duration="0.1" x="81" y="403" w="31" h="43" originx="12" originy="41"
-frame duration="10" x="115" y="403" w="31" h="43" originx="12" originy="41"
+frame duration="1" x="115" y="403" w="31" h="43" originx="12" originy="41"
+
+animation state="ITEM_GET_HOLD"
+frame duration="1" x="115" y="403" w="31" h="43" originx="12" originy="41"
 
 animation state="RUN_D"
 frame duration="0.0833333" x="58" y="3" w="28" h="43" originx="13" originy="41"

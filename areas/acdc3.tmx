@@ -201,7 +201,7 @@
     <property name="Activation Radius" type="float" value="0.6"/>
     <property name="Arrival Animation" value="arrow_down_left_in"/>
     <property name="Leave Animation" value="arrow_down_left_out"/>
-    <property name="Target Area" value="default"/>
+    <property name="Target Area" value="acdc1"/>
     <property name="Target Object" value="84"/>
    </properties>
    <point/>

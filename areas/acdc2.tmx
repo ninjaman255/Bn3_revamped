@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="25" height="24" tilewidth="64" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="65">
+<map version="1.10" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="25" height="24" tilewidth="64" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="67">
  <properties>
   <property name="Background" value="custom"/>
   <property name="Background Animation" value="/server/assets/backgrounds/ACDC.animation"/>
@@ -12,6 +12,7 @@
  </properties>
  <tileset firstgid="1" source="../assets/tiles/main-net.tsx"/>
  <tileset firstgid="1521" source="../assets/tiles/BN3ACDCWarp2.tsx"/>
+ <tileset firstgid="1530" source="../assets/ezlibs-assets/ezmystery/GreenMysteryData.tsx"/>
  <layer id="1" name="Floor" width="25" height="24">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1204,1204,1204,1204,1204,1204,1204,0,0,0,
@@ -47,7 +48,7 @@
     <property name="Arrival Animation" value="arrow_down_left_in"/>
     <property name="Direction" propertytype="Direction" value="Down Left"/>
     <property name="Leave Animation" value="arrow_down_left_out"/>
-    <property name="Target Area" value="default"/>
+    <property name="Target Area" value="acdc1"/>
     <property name="Target Object" value="68"/>
    </properties>
    <point/>
@@ -63,5 +64,18 @@
    <point/>
   </object>
   <object id="64" gid="1521" x="192" y="320" width="64" height="40"/>
+  <object id="65" type="Mystery Data" gid="1530" x="304" y="624" width="14" height="43">
+   <properties>
+    <property name="Next 1" type="object" value="66"/>
+    <property name="Type" propertytype="MysteryType" value="random"/>
+   </properties>
+  </object>
+  <object id="66" type="Item" x="336" y="624">
+   <properties>
+    <property name="Amount" value="500"/>
+    <property name="Type" propertytype="ItemType" value="money"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
 </map>

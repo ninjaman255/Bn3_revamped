@@ -46,7 +46,7 @@
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>
     <property name="Arrival Animation" value="arrow_down_left_in"/>
-    <property name="Direction" propertytype="Direction" value="Down Left"/>
+    <property name="Direction" value="Down Left"/>
     <property name="Leave Animation" value="arrow_down_left_out"/>
     <property name="Target Area" value="acdc1"/>
     <property name="Target Object" value="68"/>
@@ -67,13 +67,13 @@
   <object id="65" type="Mystery Data" gid="1530" x="304" y="624" width="14" height="43">
    <properties>
     <property name="Next 1" type="object" value="66"/>
-    <property name="Type" propertytype="MysteryType" value="random"/>
+    <property name="Type" value="random"/>
    </properties>
   </object>
   <object id="66" type="Item" x="336" y="624">
    <properties>
     <property name="Amount" value="500"/>
-    <property name="Type" propertytype="ItemType" value="money"/>
+    <property name="Type" value="money"/>
    </properties>
    <point/>
   </object>

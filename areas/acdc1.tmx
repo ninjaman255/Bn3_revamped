@@ -459,7 +459,7 @@
   <object id="85" gid="1545" x="832" y="448" width="64" height="40"/>
   <object id="91" type="Custom Warp" gid="1532" x="446.5" y="350.5" width="64" height="40">
    <properties>
-    <property name="Direction" value="Down Right"/>
+    <property name="Direction" propertytype="Direction" value="Down Right"/>
     <property name="Target Area" value="default"/>
     <property name="Target Object" value="2"/>
     <property name="Warp In" type="bool" value="true"/>

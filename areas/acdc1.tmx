@@ -219,7 +219,7 @@
     <property name="6 Area" value="default"/>
     <property name="6 Name" value="--OUT OF NETWORK--"/>
     <property name="6 Type" value="label"/>
-    <property name="7 Area" value="70.124.9.221:3000,default,ShaDisHP"/>
+    <property name="7 Area" value="64.23.226.84:3000,default,ShaDisHP"/>
     <property name="7 Name" value="ShaDisNX255's HP"/>
     <property name="7 Type" value="Server"/>
     <property name="8 Area" value="96.60.137.203:8768,default,blue line"/>
@@ -433,7 +433,7 @@
    <properties>
     <property name="Activation Radius" type="float" value="0.6"/>
     <property name="Arrival Animation" value="arrow_up_right_in"/>
-    <property name="Direction" propertytype="Direction" value="Up Right"/>
+    <property name="Direction" value="Up Right"/>
     <property name="Leave Animation" value="arrow_up_right_out"/>
     <property name="Target Area" value="acdc2"/>
     <property name="Target Object" value="62"/>
@@ -459,7 +459,7 @@
   <object id="85" gid="1545" x="832" y="448" width="64" height="40"/>
   <object id="91" type="Custom Warp" gid="1532" x="446.5" y="350.5" width="64" height="40">
    <properties>
-    <property name="Direction" propertytype="Direction" value="Down Right"/>
+    <property name="Direction" value="Down Right"/>
     <property name="Target Area" value="default"/>
     <property name="Target Object" value="2"/>
     <property name="Warp In" type="bool" value="true"/>
@@ -551,52 +551,52 @@
   <object id="143" type="Mystery Data" gid="1561" x="688" y="592" width="14" height="43">
    <properties>
     <property name="Next 1" type="object" value="144"/>
-    <property name="Type" propertytype="MysteryType" value="random"/>
+    <property name="Type" value="random"/>
    </properties>
   </object>
   <object id="144" type="Item" x="656" y="560">
    <properties>
     <property name="Amount" value="150"/>
-    <property name="Type" propertytype="ItemType" value="money"/>
+    <property name="Type" value="money"/>
    </properties>
    <point/>
   </object>
   <object id="145" type="Mystery Data" gid="1561" x="752" y="656" width="14" height="43">
    <properties>
     <property name="Next 1" type="object" value="146"/>
-    <property name="Type" propertytype="MysteryType" value="random"/>
+    <property name="Type" value="random"/>
    </properties>
   </object>
   <object id="146" type="Item" x="720" y="624">
    <properties>
     <property name="Amount" value="150"/>
-    <property name="Type" propertytype="ItemType" value="money"/>
+    <property name="Type" value="money"/>
    </properties>
    <point/>
   </object>
   <object id="147" type="Mystery Data" gid="1561" x="752" y="592" width="14" height="43">
    <properties>
     <property name="Next 1" type="object" value="148"/>
-    <property name="Type" propertytype="MysteryType" value="random"/>
+    <property name="Type" value="random"/>
    </properties>
   </object>
   <object id="148" type="Item" x="720" y="560">
    <properties>
     <property name="Amount" value="150"/>
-    <property name="Type" propertytype="ItemType" value="money"/>
+    <property name="Type" value="money"/>
    </properties>
    <point/>
   </object>
   <object id="149" type="Mystery Data" gid="1561" x="688" y="656" width="14" height="43">
    <properties>
     <property name="Next 1" type="object" value="150"/>
-    <property name="Type" propertytype="MysteryType" value="random"/>
+    <property name="Type" value="random"/>
    </properties>
   </object>
   <object id="150" type="Item" x="656" y="624">
    <properties>
     <property name="Amount" value="150"/>
-    <property name="Type" propertytype="ItemType" value="money"/>
+    <property name="Type" value="money"/>
    </properties>
    <point/>
   </object>
@@ -604,7 +604,7 @@
    <properties>
     <property name="Amount" value="3"/>
     <property name="Next 1" type="object" value="152"/>
-    <property name="Type" propertytype="MysteryType" value="random"/>
+    <property name="Type" value="random"/>
    </properties>
   </object>
   <object id="152" type="Item" x="688" y="544">
@@ -612,7 +612,7 @@
     <property name="Amount" value="1"/>
     <property name="Description" value="Door Key Test"/>
     <property name="Name" value="Door Key"/>
-    <property name="Type" propertytype="ItemType" value="keyitem"/>
+    <property name="Type" value="keyitem"/>
    </properties>
    <point/>
   </object>

@@ -6,7 +6,7 @@
   <property name="Background Texture" value="/server/assets/backgrounds/ACDC.png"/>
   <property name="Background Vel X" type="float" value="0.1"/>
   <property name="Background Vel Y" type="float" value="0.1"/>
-  <property name="Minish Mode" type="bool" value="true"/>
+  <property name="Minish Mode" type="bool" value="false"/>
   <property name="Name" value="ACDC_1"/>
   <property name="OctoPVP" value="true"/>
   <property name="Song" value="/server/assets/music/network is spreading.ogg"/>

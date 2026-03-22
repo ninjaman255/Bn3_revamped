@@ -413,7 +413,7 @@
   </object>
   <object id="94" name="Hades Prog" type="Conductor" x="728" y="136">
    <properties>
-    <property name="1 Area" value="scilab2"/>
+    <property name="1 Area" value="acdc1"/>
     <property name="1 Name" value="ACDC"/>
     <property name="1 Type" value="Area"/>
     <property name="2 Area" value="yokasqr"/>

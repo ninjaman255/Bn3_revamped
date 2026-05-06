@@ -44,7 +44,7 @@ local Enums = {
     },
     ButtonBehavior = {
         type = "string",
-        values = {"Repeatable", "One-Time", "Dynamic", "Custom"}
+        values = {"Repeatable", "One-Time", "Dynamic", "Custom", "Timed"}
     },
     KeyType = {
         type = "string",
@@ -373,10 +373,10 @@ local object_types = {
             -- No custom properties needed (uses global password hash)
         }
     },
-    -- Trigger Button (from ezbuttons)
+    -- Button Bot Details – stores the visual/animation properties for an OW Button
     {
-        name = "Trigger Button",
-        color = "#66ccff",
+        name = "Button Bot Details",
+        color = "#99ddff",
         members = {
             prop("Asset Name", "string", ""),
             prop("Direction", "string", "Down", "Direction"),
@@ -384,25 +384,36 @@ local object_types = {
             prop("Mug Animation Name", "string", ""),
             prop("Active Animation", "string", "ACTIVE"),
             prop("Inactive Animation", "string", "INACTIVE"),
+            prop("Activated Animation", "string", ""),
+            prop("Deactivated Animation", "string", ""),
+            prop("Activation Animation Duration", "number", 0.5),
+            prop("Deactivation Animation Duration", "number", 0.5),
+        }
+    },
+    -- OW Button (from ezbuttons)
+    {
+        name = "OW Button",
+        color = "#66ccff",
+        members = {
+            -- Reference to the Button Bot Details object that defines bot visuals
+            prop("Bot Details", "object", ""),
+            -- Next button in the chain
             prop("Next 1", "object", ""),
             -- Button behavior
             prop("Button Behavior", "string", "One-Time", "ButtonBehavior"),
             prop("Script Path", "file", ""),
-            -- NEW: animation states for press/release (played once before state change)
-            prop("Activation Animation", "string", ""),
-            prop("Activation Animation Duration", "number", 0.5),
-            prop("Deactivation Animation", "string", ""),
-            prop("Deactivation Animation Duration", "number", 0.5),
             -- Reference to the Button Trigger object that defines the detection zone
             prop("Trigger Object", "object", ""),
             -- Direct checkpoint unlock when this button (or its chain) is fully activated
             prop("Unlock Checkpoint", "object", ""),
-            prop("Unlock Permanently", "bool", true),
-            -- NEW: Button chain exclusivity mode
+            prop("Unlock Permanently", "bool", false),
+            -- Button chain exclusivity mode
             prop("Button Chain Type", "string", "Any", "ButtonChainType"),
+            -- Timed behavior duration
+            prop("Activated Time", "number", 1),
         }
     },
-    -- Button Trigger – defines the detection area for a Trigger Button
+    -- Button Trigger – defines the detection area for an OW Button
     {
         name = "Button Trigger",
         color = "#aaddff",

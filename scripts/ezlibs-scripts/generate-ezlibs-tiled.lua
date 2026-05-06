@@ -49,6 +49,10 @@ local Enums = {
     KeyType = {
         type = "string",
         values = {"money", "fragments", "tokens", "item", "bossgate"}
+    },
+    ButtonChainType = {
+        type = "string",
+        values = {"Any", "Exclusive"}
     }
 }
 
@@ -394,6 +398,8 @@ local object_types = {
             -- Direct checkpoint unlock when this button (or its chain) is fully activated
             prop("Unlock Checkpoint", "object", ""),
             prop("Unlock Permanently", "bool", true),
+            -- NEW: Button chain exclusivity mode
+            prop("Button Chain Type", "string", "Any", "ButtonChainType"),
         }
     },
     -- Button Trigger – defines the detection area for a Trigger Button

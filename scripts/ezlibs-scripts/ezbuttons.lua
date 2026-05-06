@@ -2,6 +2,7 @@
 -- Creates trigger‑based buttons (non‑solid NPCs) that can be chained together.
 -- When all buttons in a chain become active, a callback is invoked.
 -- Supports four interaction behaviors: Repeatable, One-Time, Dynamic, Custom.
+-- Supports exclusive chains: only one button can be active at a time.
 local object_registry = require('scripts/ezlibs-scripts/object_registry')
 local eznpcs = require('scripts/ezlibs-scripts/eznpcs/eznpcs')
 local eztriggers = require('scripts/ezlibs-scripts/eztriggers')
@@ -38,12 +39,15 @@ local function object_to_tile_pos(object)
 end
 
 -- Internal data
-local button_placeholders = {}          -- area_id -> { [object_id] = placeholder_info }
+local button_placeholders = {}          -- area_id -> [object_id] = placeholder_info
 local button_bots = {}                  -- bot_id -> placeholder_info
 local chain_roots = {}                  -- root_placeholder_id -> list of placeholder_ids
 local placeholder_to_chain_root = {}    -- placeholder_id -> root_placeholder_id
 local chain_callbacks = {}              -- root_placeholder_id -> function(player_id)
 local chains_built = false
+
+-- Chain type: "Any" (default) or "Exclusive" – stored per root
+local chain_type = {}                   -- root_placeholder_id -> string
 
 -- Checkpoint binding: root_button_id -> { area_id, object_id, once }
 local checkpoint_bindings = {}
@@ -58,6 +62,7 @@ local chain_unlock_state = {}           -- root_id -> { player_id, area_id, chec
 local is_button_active
 local perform_activation
 local perform_deactivation
+local deactivate_button_internal
 
 -- Helper: hide the original Tiled placeholder object for a player
 local function hide_button_placeholder_for_player(player_id, area_id, object_id)
@@ -191,7 +196,7 @@ local function create_button_trigger(area_id, object, width_px, height_px, trigg
     return emitter
 end
 
--- Build chains from "Next 1" links
+-- Build chains from "Next 1" links and read chain type from stored property
 local function build_chains()
     if chains_built then return end
 
@@ -223,6 +228,16 @@ local function build_chains()
         for _, id in ipairs(chain) do
             placeholder_to_chain_root[id] = root_id
         end
+
+        -- Retrieve chain type from the root button's stored info
+        local root_info = all_placeholders[root_id]
+        if root_info and root_info.chain_type then
+            chain_type[root_id] = root_info.chain_type
+            print("[ezbuttons] Chain root", root_id, "has stored chain_type =", chain_type[root_id])
+        else
+            chain_type[root_id] = "Any"
+            print("[ezbuttons] Chain root", root_id, "defaulting to Any")
+        end
     end
 
     -- Now that chains are built, set up checkpoint bindings for roots
@@ -253,10 +268,49 @@ perform_activation = function(area_id, object_id, player_id, info)
     if is_button_active(area_id, object_id) then
         return false
     end
+
+    local root_id = placeholder_to_chain_root[object_id] or object_id
+    -- Handle exclusive chain: deactivate all other buttons in the same chain before activating this one
+    if chain_type[root_id] == "Exclusive" then
+        local chain_ids = chain_roots[root_id] or { root_id }
+        print("[ezbuttons] Exclusive chain", root_id, "- deactivating other buttons before activating", object_id)
+        for _, other_id in ipairs(chain_ids) do
+            if tostring(other_id) ~= tostring(object_id) then
+                local other_area_id = nil
+                local other_info = nil
+                for aid, atable in pairs(button_placeholders) do
+                    local oinfo = atable[tostring(other_id)]
+                    if oinfo then
+                        other_area_id = aid
+                        other_info = oinfo
+                        break
+                    end
+                end
+                if other_area_id and other_info then
+                    if is_button_active(other_area_id, other_id) then
+                        print("[ezbuttons] Exclusive: deactivating other button", other_id)
+                        -- Force immediate deactivation, skip its own exclusive check, and cancel any ongoing animation
+                        if other_info.is_animating then
+                            other_info.is_animating = false
+                            set_button_animation(other_info.bot_id, other_info.inactive_anim, true)
+                        end
+                        perform_deactivation(other_area_id, other_id, other_info)
+                    else
+                        print("[ezbuttons] Exclusive: other button", other_id, "already inactive")
+                    end
+                else
+                    print("[ezbuttons] Exclusive: could not find other button", other_id)
+                end
+            end
+        end
+    end
+
     set_button_active_state(area_id, object_id, info.bot_id, info.active_anim, info.inactive_anim, true)
     print("[ezbuttons] Button", object_id, "activated by player", player_id)
 
-    local root_id = placeholder_to_chain_root[object_id] or object_id
+    if not root_id then
+        root_id = object_id
+    end
     if not chain_roots[root_id] then
         chain_roots[root_id] = { root_id }
         placeholder_to_chain_root[root_id] = root_id
@@ -327,6 +381,59 @@ perform_deactivation = function(area_id, object_id, info)
     return true
 end
 
+-- Internal deactivation that can skip exclusive chain handling (to avoid recursion)
+deactivate_button_internal = function(area_id, object_id, info, skip_exclusive)
+    if not info then
+        info = button_placeholders[area_id] and button_placeholders[area_id][tostring(object_id)]
+        if not info then
+            print("[ezbuttons] No button info for", object_id)
+            return false
+        end
+    end
+
+    if info.is_animating then
+        print("[ezbuttons] Button", object_id, "is already animating, ignoring deactivation")
+        return false
+    end
+
+    if not is_button_active(area_id, object_id) then
+        print("[ezbuttons] Button", object_id, "already inactive")
+        return false
+    end
+
+    local deactivation_anim = info.deactivation_anim
+    local deactivation_duration = info.deactivation_duration or 0.5
+
+    -- Save original skip_exclusive flag for nested calls
+    local old_skip = info._skip_exclusive
+    if skip_exclusive then
+        info._skip_exclusive = true
+    end
+
+    local function finish_deactivation()
+        if skip_exclusive then
+            info._skip_exclusive = nil
+        else
+            info._skip_exclusive = old_skip
+        end
+        perform_deactivation(area_id, object_id, info)
+    end
+
+    if deactivation_anim and deactivation_anim ~= "" then
+        info.is_animating = true
+        async(function()
+            set_button_animation(info.bot_id, deactivation_anim, false)
+            await(Async.sleep(deactivation_duration))
+            info.is_animating = false
+            finish_deactivation()
+        end)
+        return true
+    else
+        finish_deactivation()
+        return true
+    end
+end
+
 -- Public activate with optional animation (synchronous wrapper that spawns async if needed)
 local function activate_button(area_id, object_id, player_id)
     build_chains()
@@ -366,7 +473,7 @@ local function activate_button(area_id, object_id, player_id)
 end
 
 -- Public deactivate with optional animation (synchronous wrapper)
-local function deactivate_button(area_id, object_id)
+local function deactivate_button(area_id, object_id, skip_exclusive)
     build_chains()
     object_id = tostring(object_id)
     local info = button_placeholders[area_id] and button_placeholders[area_id][object_id]
@@ -375,31 +482,13 @@ local function deactivate_button(area_id, object_id)
         return false
     end
 
-    if info.is_animating then
-        print("[ezbuttons] Button", object_id, "is already animating, ignoring deactivation")
+    -- If skip_exclusive is true, we bypass exclusive chain checks to avoid recursion
+    if not skip_exclusive and info._skip_exclusive then
+        -- Already in an exclusive deactivation, do nothing (avoid infinite loop)
         return false
     end
 
-    if not is_button_active(area_id, object_id) then
-        print("[ezbuttons] Button", object_id, "already inactive")
-        return false
-    end
-
-    local deactivation_anim = info.deactivation_anim
-    local deactivation_duration = info.deactivation_duration or 0.5
-
-    if deactivation_anim and deactivation_anim ~= "" then
-        info.is_animating = true
-        async(function()
-            set_button_animation(info.bot_id, deactivation_anim, false)
-            await(Async.sleep(deactivation_duration))
-            info.is_animating = false
-            perform_deactivation(area_id, object_id, info)
-        end)
-        return true
-    else
-        return perform_deactivation(area_id, object_id, info)
-    end
+    return deactivate_button_internal(area_id, object_id, info, skip_exclusive or false)
 end
 
 -- Load custom behavior script
@@ -449,6 +538,9 @@ object_registry.register_handler("Trigger Button", function(area_id, object)
     local activation_duration = tonumber(props["Activation Animation Duration"]) or 0.5
     local deactivation_anim = props["Deactivation Animation"] or nil
     local deactivation_duration = tonumber(props["Deactivation Animation Duration"]) or 0.5
+
+    -- Read chain type for this button (will be used if this button becomes a root)
+    local chain_type_prop = props["Button Chain Type"] or "Any"
 
     -- Checkpoint unlock properties
     local unlock_checkpoint_obj = props["Unlock Checkpoint"]
@@ -534,6 +626,7 @@ object_registry.register_handler("Trigger Button", function(area_id, object)
         trigger_z = trigger_source_obj.z or 0,
         trigger_half_w = (TILE_SIZE / trigger_width_px) * 0.5,
         trigger_half_h = (TILE_SIZE / trigger_height_px) * 0.5,
+        chain_type = chain_type_prop,   -- store for later use
     }
 
     button_placeholders[area_id][tostring(object.id)] = info
@@ -576,7 +669,7 @@ object_registry.register_handler("Trigger Button", function(area_id, object)
     info.behavior = behavior
     info.custom_handlers = custom_handlers
 
-    -- Enter handler (no need to wrap – activate_button is synchronous)
+    -- Enter handler
     emitter:on("entered", function(event)
         local player_id = event.player_id
         if not player_id then return end
@@ -655,7 +748,7 @@ function ezbuttons.activate_button(area_id, object_id, player_id)
 end
 
 function ezbuttons.deactivate_button(area_id, object_id)
-    deactivate_button(area_id, object_id)
+    deactivate_button(area_id, object_id, false)
 end
 
 function ezbuttons.reset_button(area_id, object_id)
@@ -690,5 +783,5 @@ function ezbuttons.bind_checkpoint_to_chain(root_button_id, checkpoint_area_id, 
     print("[ezbuttons] Bound checkpoint " .. checkpoint_object_id .. " to chain root " .. root_button_id)
 end
 
-print("[ezbuttons] Loaded (async animations using Async.sleep, synchronous API)")
+print("[ezbuttons] Loaded (async animations, exclusive chains with proper animation reset)")
 return ezbuttons

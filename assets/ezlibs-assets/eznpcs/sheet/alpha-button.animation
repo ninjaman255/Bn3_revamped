@@ -1,0 +1,15 @@
+animation state="BUTTON_UNPRESSED"
+frame duration="0.1" x="0" y="0" w="48" h="26" originx="23" originy="15"
+
+animation state="IDLE_D"
+frame duration="0.1" x="0" y="0" w="48" h="26" originx="23" originy="15"
+
+animation state="BUTTON_ANIMATION"
+frame duration="0.1" x="0" y="26" w="48" h="23" originx="24" originy="13"
+frame duration="0.1" x="0" y="49" w="48" h="23" originx="24" originy="13"
+frame duration="0.1" x="0" y="72" w="48" h="23" originx="24" originy="13"
+frame duration="0.1" x="0" y="95" w="48" h="23" originx="24" originy="13"
+
+animation state="BUTTON_PRESSED"
+frame duration="0.1" x="0" y="95" w="48" h="23" originx="24" originy="13"
+

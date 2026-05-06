@@ -19,7 +19,8 @@ local ezexplosions = require('scripts/ezlibs-scripts/ezexplosions')
 local ezrushroads = require('scripts/ezlibs-scripts/ezrushroads')
 local ezpress = require('scripts/ezlibs-scripts/ezpress')
 local ezusers = require('scripts/ezlibs-scripts/ezusers')
-local ezbbs = require('scripts/ezlibs-scripts/ezbbs')   -- NEW BBS plugin
+local ezbbs = require('scripts/ezlibs-scripts/ezbbs')
+local ezbuttons = require('scripts/ezlibs-scripts/ezbuttons')
 
 local plugins = { 
     ezweather, 
@@ -35,7 +36,8 @@ local plugins = {
     ezrushroads,
     ezpress,
     ezusers,
-    ezbbs,   -- add to plugin list
+    ezbbs,
+    ezbuttons
 }
 
 local sfx = {

@@ -3,7 +3,7 @@
 -- Output file: ezlibs-tiled-types.json (or specify path as argument)
 -- Run with: lua generate_tiled_types_json.lua [output_path]
 
-local json = require('scripts/ezlibs-scripts/json')  -- use ezlibs' json module
+local json = require('scripts/ezlibs-scripts/json')
 
 -- ----------------------------------------------------------------------
 -- Define all enums used in properties
@@ -37,6 +37,18 @@ local Enums = {
     QuizFailAction = {
         type = "string",
         values = {"retry", "hide_once", "hide_temp", "explode"}
+    },
+    TriggerShape = {
+        type = "string",
+        values = {"rect", "ellipse"}
+    },
+    ButtonBehavior = {
+        type = "string",
+        values = {"Repeatable", "One-Time", "Dynamic", "Custom"}
+    },
+    KeyType = {
+        type = "string",
+        values = {"money", "fragments", "tokens", "item", "bossgate"}
     }
 }
 
@@ -58,7 +70,8 @@ local object_types = {
         color = "#ffaa00",
         members = {
             prop("Password", "string", ""),
-            prop("Key Name", "string", "money"),
+            prop("Key Type", "string", "money", "KeyType"),
+            prop("Key Item Name", "string", ""),
             prop("Required Keys", "number", 1),
             prop("Consume", "bool", false),
             prop("Once", "bool", false),
@@ -325,9 +338,9 @@ local object_types = {
         name = "Explosion Trigger",
         color = "#ff6600",
         members = {
-            prop("Target", "string", ""),      -- optional object ID to explode (defaults to self)
-            prop("Follow", "bool", false),     -- if true, track target movement
-            prop("Once", "bool", false),       -- remove after first trigger
+            prop("Target", "string", ""),
+            prop("Follow", "bool", false),
+            prop("Once", "bool", false),
         }
     },
     -- Rush Road (for ezrushroads)
@@ -335,8 +348,8 @@ local object_types = {
         name = "Rush Road",
         color = "#ffaa00",
         members = {
-            prop("Rush Object", "object", ""),   -- linked object where the permanent bot appears
-            prop("Direction", "string", "Down Left", "Direction"), -- animation direction
+            prop("Rush Object", "object", ""),
+            prop("Direction", "string", "Down Left", "Direction"),
         }
     },
     -- Compression Tile (for ezpress)
@@ -354,7 +367,41 @@ local object_types = {
         color = "#ffaa00",
         members = {
             -- No custom properties needed (uses global password hash)
-            -- You could optionally add a "Password" property for per‑console passwords
+        }
+    },
+    -- Trigger Button (from ezbuttons)
+    {
+        name = "Trigger Button",
+        color = "#66ccff",
+        members = {
+            prop("Asset Name", "string", ""),
+            prop("Direction", "string", "Down", "Direction"),
+            prop("Animation Name", "string", ""),
+            prop("Mug Animation Name", "string", ""),
+            prop("Active Animation", "string", "ACTIVE"),
+            prop("Inactive Animation", "string", "INACTIVE"),
+            prop("Next 1", "object", ""),
+            -- Button behavior
+            prop("Button Behavior", "string", "One-Time", "ButtonBehavior"),
+            prop("Script Path", "file", ""),
+            -- NEW: animation states for press/release (played once before state change)
+            prop("Activation Animation", "string", ""),
+            prop("Activation Animation Duration", "number", 0.5),
+            prop("Deactivation Animation", "string", ""),
+            prop("Deactivation Animation Duration", "number", 0.5),
+            -- Reference to the Button Trigger object that defines the detection zone
+            prop("Trigger Object", "object", ""),
+            -- Direct checkpoint unlock when this button (or its chain) is fully activated
+            prop("Unlock Checkpoint", "object", ""),
+            prop("Unlock Permanently", "bool", true),
+        }
+    },
+    -- Button Trigger – defines the detection area for a Trigger Button
+    {
+        name = "Button Trigger",
+        color = "#aaddff",
+        members = {
+            prop("Trigger Type", "string", "rect", "TriggerShape"),
         }
     }
 }

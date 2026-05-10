@@ -22,7 +22,7 @@ function await(v) return Async.await(v) end
 
 local ezbuttons = {}
 
-local npc_asset_folder = '/server/assets/ezlibs-assets/eznpcs/'
+local button_asset_folder = '/server/assets/ezlibs-assets/ezbuttons/'
 local TILE_SIZE = 32
 
 -- Cache for custom behavior scripts
@@ -122,16 +122,16 @@ end)
 local function create_button_bot(area_id, asset_name, x, y, z, direction,
                                  bot_name, animation_name, mug_animation_name,
                                  initial_anim)
-    local texture_path = npc_asset_folder .. "sheet/" .. asset_name .. ".png"
-    local animation_path = npc_asset_folder .. "sheet/" .. asset_name .. ".animation"
-    local mug_animation_path = npc_asset_folder .. "mug/mug.animation"
+    local texture_path = button_asset_folder  .. asset_name .. ".png"
+    local animation_path = button_asset_folder  .. asset_name .. ".animation"
+    --local mug_animation_path = button_asset_folder .. "mug/mug.animation"
 
     if animation_name then
-        animation_path = npc_asset_folder .. 'sheet/' .. animation_name .. ".animation"
+        animation_path = button_asset_folder .. animation_name .. ".animation"
     end
-    if mug_animation_name then
-        mug_animation_path = npc_asset_folder .. 'mug/' .. mug_animation_name .. ".animation"
-    end
+    --if mug_animation_name then
+    --    mug_animation_path = button_asset_folder .. 'mug/' .. mug_animation_name .. ".animation"
+    --end
 
     local npc_data = {
         asset_name = asset_name,

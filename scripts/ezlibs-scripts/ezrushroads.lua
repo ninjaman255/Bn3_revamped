@@ -273,8 +273,8 @@ local function process_rush_road(area_id, object)
     end
 
     -- Create a rectangle trigger for this road tile
-    local width = 64
-    local height = 32
+    local width = 16
+    local height = 16
     local emitter = eztriggers.add_rectangle_trigger(area_id, object, width, height, "rush_trigger")
     if emitter then
         emitter:on("entered", function(event)

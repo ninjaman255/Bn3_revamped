@@ -460,13 +460,14 @@ end
 
 -- ----------------------------------------------------------------------
 -- Main execution
-local function main(output_path)
+local function main(output_path, pretty)
     if not output_path then
         output_path = "ezlibs-tiled-types.json"
     end
 
+    local pretty = pretty or false
     local types = build_tiled_types()
-    local json_str = json.encode(types)
+    local json_str = json.encode(types, pretty)
 
     local file, err = io.open(output_path, "w")
     if not file then

@@ -404,13 +404,31 @@ local object_types = {
             prop("Script Path", "file", ""),
             -- Reference to the Button Trigger object that defines the detection zone
             prop("Trigger Object", "object", ""),
-            -- Direct checkpoint unlock when this button (or its chain) is fully activated
-            prop("Unlock Checkpoint", "object", ""),
-            prop("Unlock Permanently", "bool", false),
+            -- Unlock behavior (when chain becomes fully active)
+            prop("Button Activated Behavior", "object", ""),
+            -- Relock behavior (when button deactivates)
+            prop("Button Deactivated Behavior", "object", ""),
             -- Button chain exclusivity mode
             prop("Button Chain Type", "string", "Any", "ButtonChainType"),
             -- Timed behavior duration
             prop("Activated Time", "number", 1),
+        }
+    },
+    -- Unlock Behavior – defines unlock action triggered by a full button chain
+    {
+        name = "Unlock Behavior",
+        color = "#ffcc00",
+        members = {
+            prop("Unlock This", "object", ""),
+            prop("Unlock Permanently", "bool", false),
+        }
+    },
+    -- Relock Behavior – defines relock action triggered when a button deactivates
+    {
+        name = "Relock Behavior",
+        color = "#ff8888",
+        members = {
+            prop("Relock This", "object", ""),
         }
     },
     -- Button Trigger – defines the detection area for an OW Button

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="33" height="28" tilewidth="64" tileheight="32" infinite="0" nextlayerid="28" nextobjectid="185">
+<map version="1.10" tiledversion="1.11.2" orientation="isometric" renderorder="right-down" compressionlevel="0" width="33" height="28" tilewidth="64" tileheight="32" infinite="0" nextlayerid="28" nextobjectid="187">
  <properties>
   <property name="Background" value="custom"/>
   <property name="Background Animation" value="/server/assets/backgrounds/ACDC.animation"/>
@@ -632,13 +632,12 @@
   </object>
   <object id="161" type="OW Button" x="704" y="608">
    <properties>
-    <property name="Activated Time" value="5"/>
     <property name="Bot Details" type="object" value="168"/>
-    <property name="Button Behavior" propertytype="ButtonBehavior" value="Timed"/>
+    <property name="Button Activated Behavior" type="object" value="185"/>
+    <property name="Button Behavior" propertytype="ButtonBehavior" value="Repeatable"/>
     <property name="Button Chain Type" propertytype="ButtonChainType" value="Exclusive"/>
+    <property name="Button Deactivated Behavior" type="object" value="186"/>
     <property name="Trigger Object" type="object" value="159"/>
-    <property name="Unlock Checkpoint" type="object" value="96"/>
-    <property name="Unlock Permanently" type="bool" value="false"/>
    </properties>
    <point/>
   </object>
@@ -650,10 +649,9 @@
   <object id="163" type="OW Button" x="575" y="639">
    <properties>
     <property name="Bot Details" type="object" value="169"/>
-    <property name="Button Behavior" propertytype="ButtonBehavior" value="Dynamic"/>
+    <property name="Button Behavior" propertytype="ButtonBehavior" value="Repeatable"/>
     <property name="Button Chain Type" propertytype="ButtonChainType" value="Exclusive"/>
     <property name="Trigger Object" type="object" value="162"/>
-    <property name="Unlock Permanently" type="bool" value="false"/>
    </properties>
    <point/>
   </object>
@@ -667,7 +665,7 @@
     <property name="Asset Name" value="pink_button"/>
     <property name="Deactivated Animation" value="ANIMATE_PRESS"/>
     <property name="Deactivation Animation Duration" type="float" value="0.3"/>
-    <property name="Direction" propertytype="Direction" value="Down"/>
+    <property name="Direction" type="int" value="1"/>
     <property name="Inactive Animation" value="UNPRESSED"/>
    </properties>
    <point/>
@@ -681,7 +679,7 @@
     <property name="Asset Name" value="blue_button"/>
     <property name="Deactivated Animation" value="ANIMATE_PRESS"/>
     <property name="Deactivation Animation Duration" type="float" value="0.3"/>
-    <property name="Direction" propertytype="Direction" value="Down"/>
+    <property name="Direction" type="int" value="1"/>
     <property name="Inactive Animation" value="UNPRESSED"/>
    </properties>
    <point/>
@@ -695,7 +693,7 @@
    <properties>
     <property name="Bot Details" type="object" value="172"/>
     <property name="Button Behavior" propertytype="ButtonBehavior" value="Dynamic"/>
-    <property name="Button Chain Type" propertytype="ButtonChainType" value="Exclusive"/>
+    <property name="Button Chain Type" propertytype="ButtonChainType" value="Any"/>
     <property name="Trigger Object" type="object" value="170"/>
     <property name="Unlock Permanently" type="bool" value="false"/>
    </properties>
@@ -710,7 +708,7 @@
     <property name="Asset Name" value="red_button"/>
     <property name="Deactivated Animation" value="ANIMATE_PRESS"/>
     <property name="Deactivation Animation Duration" type="float" value="0.3"/>
-    <property name="Direction" propertytype="Direction" value="Down"/>
+    <property name="Direction" type="int" value="1"/>
     <property name="Inactive Animation" value="UNPRESSED"/>
    </properties>
    <point/>
@@ -722,9 +720,10 @@
   </object>
   <object id="174" type="OW Button" x="576" y="512">
    <properties>
+    <property name="Activated Time" value="5"/>
     <property name="Bot Details" type="object" value="175"/>
-    <property name="Button Behavior" propertytype="ButtonBehavior" value="Dynamic"/>
-    <property name="Button Chain Type" propertytype="ButtonChainType" value="Exclusive"/>
+    <property name="Button Behavior" propertytype="ButtonBehavior" value="Timed"/>
+    <property name="Button Chain Type" propertytype="ButtonChainType" value="Any"/>
     <property name="Trigger Object" type="object" value="173"/>
     <property name="Unlock Permanently" type="bool" value="false"/>
    </properties>
@@ -739,7 +738,7 @@
     <property name="Asset Name" value="light_blue_button"/>
     <property name="Deactivated Animation" value="ANIMATE_PRESS"/>
     <property name="Deactivation Animation Duration" type="float" value="0.3"/>
-    <property name="Direction" propertytype="Direction" value="Down"/>
+    <property name="Direction" type="int" value="1"/>
     <property name="Inactive Animation" value="UNPRESSED"/>
    </properties>
    <point/>
@@ -752,8 +751,8 @@
   <object id="177" type="OW Button" x="576" y="608">
    <properties>
     <property name="Bot Details" type="object" value="178"/>
-    <property name="Button Behavior" propertytype="ButtonBehavior" value="Dynamic"/>
-    <property name="Button Chain Type" propertytype="ButtonChainType" value="Exclusive"/>
+    <property name="Button Behavior" propertytype="ButtonBehavior" value="One-Time"/>
+    <property name="Button Chain Type" propertytype="ButtonChainType" value="Any"/>
     <property name="Trigger Object" type="object" value="176"/>
     <property name="Unlock Permanently" type="bool" value="false"/>
    </properties>
@@ -768,7 +767,7 @@
     <property name="Asset Name" value="orange_button"/>
     <property name="Deactivated Animation" value="ANIMATE_PRESS"/>
     <property name="Deactivation Animation Duration" type="float" value="0.3"/>
-    <property name="Direction" propertytype="Direction" value="Down"/>
+    <property name="Direction" type="int" value="1"/>
     <property name="Inactive Animation" value="UNPRESSED"/>
    </properties>
    <point/>
@@ -782,7 +781,7 @@
    <properties>
     <property name="Bot Details" type="object" value="181"/>
     <property name="Button Behavior" propertytype="ButtonBehavior" value="Dynamic"/>
-    <property name="Button Chain Type" propertytype="ButtonChainType" value="Exclusive"/>
+    <property name="Button Chain Type" propertytype="ButtonChainType" value="Any"/>
     <property name="Trigger Object" type="object" value="179"/>
     <property name="Unlock Permanently" type="bool" value="false"/>
    </properties>
@@ -797,7 +796,7 @@
     <property name="Asset Name" value="green_button"/>
     <property name="Deactivated Animation" value="ANIMATE_PRESS"/>
     <property name="Deactivation Animation Duration" type="float" value="0.3"/>
-    <property name="Direction" propertytype="Direction" value="Down"/>
+    <property name="Direction" type="int" value="1"/>
     <property name="Inactive Animation" value="UNPRESSED"/>
    </properties>
    <point/>
@@ -810,8 +809,8 @@
   <object id="183" type="OW Button" x="608" y="608">
    <properties>
     <property name="Bot Details" type="object" value="184"/>
-    <property name="Button Behavior" propertytype="ButtonBehavior" value="Dynamic"/>
-    <property name="Button Chain Type" propertytype="ButtonChainType" value="Exclusive"/>
+    <property name="Button Behavior" propertytype="ButtonBehavior" value="Repeatable"/>
+    <property name="Button Chain Type" propertytype="ButtonChainType" value="Any"/>
     <property name="Trigger Object" type="object" value="182"/>
     <property name="Unlock Permanently" type="bool" value="false"/>
    </properties>
@@ -826,8 +825,21 @@
     <property name="Asset Name" value="purple_button"/>
     <property name="Deactivated Animation" value="ANIMATE_PRESS"/>
     <property name="Deactivation Animation Duration" type="float" value="0.3"/>
-    <property name="Direction" propertytype="Direction" value="Down"/>
+    <property name="Direction" type="int" value="1"/>
     <property name="Inactive Animation" value="UNPRESSED"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="185" type="Unlock Behavior" x="672" y="544">
+   <properties>
+    <property name="Unlock Permanently" type="bool" value="true"/>
+    <property name="Unlock This" type="object" value="96"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="186" type="Relock Behavior" x="656" y="544">
+   <properties>
+    <property name="Relock This" type="object" value="96"/>
    </properties>
    <point/>
   </object>

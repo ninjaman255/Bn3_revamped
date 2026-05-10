@@ -18,77 +18,17 @@
   },
   {
     "id": 2,
-    "name": "Direction",
+    "name": "ButtonChainType",
     "storageType": "string",
     "type": "enum",
     "values": [
-      "Up",
-      "Down",
-      "Left",
-      "Right",
-      "Up Left",
-      "Up Right",
-      "Down Left",
-      "Down Right"
+      "Any",
+      "Exclusive"
     ],
     "valuesAsFlags": false
   },
   {
     "id": 3,
-    "name": "ButtonBehavior",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "Repeatable",
-      "One-Time",
-      "Dynamic",
-      "Custom",
-      "Timed"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 4,
-    "name": "CurrencyType",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "money",
-      "fragments",
-      "tokens"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 5,
-    "name": "KeyType",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "money",
-      "fragments",
-      "tokens",
-      "item",
-      "bossgate"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 6,
-    "name": "ItemType",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "item",
-      "keyitem",
-      "money",
-      "fragments",
-      "tokens"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 7,
     "name": "DialogueType",
     "storageType": "string",
     "type": "enum",
@@ -112,7 +52,24 @@
     "valuesAsFlags": false
   },
   {
-    "id": 8,
+    "id": 4,
+    "name": "Direction",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "Up",
+      "Down",
+      "Left",
+      "Right",
+      "Up Left",
+      "Up Right",
+      "Down Left",
+      "Down Right"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 5,
     "name": "WaypointType",
     "storageType": "string",
     "type": "enum",
@@ -125,7 +82,7 @@
     "valuesAsFlags": false
   },
   {
-    "id": 9,
+    "id": 6,
     "name": "TriggerShape",
     "storageType": "string",
     "type": "enum",
@@ -136,18 +93,35 @@
     "valuesAsFlags": false
   },
   {
-    "id": 10,
-    "name": "ButtonChainType",
+    "id": 7,
+    "name": "KeyType",
     "storageType": "string",
     "type": "enum",
     "values": [
-      "Any",
-      "Exclusive"
+      "money",
+      "fragments",
+      "tokens",
+      "item",
+      "bossgate"
     ],
     "valuesAsFlags": false
   },
   {
-    "id": 11,
+    "id": 8,
+    "name": "ButtonBehavior",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "Repeatable",
+      "One-Time",
+      "Dynamic",
+      "Custom",
+      "Timed"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 9,
     "name": "QuizFailAction",
     "storageType": "string",
     "type": "enum",
@@ -156,6 +130,32 @@
       "hide_once",
       "hide_temp",
       "explode"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 10,
+    "name": "CurrencyType",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "money",
+      "fragments",
+      "tokens"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 11,
+    "name": "ItemType",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "item",
+      "keyitem",
+      "money",
+      "fragments",
+      "tokens"
     ],
     "valuesAsFlags": false
   },
@@ -1401,14 +1401,14 @@
         "value": ""
       },
       {
-        "name": "Unlock Checkpoint",
+        "name": "Button Activated Behavior",
         "type": "object",
         "value": ""
       },
       {
-        "name": "Unlock Permanently",
-        "type": "bool",
-        "value": false
+        "name": "Button Deactivated Behavior",
+        "type": "object",
+        "value": ""
       },
       {
         "name": "Button Chain Type",
@@ -1429,9 +1429,48 @@
     ]
   },
   {
-    "color": "#aaddff",
+    "color": "#ffcc00",
     "drawFill": true,
     "id": 33,
+    "members": [
+      {
+        "name": "Unlock This",
+        "type": "object",
+        "value": ""
+      },
+      {
+        "name": "Unlock Permanently",
+        "type": "bool",
+        "value": false
+      }
+    ],
+    "name": "Unlock Behavior",
+    "type": "class",
+    "useAs": [
+      "object"
+    ]
+  },
+  {
+    "color": "#ff8888",
+    "drawFill": true,
+    "id": 34,
+    "members": [
+      {
+        "name": "Relock This",
+        "type": "object",
+        "value": ""
+      }
+    ],
+    "name": "Relock Behavior",
+    "type": "class",
+    "useAs": [
+      "object"
+    ]
+  },
+  {
+    "color": "#aaddff",
+    "drawFill": true,
+    "id": 35,
     "members": [
       {
         "name": "Trigger Type",

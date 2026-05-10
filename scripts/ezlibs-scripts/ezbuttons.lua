@@ -3,6 +3,8 @@
 -- When all buttons in a chain become active, a callback is invoked.
 -- Supports five interaction behaviors: Repeatable, One-Time, Dynamic, Custom, Timed.
 -- Supports exclusive chains: only one button can be active at a time.
+-- Now includes explicit Relock Behavior via Button Deactivated Behavior,
+-- using a per‑button `last_activator` field.
 
 local object_registry = require('scripts/ezlibs-scripts/object_registry')
 local eznpcs = require('scripts/ezlibs-scripts/eznpcs/eznpcs')
@@ -124,14 +126,10 @@ local function create_button_bot(area_id, asset_name, x, y, z, direction,
                                  initial_anim)
     local texture_path = button_asset_folder  .. asset_name .. ".png"
     local animation_path = button_asset_folder  .. asset_name .. ".animation"
-    --local mug_animation_path = button_asset_folder .. "mug/mug.animation"
 
     if animation_name then
         animation_path = button_asset_folder .. animation_name .. ".animation"
     end
-    --if mug_animation_name then
-    --    mug_animation_path = button_asset_folder .. 'mug/' .. mug_animation_name .. ".animation"
-    --end
 
     local npc_data = {
         asset_name = asset_name,
@@ -227,7 +225,6 @@ local function build_chains()
             placeholder_to_chain_root[id] = root_id
         end
 
-        -- Retrieve chain type from the root button's stored info
         local root_info = all_placeholders[root_id]
         if root_info and root_info.chain_type then
             chain_type[root_id] = root_info.chain_type
@@ -238,7 +235,7 @@ local function build_chains()
         end
     end
 
-    -- Now that chains are built, set up checkpoint bindings for roots
+    -- Now that chains are built, set up checkpoint bindings from all buttons
     for button_id, cp_info in pairs(button_to_checkpoint) do
         local root_id = placeholder_to_chain_root[button_id] or button_id
         if not checkpoint_bindings[root_id] then
@@ -261,17 +258,21 @@ local function is_chain_fully_active(area_id, chain_ids)
     return true
 end
 
--- Internal core activation (no animation, immediate state change)
+-- ============================================================
+-- PERFORM ACTIVATION (with checkpoint unlocking)
+-- ============================================================
 perform_activation = function(area_id, object_id, player_id, info)
     if is_button_active(area_id, object_id) then
         return false
     end
 
+    -- Remember who activated this button (for later explicit relock)
+    info.last_activator = player_id
+
     local root_id = placeholder_to_chain_root[object_id] or object_id
-    -- Handle exclusive chain: deactivate all other buttons in the same chain before activating this one
+    -- Exclusive chain handling (unchanged)
     if chain_type[root_id] == "Exclusive" then
         local chain_ids = chain_roots[root_id] or { root_id }
-        print("[ezbuttons] Exclusive chain", root_id, "- deactivating other buttons before activating", object_id)
         for _, other_id in ipairs(chain_ids) do
             if tostring(other_id) ~= tostring(object_id) then
                 local other_area_id = nil
@@ -286,18 +287,12 @@ perform_activation = function(area_id, object_id, player_id, info)
                 end
                 if other_area_id and other_info then
                     if is_button_active(other_area_id, other_id) then
-                        print("[ezbuttons] Exclusive: deactivating other button", other_id)
-                        -- Force immediate deactivation, skip its own exclusive check, and cancel any ongoing animation
                         if other_info.is_animating then
                             other_info.is_animating = false
                             set_button_animation(other_info.bot_id, other_info.inactive_anim, true)
                         end
                         perform_deactivation(other_area_id, other_id, other_info)
-                    else
-                        print("[ezbuttons] Exclusive: other button", other_id, "already inactive")
                     end
-                else
-                    print("[ezbuttons] Exclusive: could not find other button", other_id)
                 end
             end
         end
@@ -306,9 +301,7 @@ perform_activation = function(area_id, object_id, player_id, info)
     set_button_active_state(area_id, object_id, info.bot_id, info.active_anim, info.inactive_anim, true)
     print("[ezbuttons] Button", object_id, "activated by player", player_id)
 
-    if not root_id then
-        root_id = object_id
-    end
+    -- Ensure chain data exists
     if not chain_roots[root_id] then
         chain_roots[root_id] = { root_id }
         placeholder_to_chain_root[root_id] = root_id
@@ -326,7 +319,7 @@ perform_activation = function(area_id, object_id, player_id, info)
             else
                 print("[ezbuttons] Checkpoint " .. binding.checkpoint_object_id .. " unlocked for player " .. player_id .. " via button chain " .. root_id)
                 if not binding.once then
-                    -- Store in area memory so it survives server disconnects
+                    -- Store in area memory so it can be relocked later (automatic relock)
                     local area_mem = ezmemory.get_area_memory(area_id)
                     area_mem.timed_button_unlock_info = area_mem.timed_button_unlock_info or {}
                     area_mem.timed_button_unlock_info[tostring(root_id)] = {
@@ -357,7 +350,9 @@ perform_activation = function(area_id, object_id, player_id, info)
     return true
 end
 
--- Internal core deactivation (no animation, immediate state change)
+-- ============================================================
+-- PERFORM DEACTIVATION (with optional explicit Relock Behavior)
+-- ============================================================
 perform_deactivation = function(area_id, object_id, info)
     if not is_button_active(area_id, object_id) then
         return false
@@ -373,11 +368,11 @@ perform_deactivation = function(area_id, object_id, info)
     local now_fully_active = is_chain_fully_active(area_id, chain_ids)
     print(string.format("   [DEBUG] was_fully_active=%s, now_fully_active=%s", tostring(was_fully_active), tostring(now_fully_active)))
 
+    -- Automatic relock (if unlock wasn't permanent and chain lost full‑active state)
     if was_fully_active and not now_fully_active then
         local area_mem = ezmemory.get_area_memory(area_id)
         area_mem.timed_button_unlock_info = area_mem.timed_button_unlock_info or {}
         local unlock_info = area_mem.timed_button_unlock_info[tostring(root_id)]
-        print("   [DEBUG] unlock_info from area memory is " .. (unlock_info and "FOUND" or "NIL"))
         if unlock_info then
             print("   [DEBUG] calling relock_checkpoint: player=" .. unlock_info.player_id .. " cp=" .. unlock_info.checkpoint_object_id .. " area=" .. unlock_info.area_id)
             local ok, err = pcall(ezcheckpoints.relock_checkpoint, unlock_info.player_id, unlock_info.area_id, unlock_info.checkpoint_object_id)
@@ -391,6 +386,13 @@ perform_deactivation = function(area_id, object_id, info)
             ezmemory.save_area_memory(area_id)
         end
     end
+
+    -- ========== EXPLICIT RELOCK BEHAVIOR (uses last_activator) ==========
+    if info.relock_target and info.last_activator then
+        print("[ezbuttons] Explicit Relock Behavior: relocking " .. info.relock_target .. " for player " .. info.last_activator)
+        pcall(ezcheckpoints.relock_checkpoint, info.last_activator, area_id, info.relock_target)
+    end
+
     return true
 end
 
@@ -420,7 +422,6 @@ deactivate_button_internal = function(area_id, object_id, info, skip_exclusive)
     local deactivation_anim = info.deactivation_anim
     local deactivation_duration = info.deactivation_duration or 0.5
 
-    -- Save original skip_exclusive flag for nested calls
     local old_skip = info._skip_exclusive
     if skip_exclusive then
         info._skip_exclusive = true
@@ -452,9 +453,8 @@ end
 
 -- Start a timer that will deactivate the button after its activated_time
 local function start_timed_deactivation(area_id, object_id, info)
-    -- Cancel any previous timer for this button
     info.timed_cancel = true
-    info.timed_cancel = false   -- ready for new timer
+    info.timed_cancel = false
 
     local delay = info.activated_time
     print(string.format("   [DEBUG] Timed deactivation scheduled for button %s in %.2f seconds", tostring(object_id), delay))
@@ -463,9 +463,8 @@ local function start_timed_deactivation(area_id, object_id, info)
         await(Async.sleep(delay))
         if info.timed_cancel then
             print("   [DEBUG] Timed deactivation CANCELLED for button " .. tostring(object_id))
-            return  -- aborted
+            return
         end
-        -- Only deactivate if the button is still active
         if is_button_active(area_id, object_id) then
             print("   [DEBUG] Timed deactivation FIRING for button " .. tostring(object_id))
             deactivate_button_internal(area_id, object_id, info, false)
@@ -475,7 +474,7 @@ local function start_timed_deactivation(area_id, object_id, info)
     end)
 end
 
--- Public activate with optional animation (synchronous wrapper that spawns async if needed)
+-- Public activate with optional animation
 local function activate_button(area_id, object_id, player_id)
     build_chains()
     object_id = tostring(object_id)
@@ -500,7 +499,6 @@ local function activate_button(area_id, object_id, player_id)
 
     if activation_anim and activation_anim ~= "" then
         info.is_animating = true
-        -- Start the animation and delay asynchronously
         async(function()
             set_button_animation(info.bot_id, activation_anim, false)
             await(Async.sleep(activation_duration))
@@ -513,7 +511,7 @@ local function activate_button(area_id, object_id, player_id)
     end
 end
 
--- Public deactivate with optional animation (synchronous wrapper)
+-- Public deactivate with optional animation
 local function deactivate_button(area_id, object_id, skip_exclusive)
     build_chains()
     object_id = tostring(object_id)
@@ -523,9 +521,7 @@ local function deactivate_button(area_id, object_id, skip_exclusive)
         return false
     end
 
-    -- If skip_exclusive is true, we bypass exclusive chain checks to avoid recursion
     if not skip_exclusive and info._skip_exclusive then
-        -- Already in an exclusive deactivation, do nothing (avoid infinite loop)
         return false
     end
 
@@ -552,11 +548,13 @@ local function load_custom_script(script_path)
     return module, nil
 end
 
--- Object registry handler for "OW Button"
+-- ============================================================
+-- OBJECT REGISTRY HANDLER FOR "OW BUTTON"
+-- ============================================================
 object_registry.register_handler("OW Button", function(area_id, object)
     local props = object.custom_properties or {}
 
-    -- Retrieve the Bot Details object
+    -- Bot Details
     local bot_details_obj_id = props["Bot Details"]
     if not bot_details_obj_id or bot_details_obj_id == "" then
         print("[ezbuttons] OW Button missing Bot Details reference, skipping", object.id)
@@ -570,8 +568,6 @@ object_registry.register_handler("OW Button", function(area_id, object)
     end
 
     local details_props = bot_details_obj.custom_properties or {}
-
-    -- Extract required properties from Bot Details
     local asset_name = details_props["Asset Name"]
     local direction = details_props["Direction"]
     if not asset_name or not direction then
@@ -583,41 +579,65 @@ object_registry.register_handler("OW Button", function(area_id, object)
     local mug_animation_name = details_props["Mug Animation Name"]
     local active_anim = details_props["Active Animation"] or "ACTIVE"
     local inactive_anim = details_props["Inactive Animation"] or "INACTIVE"
-    -- Activated Animation = transition when button becomes active
     local activation_anim = details_props["Activated Animation"] or nil
     local deactivation_anim = details_props["Deactivated Animation"] or nil
     local activation_duration = tonumber(details_props["Activation Animation Duration"]) or 0.5
     local deactivation_duration = tonumber(details_props["Deactivation Animation Duration"]) or 0.5
 
-    local bot_name = object.name   -- from the OW Button object itself
+    local bot_name = object.name
     local next_id = props["Next 1"]
 
-    -- Behavior properties from the OW Button
+    -- Behavior properties
     local behavior = props["Button Behavior"] or "One-Time"
     local script_path = props["Script Path"] or nil
-
-    -- Chain type for this button
     local chain_type_prop = props["Button Chain Type"] or "Any"
-
-    -- Timed behavior: time in seconds before auto-deactivation
     local activated_time = tonumber(props["Activated Time"]) or 1
 
-    -- Checkpoint unlock properties
-    local unlock_checkpoint_obj = props["Unlock Checkpoint"]
+    -- ====== Unlock Behavior (activation) ======
+    local unlock_checkpoint_obj = nil
     local unlock_permanently = true
-    if props["Unlock Permanently"] ~= nil then
-        local val = props["Unlock Permanently"]
-        if type(val) == "boolean" then
-            unlock_permanently = val
-        elseif type(val) == "string" then
-            unlock_permanently = (val:lower() == "true")
+    local behavior_obj_id = props["Button Activated Behavior"]
+    if behavior_obj_id and behavior_obj_id ~= "" then
+        local behavior_obj = Net.get_object_by_id(area_id, tostring(behavior_obj_id))
+        if behavior_obj then
+            local beh_props = behavior_obj.custom_properties or {}
+            unlock_checkpoint_obj = beh_props["Unlock This"]
+            if beh_props["Unlock Permanently"] ~= nil then
+                local val = beh_props["Unlock Permanently"]
+                if type(val) == "boolean" then
+                    unlock_permanently = val
+                elseif type(val) == "string" then
+                    unlock_permanently = (val:lower() == "true")
+                end
+            end
+            print(string.format("   [DEBUG] Button %s: Unlock Behavior -> checkpoint=%s, permanent=%s",
+                  tostring(object.id), tostring(unlock_checkpoint_obj), tostring(unlock_permanently)))
+        else
+            print("[ezbuttons] Warning: Unlock Behavior object", behavior_obj_id, "not found in area", area_id)
         end
     end
 
-    print(string.format("   [DEBUG] Button %s: Unlock Permanently = %s", tostring(object.id), tostring(unlock_permanently)))
+    -- ====== Relock Behavior (deactivation) ======
+    local relock_target = nil
+    local deactivated_behavior_id = props["Button Deactivated Behavior"]
+    if deactivated_behavior_id and deactivated_behavior_id ~= "" then
+        local relock_obj = Net.get_object_by_id(area_id, tostring(deactivated_behavior_id))
+        if relock_obj then
+            local relock_props = relock_obj.custom_properties or {}
+            relock_target = relock_props["Relock This"]
+            if relock_target and relock_target ~= "" then
+                print("[ezbuttons] Button " .. tostring(object.id) .. " will relock checkpoint " .. relock_target .. " on deactivation (Relock Behavior)")
+            else
+                print("[ezbuttons] Warning: Relock Behavior object " .. deactivated_behavior_id .. " does not have a valid Relock This property")
+                relock_target = nil
+            end
+        else
+            print("[ezbuttons] Warning: Relock Behavior object", deactivated_behavior_id, "not found in area", area_id)
+        end
+    end
 
+    -- Bot creation
     local bot_x, bot_y, bot_z = object_to_tile_pos(object)
-
     local bot_id = create_button_bot(area_id, asset_name, bot_x, bot_y,
                                      bot_z, direction, bot_name,
                                      animation_name, mug_animation_name,
@@ -637,14 +657,13 @@ object_registry.register_handler("OW Button", function(area_id, object)
         button_placeholders[area_id] = {}
     end
 
-    -- Determine trigger source object (separate from button)
+    -- Determine trigger source
     local trigger_source_obj = object
     local trigger_type = "rect"
     local trigger_width_px = 4
     local trigger_height_px = 4
 
     local trigger_obj_id = props["Trigger Object"]
-    print("Trigger object id is :", props["Trigger Object"])
     if trigger_obj_id and trigger_obj_id ~= "" then
         local trigger_obj = Net.get_object_by_id(area_id, trigger_obj_id)
         if trigger_obj then
@@ -653,7 +672,6 @@ object_registry.register_handler("OW Button", function(area_id, object)
             trigger_width_px = tonumber(trigger_obj.width) or trigger_width_px
             trigger_height_px = tonumber(trigger_obj.height) or trigger_height_px
         else
-            print("[ezbuttons] Warning: Trigger Object " .. trigger_obj_id .. " not found in area " .. area_id .. ", falling back to button's own position/size")
             trigger_type = props["Trigger Type"] or "rect"
             trigger_width_px = props["Trigger Width"] or 4
             trigger_height_px = props["Trigger Height"] or 4
@@ -664,7 +682,7 @@ object_registry.register_handler("OW Button", function(area_id, object)
         trigger_height_px = props["Trigger Height"] or 4
     end
 
-    -- Build the info table
+    -- Build info table (including relock_target and last_activator)
     local info = {
         area_id = area_id,
         object_id = object.id,
@@ -689,18 +707,20 @@ object_registry.register_handler("OW Button", function(area_id, object)
         trigger_half_h = (TILE_SIZE / trigger_height_px) * 0.5,
         chain_type = chain_type_prop,
         activated_time = activated_time,
-        timed_cancel = false,          -- flag to abort timer
+        timed_cancel = false,
+        relock_target = relock_target,
+        last_activator = nil,   -- will be set on activation
     }
 
     button_placeholders[area_id][tostring(object.id)] = info
     button_bots[bot_id] = info
 
-    -- Hide the original Tiled object
+    -- Hide original object
     for _, player_id in ipairs(Net.list_players(area_id) or {}) do
         hide_button_placeholder_for_player(player_id, area_id, object.id)
     end
 
-    -- Create the trigger
+    -- Create trigger
     local trigger_id = "button_" .. area_id .. "_" .. tostring(object.id)
     local emitter
     if trigger_type == "ellipse" then
@@ -717,7 +737,7 @@ object_registry.register_handler("OW Button", function(area_id, object)
         return
     end
 
-    -- Load custom handlers if needed
+    -- Custom script handlers
     local custom_handlers = nil
     if behavior == "Custom" then
         local mod, err = load_custom_script(script_path)
@@ -787,7 +807,7 @@ object_registry.register_handler("OW Button", function(area_id, object)
     info.trigger_info = emitter
     print("[ezbuttons] ✅ OW Button fully initialized:", object.id, "behavior=", behavior, "trigger size=", trigger_width_px, "x", trigger_height_px)
 
-    -- Store checkpoint binding info
+    -- Store checkpoint binding info (for chain activation unlock)
     if unlock_checkpoint_obj and unlock_checkpoint_obj ~= "" then
         button_to_checkpoint[tostring(object.id)] = {
             area_id = area_id,
@@ -854,5 +874,5 @@ function ezbuttons.bind_checkpoint_to_chain(root_button_id, checkpoint_area_id, 
     print("[ezbuttons] Bound checkpoint " .. checkpoint_object_id .. " to chain root " .. root_button_id)
 end
 
-print("[ezbuttons] Loaded (async animations, exclusive chains with proper animation reset, timed behavior with persistent relock info)")
+print("[ezbuttons] Loaded (async animations, exclusive chains with proper animation reset, timed behavior, explicit Relock Behavior using last_activator)")
 return ezbuttons

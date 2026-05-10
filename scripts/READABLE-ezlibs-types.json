@@ -1,6 +1,85 @@
 [
   {
     "id": 1,
+    "name": "KeyType",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "money",
+      "fragments",
+      "tokens",
+      "item",
+      "bossgate"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 2,
+    "name": "TriggerShape",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "rect",
+      "ellipse"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 3,
+    "name": "Direction",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "Up",
+      "Down",
+      "Left",
+      "Right",
+      "Up Left",
+      "Up Right",
+      "Down Left",
+      "Down Right"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 4,
+    "name": "CurrencyType",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "money",
+      "fragments",
+      "tokens"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 5,
+    "name": "ItemType",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "item",
+      "keyitem",
+      "money",
+      "fragments",
+      "tokens"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 6,
+    "name": "ButtonChainType",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "Any",
+      "Exclusive"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 7,
     "name": "MysteryType",
     "storageType": "string",
     "type": "enum",
@@ -17,18 +96,34 @@
     "valuesAsFlags": false
   },
   {
-    "id": 2,
-    "name": "ButtonChainType",
+    "id": 8,
+    "name": "ButtonBehavior",
     "storageType": "string",
     "type": "enum",
     "values": [
-      "Any",
-      "Exclusive"
+      "Repeatable",
+      "One-Time",
+      "Dynamic",
+      "Custom",
+      "Timed"
     ],
     "valuesAsFlags": false
   },
   {
-    "id": 3,
+    "id": 9,
+    "name": "WaypointType",
+    "storageType": "string",
+    "type": "enum",
+    "values": [
+      "first",
+      "random",
+      "before",
+      "after"
+    ],
+    "valuesAsFlags": false
+  },
+  {
+    "id": 10,
     "name": "DialogueType",
     "storageType": "string",
     "type": "enum",
@@ -52,76 +147,7 @@
     "valuesAsFlags": false
   },
   {
-    "id": 4,
-    "name": "Direction",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "Up",
-      "Down",
-      "Left",
-      "Right",
-      "Up Left",
-      "Up Right",
-      "Down Left",
-      "Down Right"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 5,
-    "name": "WaypointType",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "first",
-      "random",
-      "before",
-      "after"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 6,
-    "name": "TriggerShape",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "rect",
-      "ellipse"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 7,
-    "name": "KeyType",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "money",
-      "fragments",
-      "tokens",
-      "item",
-      "bossgate"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 8,
-    "name": "ButtonBehavior",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "Repeatable",
-      "One-Time",
-      "Dynamic",
-      "Custom",
-      "Timed"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 9,
+    "id": 11,
     "name": "QuizFailAction",
     "storageType": "string",
     "type": "enum",
@@ -130,32 +156,6 @@
       "hide_once",
       "hide_temp",
       "explode"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 10,
-    "name": "CurrencyType",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "money",
-      "fragments",
-      "tokens"
-    ],
-    "valuesAsFlags": false
-  },
-  {
-    "id": 11,
-    "name": "ItemType",
-    "storageType": "string",
-    "type": "enum",
-    "values": [
-      "item",
-      "keyitem",
-      "money",
-      "fragments",
-      "tokens"
     ],
     "valuesAsFlags": false
   },
@@ -1442,6 +1442,11 @@
         "name": "Unlock Permanently",
         "type": "bool",
         "value": false
+      },
+      {
+        "name": "Area Wide",
+        "type": "bool",
+        "value": false
       }
     ],
     "name": "Unlock Behavior",
@@ -1459,6 +1464,11 @@
         "name": "Relock This",
         "type": "object",
         "value": ""
+      },
+      {
+        "name": "Area Wide",
+        "type": "bool",
+        "value": false
       }
     ],
     "name": "Relock Behavior",

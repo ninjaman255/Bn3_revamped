@@ -832,6 +832,7 @@
   </object>
   <object id="185" type="Unlock Behavior" x="672" y="544">
    <properties>
+    <property name="Area Wide" type="bool" value="true"/>
     <property name="Unlock Permanently" type="bool" value="true"/>
     <property name="Unlock This" type="object" value="96"/>
    </properties>
@@ -839,6 +840,7 @@
   </object>
   <object id="186" type="Relock Behavior" x="656" y="544">
    <properties>
+    <property name="Area Wide" type="bool" value="true"/>
     <property name="Relock This" type="object" value="96"/>
    </properties>
    <point/>

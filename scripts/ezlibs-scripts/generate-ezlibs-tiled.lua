@@ -421,6 +421,7 @@ local object_types = {
         members = {
             prop("Unlock This", "object", ""),
             prop("Unlock Permanently", "bool", false),
+            prop("Area Wide", "bool", false),
         }
     },
     -- Relock Behavior – defines relock action triggered when a button deactivates
@@ -429,6 +430,7 @@ local object_types = {
         color = "#ff8888",
         members = {
             prop("Relock This", "object", ""),
+            prop("Area Wide", "bool", false),
         }
     },
     -- Button Trigger – defines the detection area for an OW Button

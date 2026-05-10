@@ -3,8 +3,7 @@
 -- When all buttons in a chain become active, a callback is invoked.
 -- Supports five interaction behaviors: Repeatable, One-Time, Dynamic, Custom, Timed.
 -- Supports exclusive chains: only one button can be active at a time.
--- Now includes explicit Relock Behavior via Button Deactivated Behavior,
--- using a per‑button `last_activator` field.
+-- Supports area‑wide unlock/relock via "Area Wide" flag on Unlock/Relock Behavior objects.
 
 local object_registry = require('scripts/ezlibs-scripts/object_registry')
 local eznpcs = require('scripts/ezlibs-scripts/eznpcs/eznpcs')
@@ -52,11 +51,12 @@ local chains_built = false
 -- Chain type: "Any" (default) or "Exclusive" – stored per root
 local chain_type = {}                   -- root_placeholder_id -> string
 
--- Checkpoint binding: root_button_id -> { area_id, object_id, once }
+-- Checkpoint binding: root_button_id -> { area_id, object_id, once, area_wide }
 local checkpoint_bindings = {}
 
 -- Temporary storage for checkpoints referenced by individual buttons (before chains are built)
-local button_to_checkpoint = {}         -- object_id -> { area_id, checkpoint_object_id, once }
+-- Fields: area_id, checkpoint_object_id, once, area_wide
+local button_to_checkpoint = {}
 
 -- Forward declarations
 local is_button_active
@@ -110,14 +110,31 @@ local function sync_button_animations_for_player(player_id)
     end
 end
 
+-- Apply any area‑wide unlock flags to a player who just entered the area
+local function apply_area_wide_unlocks(player_id, area_id)
+    if not player_id or not area_id then return end
+    local area_mem = ezmemory.get_area_memory(area_id)
+    if not area_mem.area_wide_unlock then return end
+
+    for _, entry in pairs(area_mem.area_wide_unlock) do
+        -- entry contains { area_id = checkpoint_area_id, checkpoint_object_id, once }
+        pcall(ezcheckpoints.force_unlock_checkpoint, player_id, entry.area_id, entry.checkpoint_object_id, entry.once)
+    end
+end
+
 Net:on("player_join", function(event)
     hide_button_placeholders_for_player(event.player_id)
     sync_button_animations_for_player(event.player_id)
+    local ok, area_id = pcall(Net.get_player_area, event.player_id)
+    if ok and area_id then
+        apply_area_wide_unlocks(event.player_id, area_id)
+    end
 end)
 
 Net:on("player_area_transfer", function(event)
     hide_button_placeholders_for_player(event.player_id)
     sync_button_animations_for_player(event.player_id)
+    apply_area_wide_unlocks(event.player_id, event.new_area_id)
 end)
 
 -- Helper: create a non‑solid bot for the button
@@ -235,7 +252,7 @@ local function build_chains()
         end
     end
 
-    -- Now that chains are built, set up checkpoint bindings from all buttons
+    -- Transfer button_to_checkpoint entries to checkpoint_bindings per root
     for button_id, cp_info in pairs(button_to_checkpoint) do
         local root_id = placeholder_to_chain_root[button_id] or button_id
         if not checkpoint_bindings[root_id] then
@@ -259,18 +276,18 @@ local function is_chain_fully_active(area_id, chain_ids)
 end
 
 -- ============================================================
--- PERFORM ACTIVATION (with checkpoint unlocking)
+-- PERFORM ACTIVATION (with checkpoint unlocking, area-wide support)
 -- ============================================================
 perform_activation = function(area_id, object_id, player_id, info)
     if is_button_active(area_id, object_id) then
         return false
     end
 
-    -- Remember who activated this button (for later explicit relock)
+    -- Remember who activated this button
     info.last_activator = player_id
 
     local root_id = placeholder_to_chain_root[object_id] or object_id
-    -- Exclusive chain handling (unchanged)
+    -- Exclusive chain handling
     if chain_type[root_id] == "Exclusive" then
         local chain_ids = chain_roots[root_id] or { root_id }
         for _, other_id in ipairs(chain_ids) do
@@ -313,24 +330,48 @@ perform_activation = function(area_id, object_id, player_id, info)
     if all_active then
         local binding = checkpoint_bindings[root_id]
         if binding then
-            local ok, err = pcall(ezcheckpoints.force_unlock_checkpoint, player_id, binding.area_id, binding.checkpoint_object_id, binding.once)
-            if not ok then
-                print("[ezbuttons] Failed to unlock checkpoint: " .. tostring(err))
+            local cp_area = binding.area_id
+            local cp_id   = binding.checkpoint_object_id
+            local once    = binding.once
+            local area_wide = binding.area_wide
+
+            if area_wide then
+                -- Unlock for all players currently in the checkpoint's area
+                local players = Net.list_players(cp_area) or {}
+                for _, pid in ipairs(players) do
+                    pcall(ezcheckpoints.force_unlock_checkpoint, pid, cp_area, cp_id, once)
+                end
+                -- Save persistent flag so future joiners auto‑unlock
+                local cp_area_mem = ezmemory.get_area_memory(cp_area)
+                cp_area_mem.area_wide_unlock = cp_area_mem.area_wide_unlock or {}
+                cp_area_mem.area_wide_unlock[tostring(root_id)] = {
+                    area_id = cp_area,
+                    checkpoint_object_id = cp_id,
+                    once = once
+                }
+                ezmemory.save_area_memory(cp_area)
+                print("[ezbuttons] Area‑wide unlock applied to checkpoint " .. cp_id .. " in area " .. cp_area)
             else
-                print("[ezbuttons] Checkpoint " .. binding.checkpoint_object_id .. " unlocked for player " .. player_id .. " via button chain " .. root_id)
-                if not binding.once then
-                    -- Store in area memory so it can be relocked later (automatic relock)
-                    local area_mem = ezmemory.get_area_memory(area_id)
-                    area_mem.timed_button_unlock_info = area_mem.timed_button_unlock_info or {}
-                    area_mem.timed_button_unlock_info[tostring(root_id)] = {
-                        player_id = player_id,
-                        area_id = binding.area_id,
-                        checkpoint_object_id = binding.checkpoint_object_id
-                    }
-                    ezmemory.save_area_memory(area_id)
-                    print("   [DEBUG] chain_unlock_state saved to area memory: root=" .. root_id .. " player=" .. player_id .. " cp=" .. binding.checkpoint_object_id)
+                -- Single‑player unlock
+                local ok, err = pcall(ezcheckpoints.force_unlock_checkpoint, player_id, cp_area, cp_id, once)
+                if not ok then
+                    print("[ezbuttons] Failed to unlock checkpoint: " .. tostring(err))
                 else
-                    print("   [DEBUG] Unlock Permanently is TRUE, will NOT relock later")
+                    print("[ezbuttons] Checkpoint " .. cp_id .. " unlocked for player " .. player_id)
+                    if not once then
+                        -- Store in area memory for future relock
+                        local area_mem = ezmemory.get_area_memory(area_id)
+                        area_mem.timed_button_unlock_info = area_mem.timed_button_unlock_info or {}
+                        area_mem.timed_button_unlock_info[tostring(root_id)] = {
+                            player_id = player_id,
+                            area_id = cp_area,
+                            checkpoint_object_id = cp_id
+                        }
+                        ezmemory.save_area_memory(area_id)
+                        print("   [DEBUG] chain_unlock_state saved to area memory: root=" .. root_id .. " player=" .. player_id .. " cp=" .. cp_id)
+                    else
+                        print("   [DEBUG] Unlock Permanently is TRUE, will NOT relock later")
+                    end
                 end
             end
         end
@@ -351,7 +392,7 @@ perform_activation = function(area_id, object_id, player_id, info)
 end
 
 -- ============================================================
--- PERFORM DEACTIVATION (with optional explicit Relock Behavior)
+-- PERFORM DEACTIVATION (with optional explicit Relock Behavior, area-wide support)
 -- ============================================================
 perform_deactivation = function(area_id, object_id, info)
     if not is_button_active(area_id, object_id) then
@@ -368,35 +409,64 @@ perform_deactivation = function(area_id, object_id, info)
     local now_fully_active = is_chain_fully_active(area_id, chain_ids)
     print(string.format("   [DEBUG] was_fully_active=%s, now_fully_active=%s", tostring(was_fully_active), tostring(now_fully_active)))
 
-    -- Automatic relock (if unlock wasn't permanent and chain lost full‑active state)
+    -- Automatic relock (chain became incomplete)
     if was_fully_active and not now_fully_active then
         local area_mem = ezmemory.get_area_memory(area_id)
         area_mem.timed_button_unlock_info = area_mem.timed_button_unlock_info or {}
-        local unlock_info = area_mem.timed_button_unlock_info[tostring(root_id)]
-        if unlock_info then
-            print("   [DEBUG] calling relock_checkpoint: player=" .. unlock_info.player_id .. " cp=" .. unlock_info.checkpoint_object_id .. " area=" .. unlock_info.area_id)
-            local ok, err = pcall(ezcheckpoints.relock_checkpoint, unlock_info.player_id, unlock_info.area_id, unlock_info.checkpoint_object_id)
-            if not ok then
-                print("[ezbuttons] Failed to relock checkpoint: " .. tostring(err))
-            else
-                print("[ezbuttons] Checkpoint " .. unlock_info.checkpoint_object_id .. " relocked for player " .. unlock_info.player_id .. " because chain " .. root_id .. " became incomplete")
+
+        -- Check for area‑wide unlock flag first
+        local cp_area_mem = ezmemory.get_area_memory(area_id)  -- area_id is the button's area, could be same as checkpoint's area
+        if cp_area_mem and cp_area_mem.area_wide_unlock and cp_area_mem.area_wide_unlock[tostring(root_id)] then
+            local entry = cp_area_mem.area_wide_unlock[tostring(root_id)]
+            local players = Net.list_players(entry.area_id) or {}
+            for _, pid in ipairs(players) do
+                pcall(ezcheckpoints.relock_checkpoint, pid, entry.area_id, entry.checkpoint_object_id)
             end
-            -- Clear the unlock info so it only relocks once
-            area_mem.timed_button_unlock_info[tostring(root_id)] = nil
-            ezmemory.save_area_memory(area_id)
+            -- Clear the flag
+            cp_area_mem.area_wide_unlock[tostring(root_id)] = nil
+            ezmemory.save_area_memory(entry.area_id)
+            print("[ezbuttons] Area‑wide relock applied to checkpoint " .. entry.checkpoint_object_id .. " in area " .. entry.area_id)
+        else
+            -- Per‑player automatic relock
+            local unlock_info = area_mem.timed_button_unlock_info[tostring(root_id)]
+            if unlock_info then
+                print("   [DEBUG] calling relock_checkpoint: player=" .. unlock_info.player_id .. " cp=" .. unlock_info.checkpoint_object_id .. " area=" .. unlock_info.area_id)
+                local ok, err = pcall(ezcheckpoints.relock_checkpoint, unlock_info.player_id, unlock_info.area_id, unlock_info.checkpoint_object_id)
+                if not ok then
+                    print("[ezbuttons] Failed to relock checkpoint: " .. tostring(err))
+                else
+                    print("[ezbuttons] Checkpoint " .. unlock_info.checkpoint_object_id .. " relocked for player " .. unlock_info.player_id)
+                end
+                area_mem.timed_button_unlock_info[tostring(root_id)] = nil
+                ezmemory.save_area_memory(area_id)
+            end
         end
     end
 
-    -- ========== EXPLICIT RELOCK BEHAVIOR (uses last_activator) ==========
-    if info.relock_target and info.last_activator then
-        print("[ezbuttons] Explicit Relock Behavior: relocking " .. info.relock_target .. " for player " .. info.last_activator)
-        pcall(ezcheckpoints.relock_checkpoint, info.last_activator, area_id, info.relock_target)
+    -- Explicit Relock Behavior (independent of automatic)
+    if info.relock_target then
+        if info.relock_area_wide then
+            -- Area‑wide explicit relock
+            local players = Net.list_players(info.area_id) or {}
+            for _, pid in ipairs(players) do
+                pcall(ezcheckpoints.relock_checkpoint, pid, info.area_id, info.relock_target)
+            end
+            print("[ezbuttons] Explicit area‑wide relock for checkpoint " .. info.relock_target .. " in area " .. info.area_id)
+        else
+            -- Per‑player explicit relock
+            if info.last_activator then
+                print("[ezbuttons] Explicit Relock Behavior: relocking " .. info.relock_target .. " for player " .. info.last_activator)
+                pcall(ezcheckpoints.relock_checkpoint, info.last_activator, info.area_id, info.relock_target)
+            else
+                print("[ezbuttons] No last_activator for explicit relock; cannot relock")
+            end
+        end
     end
 
     return true
 end
 
--- Internal deactivation that can skip exclusive chain handling (to avoid recursion)
+-- Internal deactivation helper
 deactivate_button_internal = function(area_id, object_id, info, skip_exclusive)
     if not info then
         info = button_placeholders[area_id] and button_placeholders[area_id][tostring(object_id)]
@@ -596,6 +666,7 @@ object_registry.register_handler("OW Button", function(area_id, object)
     -- ====== Unlock Behavior (activation) ======
     local unlock_checkpoint_obj = nil
     local unlock_permanently = true
+    local unlock_area_wide = false
     local behavior_obj_id = props["Button Activated Behavior"]
     if behavior_obj_id and behavior_obj_id ~= "" then
         local behavior_obj = Net.get_object_by_id(area_id, tostring(behavior_obj_id))
@@ -610,8 +681,17 @@ object_registry.register_handler("OW Button", function(area_id, object)
                     unlock_permanently = (val:lower() == "true")
                 end
             end
-            print(string.format("   [DEBUG] Button %s: Unlock Behavior -> checkpoint=%s, permanent=%s",
-                  tostring(object.id), tostring(unlock_checkpoint_obj), tostring(unlock_permanently)))
+            -- Area Wide flag
+            if beh_props["Area Wide"] ~= nil then
+                local val = beh_props["Area Wide"]
+                if type(val) == "boolean" then
+                    unlock_area_wide = val
+                elseif type(val) == "string" then
+                    unlock_area_wide = (val:lower() == "true")
+                end
+            end
+            print(string.format("   [DEBUG] Button %s: Unlock Behavior -> checkpoint=%s, permanent=%s, area_wide=%s",
+                  tostring(object.id), tostring(unlock_checkpoint_obj), tostring(unlock_permanently), tostring(unlock_area_wide)))
         else
             print("[ezbuttons] Warning: Unlock Behavior object", behavior_obj_id, "not found in area", area_id)
         end
@@ -619,14 +699,24 @@ object_registry.register_handler("OW Button", function(area_id, object)
 
     -- ====== Relock Behavior (deactivation) ======
     local relock_target = nil
+    local relock_area_wide = false
     local deactivated_behavior_id = props["Button Deactivated Behavior"]
     if deactivated_behavior_id and deactivated_behavior_id ~= "" then
         local relock_obj = Net.get_object_by_id(area_id, tostring(deactivated_behavior_id))
         if relock_obj then
             local relock_props = relock_obj.custom_properties or {}
             relock_target = relock_props["Relock This"]
+            -- Area Wide flag
+            if relock_props["Area Wide"] ~= nil then
+                local val = relock_props["Area Wide"]
+                if type(val) == "boolean" then
+                    relock_area_wide = val
+                elseif type(val) == "string" then
+                    relock_area_wide = (val:lower() == "true")
+                end
+            end
             if relock_target and relock_target ~= "" then
-                print("[ezbuttons] Button " .. tostring(object.id) .. " will relock checkpoint " .. relock_target .. " on deactivation (Relock Behavior)")
+                print("[ezbuttons] Button " .. tostring(object.id) .. " will relock checkpoint " .. relock_target .. " on deactivation (area_wide=" .. tostring(relock_area_wide) .. ")")
             else
                 print("[ezbuttons] Warning: Relock Behavior object " .. deactivated_behavior_id .. " does not have a valid Relock This property")
                 relock_target = nil
@@ -682,7 +772,7 @@ object_registry.register_handler("OW Button", function(area_id, object)
         trigger_height_px = props["Trigger Height"] or 4
     end
 
-    -- Build info table (including relock_target and last_activator)
+    -- Build info table (including relock_target, relock_area_wide, last_activator)
     local info = {
         area_id = area_id,
         object_id = object.id,
@@ -709,7 +799,8 @@ object_registry.register_handler("OW Button", function(area_id, object)
         activated_time = activated_time,
         timed_cancel = false,
         relock_target = relock_target,
-        last_activator = nil,   -- will be set on activation
+        relock_area_wide = relock_area_wide,
+        last_activator = nil,
     }
 
     button_placeholders[area_id][tostring(object.id)] = info
@@ -812,9 +903,10 @@ object_registry.register_handler("OW Button", function(area_id, object)
         button_to_checkpoint[tostring(object.id)] = {
             area_id = area_id,
             checkpoint_object_id = tostring(unlock_checkpoint_obj),
-            once = unlock_permanently
+            once = unlock_permanently,
+            area_wide = unlock_area_wide,
         }
-        print("[ezbuttons] Button", object.id, "will unlock checkpoint", unlock_checkpoint_obj, "when its chain is fully activated")
+        print("[ezbuttons] Button", object.id, "will unlock checkpoint", unlock_checkpoint_obj, "when its chain is fully activated (area_wide=" .. tostring(unlock_area_wide) .. ")")
     end
 end)
 
@@ -874,5 +966,5 @@ function ezbuttons.bind_checkpoint_to_chain(root_button_id, checkpoint_area_id, 
     print("[ezbuttons] Bound checkpoint " .. checkpoint_object_id .. " to chain root " .. root_button_id)
 end
 
-print("[ezbuttons] Loaded (async animations, exclusive chains with proper animation reset, timed behavior, explicit Relock Behavior using last_activator)")
+print("[ezbuttons] Loaded (async animations, exclusive chains, timed behavior, area‑wide unlock/relock support)")
 return ezbuttons
